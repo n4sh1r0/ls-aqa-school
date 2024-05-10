@@ -2,8 +2,8 @@ package ru.ls.qa.school.core;
 
 // Создаем класс Point
 public class Point {
-        private int x;
-        private int y;
+        public int x;
+        public int y;
 
     // Создаем конструктор для значений x y
     public Point(int x, int y) {
