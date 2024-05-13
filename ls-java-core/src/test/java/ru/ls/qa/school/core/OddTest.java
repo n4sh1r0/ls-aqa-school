@@ -1,6 +1,5 @@
-package ru.ls.qa.school.test;
+package ru.ls.qa.school.core;
 
-import ru.ls.qa.school.core.OddTask;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
