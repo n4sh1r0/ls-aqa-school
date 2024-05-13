@@ -1,6 +1,5 @@
-package ru.ls.qa.school.test;
+package ru.ls.qa.school.core;
 
-import ru.ls.qa.school.core.Point;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
