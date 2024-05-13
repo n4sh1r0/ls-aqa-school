@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PointTest {
     @Test
-    public void testDistanceBeetwenDifferentPoints() {
+    public void testDistanceBetweenDifferentPoints() {
 
         Point point1 = new Point(1, 1);
         Point point2 = new Point(0, 0);
@@ -17,7 +17,7 @@ public class PointTest {
         assertEquals(expectedDistance, actualDistance, 0.0001);
     }
     @Test
-    public void testDistanceBeetwenSamePoints() {
+    public void testDistanceBetweenSamePoints() {
 
         Point point1 = new Point(0, 0);
         Point point2 = new Point(0, 0);
