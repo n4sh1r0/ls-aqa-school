@@ -13,7 +13,15 @@ public class Point {
 
         // Создаем метод для рассчета дистанции
         public double distance (Point point){
-        return Math.sqrt((x-point.x)*(x-point.x) + (y-point.y)*(y-point.y));
+        return Math.sqrt(Math.pow(x-point.x, 2) + Math.pow(y-point.y, 2));
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
 
