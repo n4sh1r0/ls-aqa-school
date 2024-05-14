@@ -34,15 +34,15 @@ public class PointTest {
         assertTrue(samePoints);
     }
     @Test
-    public void testDistanceBetweenPoint2ToPoint1() {
+    public void testDistanceSymmetryBetweenPoints() {
 
-        Point point1 = new Point(1, 1);
-        Point point2 = new Point(4, 4);
+        Point point1 = new Point(-1, 1);
+        Point point2 = new Point(3, -2);
 
-        double actualDistance = point2.distance(point1);
-        double expectedDistance = 4.242640687119285;
+        double distantFrom2to1 = point2.distance(point1);
+        double distantFrom1to2 = point1.distance(point2);
 
-        assertEquals(expectedDistance, actualDistance, 0.0001);
+        assertEquals(distantFrom1to2, distantFrom2to1);
     }
 
     @Test
