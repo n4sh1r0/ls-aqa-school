@@ -63,7 +63,7 @@ public class NewGroupTest {
     $(byLinkText("groups")).click();
   }
 
-  private static void login(String username, String password) {
+  public static void login(String username, String password) {
     open("http://localhost/addressbook");
     $(byName("user")).click();
     $(byName("user")).val(username);
