@@ -16,15 +16,14 @@ public class NewGroupTest {
   public void setUp() {
     Configuration.browser = "chrome";
     Configuration.holdBrowserOpen = true;
-    vars = new HashMap<>();
+    open("http://localhost/addressbook");
+    login("admin", "secret");
   }
   @AfterEach
   public void tearDown() {
   }
   @Test
   public void testNewGroup() {
-    open("http://localhost/addressbook");
-    login("admin", "secret");
     goToGroup();
     initGroupCreation();
     fillGroupForm(new GroupData("contacts", "phone", "number"));
