@@ -54,7 +54,6 @@ public class NewContactTest {
         $(byName("middlename")).sendKeys(contactData.getMiddleName());
         $(byName("lastname")).sendKeys(contactData.getLastName());
         $(byName("nickname")).sendKeys(contactData.getNickname());
-        $(byName("address")).click();
         $(byName("address")).sendKeys(contactData.getAddress());
     }
 
