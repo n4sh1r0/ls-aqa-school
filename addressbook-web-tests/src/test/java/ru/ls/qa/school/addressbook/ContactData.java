@@ -1,6 +1,6 @@
 package ru.ls.qa.school.addressbook;
 
-public final class ContactData {
+public class ContactData {
     private final String firstName;
     private final String middleName;
     private final String lastName;
