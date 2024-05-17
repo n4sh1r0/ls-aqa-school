@@ -15,12 +15,12 @@ public class NewGroupTest {
   @BeforeEach
   public void setUp() {
     Configuration.browser = "chrome";
-    Configuration.holdBrowserOpen = true;
     open("http://localhost/addressbook");
     login("admin", "secret");
   }
   @AfterEach
   public void tearDown() {
+    closeWebDriver();
   }
   @Test
   public void testNewGroup() {

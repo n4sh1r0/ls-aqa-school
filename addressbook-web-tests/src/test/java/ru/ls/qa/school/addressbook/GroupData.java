@@ -1,6 +1,6 @@
 package ru.ls.qa.school.addressbook;
 
-public final class GroupData {
+public class GroupData {
     private final String name;
     private final String header;
     private final String footer;
