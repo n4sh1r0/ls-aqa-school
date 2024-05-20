@@ -3,16 +3,16 @@ package ru.ls.qa.school.addressbook.appmanager;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class NavigationHelper {
+public class NavigationHelper extends BaseHelper {
     public void goToNewContactPage() {
-        $(byLinkText("add new")).click();
+        click(byLinkText("add new"));
     }
 
     public void goToGroupPage() {
-        $(byLinkText("groups")).click();
+        click(byLinkText("groups"));
     }
 
     public void returnToMainPage() {
-        $(byLinkText("home")).click();
+        click(byLinkText("home"));
     }
 }
