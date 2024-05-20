@@ -7,13 +7,13 @@ public class NewGroupTest extends TestBase {
 
     @Test
     public void testNewGroup() {
-        goToGroup();
-        initGroupCreation();
-        fillGroupForm(new GroupData("contacts", "phone", "number"));
-        submitGroupCreation();
-        checkMessageAfterGroupCreation();
-        returnToMainPage();
-        logout();
+        app.goToGroup();
+        app.initGroupCreation();
+        app.fillGroupForm(new GroupData("contacts", "phone", "number"));
+        app.submitGroupCreation();
+        app.checkMessageAfterGroupCreation();
+        app.returnToMainPage();
+        app.logout();
     }
 
 }
