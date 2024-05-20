@@ -14,7 +14,7 @@ public class NewGroupTest extends TestBase {
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().checkMessageAfterGroupCreation();
         app.getNavigationHelper().returnToMainPage();
-        app.logout();
+        app.getSessionHelper().logout();
     }
 
 }
