@@ -1,6 +1,8 @@
-package ru.ls.qa.school.addressbook;
+package ru.ls.qa.school.addressbook.appmanager;
 
 import com.codeborne.selenide.Configuration;
+import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.model.GroupData;
 
 import java.util.Map;
 
@@ -10,17 +12,17 @@ import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ApplicationManager {
-    private Map<String, Object> vars;
+    public Map<String, Object> vars;
 
-    public static void checkMessageAfterGroupCreation() {
+    public  void checkMessageAfterGroupCreation() {
         $(".msgbox").shouldHave(text("A new group has been entered into the address book.\n return to the group page"));
     }
 
-    public static void submitGroupCreation() {
+    public  void submitGroupCreation() {
         $(byName("submit")).click();
     }
 
-    public static void fillGroupForm(GroupData groupData) {
+    public  void fillGroupForm(GroupData groupData) {
         $(byName("group_name")).click();
         $(byName("group_name")).val(groupData.getName());
         $(byName("group_header")).click();
@@ -29,19 +31,19 @@ public class ApplicationManager {
         $(byName("group_footer")).val(groupData.getFooter());
     }
 
-    public static void logout() {
+    public  void logout() {
         $(byLinkText("Logout")).click();
     }
 
-    public static void returnToMainPage() {
+    public void returnToMainPage() {
         $(byLinkText("home")).click();
     }
 
-    public static void initGroupCreation() {
+    public void initGroupCreation() {
         $(byName("new")).click();
     }
 
-    public static void goToGroup() {
+    public void goToGroup() {
         $(byLinkText("groups")).click();
     }
 
@@ -53,11 +55,11 @@ public class ApplicationManager {
         $("input:nth-child(7)").click();
     }
 
-    public static void submitCreationNewContact() {
+    public void submitCreationNewContact() {
         $("input:nth-child(87)").click();
     }
 
-    public static void fillNewContactForm(ContactData contactData) {
+    public void fillNewContactForm(ContactData contactData) {
         $(byName("firstname")).click();
         $(byName("firstname")).sendKeys(contactData.getFirstName());
         $(byName("middlename")).sendKeys(contactData.getMiddleName());
@@ -66,18 +68,18 @@ public class ApplicationManager {
         $(byName("address")).sendKeys(contactData.getAddress());
     }
 
-    public static void goToNewContactPage() {
+    public void goToNewContactPage() {
         $(byLinkText("add new")).click();
     }
 
-    protected static void init() {
+    public void init() {
         Configuration.browser = "chrome";
         Configuration.holdBrowserOpen = true;
         open("http://localhost/addressbook");
         ApplicationManager.login("admin", "secret");
     }
 
-    protected static void stop() {
+    public void stop() {
         closeWebDriver();
     }
 }
