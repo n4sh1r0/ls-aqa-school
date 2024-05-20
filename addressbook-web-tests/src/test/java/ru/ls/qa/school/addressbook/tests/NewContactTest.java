@@ -7,14 +7,14 @@ public class NewContactTest extends TestBase {
 
     @Test
     public void testNewContact() {
-        app.goToNewContactPage();
-        app.fillNewContactForm(new ContactData("testname",
+        app.getNavigationHelper().goToNewContactPage();
+        app.getContactHelper().fillNewContactForm(new ContactData("testname",
                 "testname",
                 "testname",
                 "testname",
                 "Moscow"));
-        app.submitCreationNewContact();
-        app.returnToMainPage();
+        app.getContactHelper().submitCreationNewContact();
+        app.getNavigationHelper().returnToMainPage();
         app.logout();
     }
 }
