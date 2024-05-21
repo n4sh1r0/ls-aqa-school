@@ -4,11 +4,12 @@ import ru.ls.qa.school.addressbook.model.GroupData;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selectors.byTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.$;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
-        $(".msgbox").shouldHave(text("A new group has been entered into the address book.\n return to the group page"));
+        checkMessage(byTextCaseInsensitive(".msgbox"), "A new group has been entered into the address book.\n return to the group page");
     }
 
     public void submitGroupCreation() {

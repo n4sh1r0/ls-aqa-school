@@ -2,8 +2,6 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import com.codeborne.selenide.Configuration;
 
-import java.util.Map;
-
 import static com.codeborne.selenide.Selenide.*;
 
 public class ApplicationManager {
@@ -11,7 +9,6 @@ public class ApplicationManager {
     private final NavigationHelper navigationHelper = new NavigationHelper();
     private final ContactHelper contactHelper = new ContactHelper();
     private final SessionHelper sessionHelper = new SessionHelper();
-    public Map<String, Object> vars;
 
 
     public void init() {

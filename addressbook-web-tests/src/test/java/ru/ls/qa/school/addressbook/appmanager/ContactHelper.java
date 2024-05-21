@@ -2,12 +2,12 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 
-import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ContactHelper extends BaseHelper {
     public void submitCreationNewContact() {
-        $("input:nth-child(87)").click();
+        click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }
 
     public void fillNewContactForm(ContactData contactData) {
