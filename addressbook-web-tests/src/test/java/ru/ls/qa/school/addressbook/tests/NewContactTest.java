@@ -1,4 +1,5 @@
 package ru.ls.qa.school.addressbook.tests;
+
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 

@@ -2,7 +2,8 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import com.codeborne.selenide.Configuration;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 public class ApplicationManager {
     private final GroupHelper groupHelper = new GroupHelper();

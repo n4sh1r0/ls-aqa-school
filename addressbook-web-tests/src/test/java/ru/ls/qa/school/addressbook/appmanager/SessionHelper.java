@@ -1,7 +1,5 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -14,7 +12,7 @@ public class SessionHelper extends BaseHelper {
         click(byXpath("//*[@id=\"LoginForm\"]/input[3]"));
     }
 
-    public  void logout() {
+    public void logout() {
         $(byLinkText("Logout")).click();
     }
 }

@@ -2,8 +2,8 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selectors.byXpath;
 
 public class ContactHelper extends BaseHelper {
     public void submitCreationNewContact() {
