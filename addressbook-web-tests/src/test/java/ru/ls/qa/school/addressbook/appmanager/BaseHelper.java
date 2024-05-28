@@ -11,7 +11,6 @@ public class BaseHelper {
     }
 
     protected static void type(By locator, String text) {
-        BaseHelper.click(locator);
         $(locator).val(text);
     }
 
