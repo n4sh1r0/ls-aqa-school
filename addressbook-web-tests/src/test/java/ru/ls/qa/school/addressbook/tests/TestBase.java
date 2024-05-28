@@ -7,15 +7,15 @@ import ru.ls.qa.school.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected final ApplicationManager app = new ApplicationManager();
+    protected static final ApplicationManager app = new ApplicationManager();
 
     @BeforeAll
-    public void setUp() {
+    public static void setUp() {
         app.init();
     }
 
     @AfterAll
-    public void tearDown() {
+    public static void tearDown() {
         app.stop();
     }
 

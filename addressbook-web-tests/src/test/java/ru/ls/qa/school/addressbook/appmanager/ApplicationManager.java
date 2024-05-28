@@ -14,7 +14,6 @@ public class ApplicationManager {
 
     public void init() {
         Configuration.browser = "chrome";
-        Configuration.holdBrowserOpen = true;
         open("http://localhost/addressbook");
         SessionHelper.login("admin", "secret");
     }
