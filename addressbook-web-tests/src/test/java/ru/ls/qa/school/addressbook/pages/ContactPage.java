@@ -10,8 +10,8 @@ public class ContactPage extends BasePage {
         super(app);
     }
 
-    public ContactPage fillNewContactForm(ContactData contactData){
-        app.getContactHelper().fillNewContactForm(contactData);
+    public ContactPage fillContactForm(ContactData contactData){
+        app.getContactHelper().fillContactForm(contactData);
         return this;
     }
 
@@ -31,4 +31,20 @@ public class ContactPage extends BasePage {
         app.getSessionHelper().logout();
         return this;
     }
+
+    public ContactPage clickUpdateContact(){
+        app.getContactHelper().clickUpdateContact();
+        return this;
+    }
+
+    public ContactPage checkUpdatedContactData(){
+        app.getContactHelper().checkUpdatedContactData();
+        return this;
+    }
+
+    public ContactPage submitUpdateContact(){
+        app.getContactHelper().submitUpdateContact();
+        return this;
+    }
+
 }
