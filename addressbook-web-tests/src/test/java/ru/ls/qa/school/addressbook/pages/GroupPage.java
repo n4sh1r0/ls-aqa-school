@@ -27,4 +27,21 @@ public class GroupPage extends BasePage {
         app.getGroupHelper().checkMessageAfterGroupCreation();
         return this;
     }
+
+    public GroupPage logout(){
+        app.getSessionHelper().logout();
+        return this;
+    }
+
+    public GroupPage returnToMainPage(){
+        app.getNavigationHelper().returnToMainPage();
+        return this;
+    }
+
+    public GroupPage goToGroupPage(){
+        app.getNavigationHelper().goToGroupPage();
+        return this;
+    }
+
+
 }
