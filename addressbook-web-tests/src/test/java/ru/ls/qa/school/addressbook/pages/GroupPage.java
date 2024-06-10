@@ -27,6 +27,4 @@ public class GroupPage extends BasePage {
         app.getGroupHelper().checkMessageAfterGroupCreation();
         return this;
     }
-
-
 }

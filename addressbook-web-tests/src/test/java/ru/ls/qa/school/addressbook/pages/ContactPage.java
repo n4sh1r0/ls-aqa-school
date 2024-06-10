@@ -19,4 +19,16 @@ public class ContactPage extends BasePage {
         app.getContactHelper().submitCreationNewContact();
         return this;
     }
+    public ContactPage goToNewContactPage(){
+        app.getNavigationHelper().goToNewContactPage();
+        return this;
+    }
+    public ContactPage returnToMainPage(){
+        app.getNavigationHelper().returnToMainPage();
+        return this;
+    }
+    public ContactPage logout(){
+        app.getSessionHelper().logout();
+        return this;
+    }
 }
