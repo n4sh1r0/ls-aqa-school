@@ -8,8 +8,8 @@ public class GroupPage extends BasePage {
         super(app);
     }
 
-    public GroupPage initGroupCreation(){
-        app.getGroupHelper().initGroupCreation();
+    public GroupPage clickGroupCreation(){
+        app.getGroupHelper().clickGroupCreation();
         return this;
     }
 
@@ -38,10 +38,31 @@ public class GroupPage extends BasePage {
         return this;
     }
 
+    public GroupPage clickSelectGroup(){
+        app.getGroupHelper().clickSelectGroup();
+        return this;
+    }
+
+    public GroupPage clickEditGroup(){
+        app.getGroupHelper().clickEditGroup();
+        return this;
+    }
+
+    public GroupPage submitUpdateGroup(){
+        app.getGroupHelper().submitUpdateGroup();
+        return this;
+    }
+
+    public GroupPage checkUpdatedDataGroup(){
+        app.getGroupHelper().checkUpdatedDataGroup();
+        return this;
+    }
+
     public GroupPage goToGroupPage(){
         app.getNavigationHelper().goToGroupPage();
         return this;
     }
+
 
 
 }
