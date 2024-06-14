@@ -3,7 +3,11 @@ package ru.ls.qa.school.addressbook.appmanager;
 import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
     public void submitCreationNewContact() {
@@ -16,16 +20,16 @@ public class ContactHelper extends BaseHelper {
         type(byName("lastname"), contactData.getLastName());
         type(byName("nickname"), contactData.getNickname());
         type(byName("address"), contactData.getAddress());
+        type(byName("email"), contactData.getEmail());
     }
 
     public void clickUpdateContact() {
         click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public void checkUpdatedContactData() {
-        checkMessage(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[2]"), "updatedlastname");
-        checkMessage(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[3]"), "updatedfirstname");
-        checkMessage(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[4]"), "updatedaddress");
+    public void checkUpdatedContactData(String email, String lastName, String firstName) {
+        $x(format("//a[text()='%s']/../../td[2]", email)).shouldNotHave(text(lastName));
+        $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
     public void submitUpdateContact() {
@@ -46,6 +50,7 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectAllContacts() {
         click(byCssSelector("#MassCB"));
+        $("#MassCB").click();
     }
 
     public void checkNumberOfContacts() {

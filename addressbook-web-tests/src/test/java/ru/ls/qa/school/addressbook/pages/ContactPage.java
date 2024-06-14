@@ -40,8 +40,8 @@ public class ContactPage extends BasePage {
         return this;
     }
 
-    public ContactPage checkUpdatedContactData() {
-        app.getContactHelper().checkUpdatedContactData();
+    public ContactPage checkUpdatedContactData(String email, String lastName, String firstName) {
+        app.getContactHelper().checkUpdatedContactData(email, lastName, firstName);
         return this;
     }
 

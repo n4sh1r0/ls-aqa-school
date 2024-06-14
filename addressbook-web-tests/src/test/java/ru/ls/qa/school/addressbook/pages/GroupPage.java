@@ -63,6 +63,16 @@ public class GroupPage extends BasePage {
         return this;
     }
 
+    public GroupPage clickDeleteGroup(){
+        app.getGroupHelper().clickDeleteGroup();
+        return this;
+    }
+
+    public GroupPage checkMessageAfterGroupDeletion(){
+        app.getGroupHelper().checkMessageAfterGroupDeletion();
+        return this;
+    }
+
 
 
 }

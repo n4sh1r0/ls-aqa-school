@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selectors.*;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
-        checkMessage(byXpath("//*[@id=\"content\"]/div"), "A new group has been entered into the address book.\n return to the group page");
+        checkMessage(byCssSelector("#content > div"), "A new group has been entered into the address book.\n return to the group page");
     }
 
     public void submitGroupCreation() {
@@ -37,6 +37,13 @@ public class GroupHelper extends BaseHelper {
 
     public void checkUpdatedDataGroup() {
         checkMessage(byCssSelector("#content > form > span:nth-child(5)"), "updatedContacts");
+    }
+    public void clickDeleteGroup() {
+        click(byCssSelector("#content > form > input[type=submit]:nth-child(2)"));
+    }
+
+    public void checkMessageAfterGroupDeletion() {
+        checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
     }
 
 
