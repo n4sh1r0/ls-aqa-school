@@ -1,4 +1,4 @@
-package ru.ls.qa.school.addressbook;
+package ru.ls.qa.school.addressbook.model;
 
 public class GroupData {
     private final String name;
