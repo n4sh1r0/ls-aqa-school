@@ -49,7 +49,6 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void clickSelectAllContacts() {
-        click(byCssSelector("#MassCB"));
         $("#MassCB").click();
     }
 
