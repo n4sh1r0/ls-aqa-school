@@ -75,5 +75,10 @@ public class ContactPage extends BasePage {
         return this;
     }
 
+    public ContactPage checkNumberOfContactsAfterDeletion() {
+        app.getContactHelper().checkNumberOfContactsAfterDeletion();
+        return this;
+    }
+
 
 }

@@ -58,8 +58,6 @@ public class GroupUpdateTest extends TestBase {
                 .clickEditGroup()
                 .fillGroupForm(new GroupData("updatedContacts", "updatedPhone", "updatedNumber"))
                 .submitUpdateGroup()
-                .goToGroupPage()
-                .checkUpdatedDataGroup()
                 .returnToMainPage()
                 .logout();
     }

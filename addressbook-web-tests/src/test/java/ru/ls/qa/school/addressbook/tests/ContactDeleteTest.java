@@ -70,11 +70,12 @@ public class ContactDeleteTest extends TestBase {
     @Test
     public void testContactDelete() {
         pageManager.getContactPage()
+                .checkNumberOfContacts()
                 .clickSelectContact()
                 .clickDeleteContact()
                 .acceptAllert()
                 .returnToMainPage()
-                .checkNumberOfContacts()
+                .checkNumberOfContactsAfterDeletion()
                 .logout();
 
     }

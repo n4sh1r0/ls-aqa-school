@@ -53,24 +53,23 @@ public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForElement() {
-        if (!$("selector_of_your_element").exists()) {
-            // Ваш код для создания объекта
-            $("selector_for_create_button").click();
+        if (!$(".center").exists()) {
+            pageManager.getContactPage()
+                    .goToNewContactPage()
+                    .fillContactForm(new ContactData(randomFirstName,
+                            randomMiddleName,
+                            randomLastName,
+                            randomNickName,
+                            "Moscow",
+                            randomEmail))
+                    .submitCreationNewContact()
+                    .returnToMainPage();
         }
     }
 
     @Test
     public void testContactUpdate() {
         pageManager.getContactPage()
-                .goToNewContactPage()
-                .fillContactForm(new ContactData(randomFirstName,
-                        randomMiddleName,
-                        randomLastName,
-                        randomNickName,
-                        "Moscow",
-                        randomEmail))
-                .submitCreationNewContact()
-                .returnToMainPage()
                 .clickUpdateContact()
                 .fillContactForm(new ContactData(generateRandomString(getRandomLength()),
                         generateRandomString(getRandomLength()),

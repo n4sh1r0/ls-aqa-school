@@ -51,9 +51,10 @@ public class GroupHelper extends BaseHelper {
         checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
     }
 
-    public void checkCountOfGroups() {
+    public int checkCountOfGroups() {
         ElementsCollection groups = $$(".group");
-        int countOfGroups = groups.size();
+        countOfGroups = groups.size();
+        return countOfGroups;
     }
 
     public void checkCountOfGroupsAfterDeletion() {

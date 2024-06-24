@@ -8,8 +8,10 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactHelper extends BaseHelper {
+    public int intCountOfContacts;
     public void submitCreationNewContact() {
         click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }
@@ -52,8 +54,19 @@ public class ContactHelper extends BaseHelper {
         $("#MassCB").click();
     }
 
-    public void checkNumberOfContacts() {
-        checkMessage(byCssSelector("#content > label"), "Number of results: 0");
+    public int checkNumberOfContacts() {
+        String countOfContacts = $("#search_count").getText();
+        intCountOfContacts = Integer.parseInt(countOfContacts);
+        return intCountOfContacts;
+    }
+
+    public void checkNumberOfContactsAfterDeletion() {
+        String countOfContactsAfterDeletion = $("#search_count").getText();
+        int intCountOfContactsAfterDeletion = Integer.parseInt(countOfContactsAfterDeletion);
+        if (intCountOfContacts == 0) {
+            intCountOfContacts = 1;
+        }
+        assertEquals(intCountOfContacts - 1, intCountOfContactsAfterDeletion);
     }
 
 }
