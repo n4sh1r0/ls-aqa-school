@@ -1,10 +1,13 @@
 package ru.ls.qa.school.addressbook.tests;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import java.util.Random;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class GroupUpdateTest extends TestBase {
 
@@ -25,12 +28,29 @@ public class GroupUpdateTest extends TestBase {
         return 5 + random.nextInt(6);
     }
 
+    String randomGroupName = generateRandomString(getRandomLength());
+    String randomGroupHeader = generateRandomString(getRandomLength());
+    String randomGroupFooter = generateRandomString(getRandomLength());
+
+    @BeforeEach
+    public void checkForGroup() {
+        pageManager.getGroupPage()
+                .goToGroupPage();
+        if (!$(".group").exists()) {
+            pageManager.getGroupPage()
+                    .clickGroupCreation()
+                    .fillGroupForm(new GroupData(randomGroupName, randomGroupHeader, randomGroupFooter))
+                    .submitGroupCreation()
+                    .checkMessageAfterGroupCreation();
+        }
+    }
+
     @Test
     public void testUpdateGroup() {
         pageManager.getGroupPage()
                 .goToGroupPage()
                 .clickGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
+                .fillGroupForm(new GroupData(randomGroupName, randomGroupHeader, randomGroupFooter))
                 .submitGroupCreation()
                 .checkMessageAfterGroupCreation()
                 .goToGroupPage()
@@ -39,7 +59,7 @@ public class GroupUpdateTest extends TestBase {
                 .fillGroupForm(new GroupData("updatedContacts", "updatedPhone", "updatedNumber"))
                 .submitUpdateGroup()
                 .goToGroupPage()
-                .checkUpdatedDataGroup() // спросить
+                .checkUpdatedDataGroup()
                 .returnToMainPage()
                 .logout();
     }

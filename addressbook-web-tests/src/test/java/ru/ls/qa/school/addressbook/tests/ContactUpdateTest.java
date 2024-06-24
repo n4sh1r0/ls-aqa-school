@@ -1,9 +1,12 @@
 package ru.ls.qa.school.addressbook.tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import java.util.Random;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class ContactUpdateTest extends TestBase {
 
@@ -47,6 +50,14 @@ public class ContactUpdateTest extends TestBase {
     String randomNickName = generateRandomString(getRandomLength());
     String randomLastName = generateRandomString(getRandomLength());
     String randomEmail = generateRandomEmail();
+
+    @BeforeEach
+    public void checkForElement() {
+        if (!$("selector_of_your_element").exists()) {
+            // Ваш код для создания объекта
+            $("selector_for_create_button").click();
+        }
+    }
 
     @Test
     public void testContactUpdate() {

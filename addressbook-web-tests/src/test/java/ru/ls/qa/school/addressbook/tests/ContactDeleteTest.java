@@ -1,9 +1,12 @@
 package ru.ls.qa.school.addressbook.tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import java.util.Random;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class ContactDeleteTest extends TestBase {
 
@@ -48,22 +51,25 @@ public class ContactDeleteTest extends TestBase {
     String randomLastName = generateRandomString(getRandomLength());
     String randomEmail = generateRandomEmail();
 
+    @BeforeEach
+    public void checkForContact() {
+        if (!$("td.center").exists()) {
+            pageManager.getContactPage()
+                    .goToNewContactPage()
+                    .fillContactForm(new ContactData(randomFirstName,
+                            randomMiddleName,
+                            randomLastName,
+                            randomNickName,
+                            "Moscow",
+                            randomEmail))
+                    .submitCreationNewContact()
+                    .returnToMainPage();
+        }
+    }
+
     @Test
     public void testContactDelete() {
         pageManager.getContactPage()
-                .clickSelectAllContacts()
-                .clickDeleteContact()
-                .returnToMainPage()
-                .checkNumberOfContacts()
-                .goToNewContactPage()
-                .fillContactForm(new ContactData(randomFirstName,
-                        randomMiddleName,
-                        randomLastName,
-                        randomNickName,
-                        "Moscow",
-                        randomEmail))
-                .submitCreationNewContact()
-                .returnToMainPage()
                 .clickSelectContact()
                 .clickDeleteContact()
                 .acceptAllert()

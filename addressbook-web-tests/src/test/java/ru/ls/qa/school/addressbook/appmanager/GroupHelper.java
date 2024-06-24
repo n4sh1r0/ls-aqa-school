@@ -1,10 +1,14 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
+import com.codeborne.selenide.ElementsCollection;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GroupHelper extends BaseHelper {
+    public int countOfGroups;
     public void checkMessageAfterGroupCreation() {
         checkMessage(byCssSelector("#content > div"), "A new group has been entered into the address book.\n return to the group page");
     }
@@ -36,8 +40,9 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void checkUpdatedDataGroup() {
-        checkMessage(byCssSelector("#content > form > span:nth-child(5)"), "updatedContacts");
+        checkMessage(byCssSelector("/html/body/div/div[4]/form/span[1]/text()"), "updatedContacts");
     }
+
     public void clickDeleteGroup() {
         click(byCssSelector("#content > form > input[type=submit]:nth-child(2)"));
     }
@@ -46,6 +51,19 @@ public class GroupHelper extends BaseHelper {
         checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
     }
 
+    public void checkCountOfGroups() {
+        ElementsCollection groups = $$(".group");
+        int countOfGroups = groups.size();
+    }
+
+    public void checkCountOfGroupsAfterDeletion() {
+        ElementsCollection groupsAfterDeletion = $$(".group");
+        int countOfGroupsAfterDeletion = groupsAfterDeletion.size();
+        if (countOfGroups == 0) {
+            countOfGroups = 1;
+        }
+        assertEquals(countOfGroups - 1, countOfGroupsAfterDeletion);
+    }
 
 
 }

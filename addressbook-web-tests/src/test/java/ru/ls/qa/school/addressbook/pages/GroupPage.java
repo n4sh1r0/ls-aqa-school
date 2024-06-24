@@ -73,6 +73,16 @@ public class GroupPage extends BasePage {
         return this;
     }
 
+    public GroupPage checkCountOfGroups(){
+        app.getGroupHelper().checkCountOfGroups();
+        return this;
+    }
+
+    public GroupPage checkCountOfGroupsAfterDeletion(){
+        app.getGroupHelper().checkCountOfGroupsAfterDeletion();
+        return this;
+    }
+
 
 
 }

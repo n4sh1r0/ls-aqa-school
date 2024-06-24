@@ -25,12 +25,17 @@ public class GroupCreationTest extends TestBase {
         return 5 + random.nextInt(6);
     }
 
+    String randomGroupName = generateRandomString(getRandomLength());
+    String randomGroupHeader = generateRandomString(getRandomLength());
+    String randomGroupFooter = generateRandomString(getRandomLength());
+
+
     @Test
     public void testNewGroup() {
         pageManager.getGroupPage()
                 .goToGroupPage()
                 .clickGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
+                .fillGroupForm(new GroupData(randomGroupName, randomGroupHeader, randomGroupFooter))
                 .submitGroupCreation()
                 .checkMessageAfterGroupCreation()
                 .returnToMainPage()

@@ -1,10 +1,13 @@
 package ru.ls.qa.school.addressbook.tests;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import java.util.Random;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class GroupDeleteTest extends TestBase {
 
@@ -25,18 +28,34 @@ public class GroupDeleteTest extends TestBase {
         return 5 + random.nextInt(6);
     }
 
+
+    String randomGroupName = generateRandomString(getRandomLength());
+    String randomGroupHeader = generateRandomString(getRandomLength());
+    String randomGroupFooter = generateRandomString(getRandomLength());
+
+    @BeforeEach
+    public void checkForGroup() {
+        pageManager.getGroupPage()
+                .goToGroupPage();
+        if (!$(".group").exists()) {
+            pageManager.getGroupPage()
+                    .clickGroupCreation()
+                    .fillGroupForm(new GroupData(randomGroupName, randomGroupHeader, randomGroupFooter))
+                    .submitGroupCreation()
+                    .checkMessageAfterGroupCreation();
+        }
+    }
+
+
     @Test
     public void testDeleteGroup() {
         pageManager.getGroupPage()
                 .goToGroupPage()
-                .clickGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
-                .submitGroupCreation()
-                .checkMessageAfterGroupCreation()
-                .goToGroupPage()
+                .checkCountOfGroups()
                 .clickSelectGroup()
                 .clickDeleteGroup()
-                .checkMessageAfterGroupDeletion();
+                .checkMessageAfterGroupDeletion()
+                .checkCountOfGroupsAfterDeletion();
 
     }
 }

@@ -48,7 +48,6 @@ public class ContactCreationTest extends TestBase {
     String randomLastName = generateRandomString(getRandomLength());
     String randomEmail = generateRandomEmail();
 
-
     @Test
     public void testNewContact() {
         pageManager.getContactPage()
