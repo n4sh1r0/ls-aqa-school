@@ -74,7 +74,6 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void checkDataOfContact() {
-        System.out.println(ContactCreationTest.randomEmail);
         String lastNameOfContact = $x(format("//a[text()='%s']/../../td[2]", ContactCreationTest.randomEmail)).getText();
         String firstNameOfContact = $x(format("//a[text()='%s']/../../td[3]", ContactCreationTest.randomEmail)).getText();
 
