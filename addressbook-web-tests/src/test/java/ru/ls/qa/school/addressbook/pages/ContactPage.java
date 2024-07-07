@@ -61,7 +61,7 @@ public class ContactPage extends BasePage {
     }
 
     public ContactPage acceptAllert() {
-        app.getContactHelper().acceptAllert();
+        app.getContactHelper().acceptAlert();
         return this;
     }
 
@@ -77,6 +77,11 @@ public class ContactPage extends BasePage {
 
     public ContactPage checkNumberOfContactsAfterDeletion() {
         app.getContactHelper().checkNumberOfContactsAfterDeletion();
+        return this;
+    }
+
+    public ContactPage checkDataOfContact() {
+        app.getContactHelper().checkDataOfContact();
         return this;
     }
 

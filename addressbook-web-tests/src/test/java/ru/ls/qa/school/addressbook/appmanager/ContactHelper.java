@@ -2,9 +2,13 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.tests.ContactCreationTest;
+
+import java.util.ArrayList;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
@@ -46,7 +50,7 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
     }
 
-    public void acceptAllert() {
+    public void acceptAlert() {
         Selenide.confirm();
     }
 
@@ -67,6 +71,26 @@ public class ContactHelper extends BaseHelper {
             intCountOfContacts = 1;
         }
         assertEquals(intCountOfContacts - 1, intCountOfContactsAfterDeletion);
+    }
+
+    public void checkDataOfContact() {
+        System.out.println(ContactCreationTest.randomEmail);
+        String lastNameOfContact = $x(format("//a[text()='%s']/../../td[2]", ContactCreationTest.randomEmail)).getText();
+        String firstNameOfContact = $x(format("//a[text()='%s']/../../td[3]", ContactCreationTest.randomEmail)).getText();
+
+
+        ArrayList<String> namesOfContact = new ArrayList<>();
+
+        namesOfContact.add(lastNameOfContact);
+        namesOfContact.add(firstNameOfContact);
+
+
+        ArrayList<String> namesOfExpectedContact = new ArrayList<>();
+
+        namesOfExpectedContact.add(ContactCreationTest.randomLastName);
+        namesOfExpectedContact.add(ContactCreationTest.randomFirstName);
+
+        assertEquals(namesOfExpectedContact, namesOfContact);
     }
 
 }

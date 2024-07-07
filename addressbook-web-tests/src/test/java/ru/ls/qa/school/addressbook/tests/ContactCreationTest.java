@@ -42,11 +42,12 @@ public class ContactCreationTest extends TestBase {
         return sb.toString();
     }
 
-    String randomFirstName = generateRandomString(getRandomLength());
+    public static String randomFirstName = generateRandomString(getRandomLength());
     String randomMiddleName = generateRandomString(getRandomLength());
     String randomNickName = generateRandomString(getRandomLength());
-    String randomLastName = generateRandomString(getRandomLength());
-    String randomEmail = generateRandomEmail();
+    public static String randomLastName = generateRandomString(getRandomLength());
+    public static String randomEmail = generateRandomEmail();
+
 
     @Test
     public void testNewContact() {
@@ -60,6 +61,7 @@ public class ContactCreationTest extends TestBase {
                         randomEmail))
                 .submitCreationNewContact()
                 .returnToMainPage()
+                .checkDataOfContact()
                 .logout();
     }
 }
