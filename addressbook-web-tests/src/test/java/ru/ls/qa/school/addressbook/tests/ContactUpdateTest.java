@@ -45,11 +45,11 @@ public class ContactUpdateTest extends TestBase {
         return sb.toString();
     }
 
-    String randomFirstName = generateRandomString(getRandomLength());
+    public static String randomFirstName = generateRandomString(getRandomLength());
     String randomMiddleName = generateRandomString(getRandomLength());
     String randomNickName = generateRandomString(getRandomLength());
-    String randomLastName = generateRandomString(getRandomLength());
-    String randomEmail = generateRandomEmail();
+    public static String randomLastName = generateRandomString(getRandomLength());
+    public static String randomEmail = generateRandomEmail();
 
     @BeforeEach
     public void checkForElement() {
@@ -68,7 +68,7 @@ public class ContactUpdateTest extends TestBase {
     }
 
     @Test
-    public void testContactUpdate() {
+       public void testContactUpdate() {
         pageManager.getContactPage()
                 .clickUpdateContact()
                 .fillContactForm(new ContactData(generateRandomString(getRandomLength()),
@@ -79,7 +79,7 @@ public class ContactUpdateTest extends TestBase {
                         randomEmail))
                 .submitUpdateContact()
                 .returnToMainPage()
-                .checkUpdatedContactData(randomEmail, randomLastName, randomFirstName)
+                .checkDataOfUpdatedContact()
                 .logout();
     }
 }

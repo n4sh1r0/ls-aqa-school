@@ -49,11 +49,6 @@ public class GroupUpdateTest extends TestBase {
     public void testUpdateGroup() {
         pageManager.getGroupPage()
                 .goToGroupPage()
-                .clickGroupCreation()
-                .fillGroupForm(new GroupData(randomGroupName, randomGroupHeader, randomGroupFooter))
-                .submitGroupCreation()
-                .checkMessageAfterGroupCreation()
-                .goToGroupPage()
                 .clickSelectGroup()
                 .clickEditGroup()
                 .fillGroupForm(new GroupData("updatedContacts", "updatedPhone", "updatedNumber"))

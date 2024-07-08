@@ -3,6 +3,7 @@ package ru.ls.qa.school.addressbook.appmanager;
 import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.ContactCreationTest;
+import ru.ls.qa.school.addressbook.tests.ContactUpdateTest;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ContactHelper extends BaseHelper {
     public int intCountOfContacts;
@@ -90,6 +92,25 @@ public class ContactHelper extends BaseHelper {
         namesOfExpectedContact.add(ContactCreationTest.randomFirstName);
 
         assertEquals(namesOfExpectedContact, namesOfContact);
+    }
+
+    public void checkDataOfUpdatedContact() {
+        String lastNameOfContact = $x(format("//a[text()='%s']/../../td[2]", ContactUpdateTest.randomEmail)).getText();
+        String firstNameOfContact = $x(format("//a[text()='%s']/../../td[3]", ContactUpdateTest.randomEmail)).getText();
+
+
+        ArrayList<String> namesOfContact = new ArrayList<>();
+
+        namesOfContact.add(lastNameOfContact);
+        namesOfContact.add(firstNameOfContact);
+
+
+        ArrayList<String> namesOfExpectedContact = new ArrayList<>();
+
+        namesOfExpectedContact.add(ContactUpdateTest.randomLastName);
+        namesOfExpectedContact.add(ContactUpdateTest.randomFirstName);
+
+        assertNotEquals(namesOfExpectedContact, namesOfContact);
     }
 
 }

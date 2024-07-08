@@ -84,6 +84,10 @@ public class ContactPage extends BasePage {
         app.getContactHelper().checkDataOfContact();
         return this;
     }
+    public ContactPage checkDataOfUpdatedContact() {
+        app.getContactHelper().checkDataOfUpdatedContact();
+        return this;
+    }
 
 
 }
