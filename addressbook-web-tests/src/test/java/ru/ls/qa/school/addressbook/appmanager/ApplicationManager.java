@@ -13,7 +13,8 @@ public class ApplicationManager {
 
 
     public void init() {
-        Configuration.browser = "chrome";
+        Configuration.browser = System.getProperty("selenide.browser", "chrome");
+        // "chrome", "firefox", "legacy_firefox", "ie", "htmlunit", "opera", "safari", "edge"
         open("http://localhost/addressbook");
         SessionHelper.login("admin", "secret");
     }
