@@ -7,7 +7,7 @@ public class NewContactTest extends TestBase {
 
     @Test
     public void testNewContact() {
-        pageManager.getContactPage()
+        page.getContactPage()
                 .goToNewContactPage()
                 .fillNewContactForm(new ContactData("testfirstname",
                         "testmiddlename",

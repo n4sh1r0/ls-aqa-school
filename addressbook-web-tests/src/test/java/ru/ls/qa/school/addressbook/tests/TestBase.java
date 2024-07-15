@@ -10,8 +10,8 @@ import ru.ls.qa.school.addressbook.pages.GroupPage;
 
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager();
-    protected final PageManager pageManager = new PageManager(app);
+    public static ApplicationManager app = new ApplicationManager();
+    public static PageManager page = new PageManager(app);
 
     GroupPage groupPage = new GroupPage(app);
     ContactPage contactPage = new ContactPage(app);

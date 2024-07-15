@@ -8,7 +8,7 @@ public class NewGroupTest extends TestBase {
 
     @Test
     public void testNewGroup() {
-        pageManager.getGroupPage()
+        page.getGroupPage()
                 .goToGroupPage()
                 .initGroupCreation()
                 .fillGroupForm(new GroupData("contacts", "phone", "number"))
