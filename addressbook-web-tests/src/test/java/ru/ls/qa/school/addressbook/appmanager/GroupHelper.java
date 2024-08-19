@@ -10,17 +10,20 @@ public class GroupHelper extends BaseHelper {
         checkMessage(byXpath("//*[@id=\"content\"]/div"), "A new group has been entered into the address book.\n return to the group page");
     }
 
-    public void submitGroupCreation() {
-        click(byName("submit"));
-    }
+
 
     public void fillGroupForm(GroupData groupData) {
         type(byName("group_name"), groupData.getName());
         type(byName("group_header"), groupData.getHeader());
         type(byName("group_footer"), groupData.getFooter());
+        click(byName("submit"));
     }
 
     public void initGroupCreation() {
         click(byName("new"));
+    }
+
+    public void returnToMainPage() {
+        //TODO Добавить нажатие на переход к списку групп после содания новой группы
     }
 }
