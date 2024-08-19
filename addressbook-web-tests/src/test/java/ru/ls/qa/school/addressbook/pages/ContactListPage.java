@@ -1,22 +1,16 @@
 package ru.ls.qa.school.addressbook.pages;
 
 import ru.ls.qa.school.addressbook.appmanager.ApplicationManager;
+import ru.ls.qa.school.addressbook.tests.TestBase;
+
+import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 
 public class ContactListPage extends BasePage {
 
 
-    public ContactListPage(ApplicationManager app) {
-        super(app);
-    }
-
-    public ContactListPage goToNewContactPage() {
+    public ContactCreationPage goToNewContactPage() {
         app.getNavigationHelper().goToNewContactPage();
-        return this;
-    }
-
-    public ContactListPage returnToMainPage() {
-        app.getNavigationHelper().returnToMainPage();
-        return this;
+        return page.getContactCreationPage();
     }
 }

@@ -22,4 +22,8 @@ public class GroupHelper extends BaseHelper {
     public void initGroupCreation() {
         click(byName("new"));
     }
+
+    public void returnToMainPage() {
+        //TODO Добавить нажатие на переход к списку групп после содания новой группы
+    }
 }

@@ -1,22 +1,14 @@
 package ru.ls.qa.school.addressbook.pages;
-import ru.ls.qa.school.addressbook.appmanager.ApplicationManager;
-import ru.ls.qa.school.addressbook.model.GroupData;
+
+import static ru.ls.qa.school.addressbook.tests.TestBase.app;
+import static ru.ls.qa.school.addressbook.tests.TestBase.page;
 
 public class GroupListPage extends BasePage {
 
-    public GroupListPage(ApplicationManager app) {
-        super(app);
+    public GroupCreationPage initGroupCreation() {
+        app.getGroupHelper()
+           .initGroupCreation();
+        return page.getGroupCreationPage();
     }
-
-    public GroupListPage initGroupCreation(){
-        app.getGroupHelper().initGroupCreation();
-        return this;
-    }
-
-    public GroupListPage goToGroupPage(){
-        app.getNavigationHelper().goToGroupPage();
-        return this;
-    }
-
 
 }
