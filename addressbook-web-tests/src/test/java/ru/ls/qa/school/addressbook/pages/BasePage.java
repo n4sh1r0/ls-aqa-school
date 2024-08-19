@@ -1,11 +1,17 @@
 package ru.ls.qa.school.addressbook.pages;
 
-import ru.ls.qa.school.addressbook.appmanager.ApplicationManager;
+import static ru.ls.qa.school.addressbook.tests.TestBase.app;
+import static ru.ls.qa.school.addressbook.tests.TestBase.page;
 
 public class BasePage {
-    protected ApplicationManager app;
-
-    public BasePage(ApplicationManager app) {
-        this.app = app;
+    public ContactListPage returnToMainPage() {
+        app.getNavigationHelper()
+           .returnToMainPage();
+        return page.getContactListPage();
+    }
+    public GroupListPage goToGroupPage() {
+        app.getNavigationHelper()
+           .goToGroupPage();
+        return page.getGroupListPage();
     }
 }

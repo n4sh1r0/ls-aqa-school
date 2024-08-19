@@ -1,6 +1,5 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
-import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,11 +9,8 @@ import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
-    public void submitCreationNewContact() {
-        click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
-    }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillNewContactForm(ContactData contactData) {
         type(byName("firstname"), contactData.getFirstName());
         type(byName("middlename"), contactData.getMiddleName());
         type(byName("lastname"), contactData.getLastName());
@@ -50,6 +46,10 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectAllContacts() {
         $("#MassCB").click();
+    }
+
+    public void submitCreation(){
+        click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }
 
     public void checkNumberOfContacts() {
