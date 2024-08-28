@@ -27,7 +27,7 @@ public class GroupCreationTest extends TestBase {
 
     @Test
     public void testNewGroup() {
-        pageManager.getGroupPage()
+        page.getContactListPage()
                 .goToGroupPage()
                 .clickGroupCreation()
                 .fillGroupForm(new GroupData("contacts", "phone", "number"))

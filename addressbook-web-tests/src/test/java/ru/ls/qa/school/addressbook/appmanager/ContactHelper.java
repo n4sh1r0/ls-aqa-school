@@ -40,7 +40,7 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
     }
 
-    public void acceptAllert() {
+    public void acceptAlert() {
         Selenide.confirm();
     }
 
