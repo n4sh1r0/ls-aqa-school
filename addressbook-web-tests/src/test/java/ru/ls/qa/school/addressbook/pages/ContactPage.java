@@ -11,7 +11,7 @@ public class ContactPage extends BasePage {
     }
 
     public ContactPage fillContactForm(ContactData contactData) {
-        app.getContactHelper().fillContactForm(contactData);
+        app.getContactHelper().fillNewContactForm(contactData);
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ContactPage extends BasePage {
     }
 
     public ContactPage acceptAllert() {
-        app.getContactHelper().acceptAllert();
+        app.getContactHelper().acceptAlert();
         return this;
     }
 

@@ -14,7 +14,7 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillNewContactForm(ContactData contactData) {
         type(byName("firstname"), contactData.getFirstName());
         type(byName("middlename"), contactData.getMiddleName());
         type(byName("lastname"), contactData.getLastName());
@@ -44,7 +44,7 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
     }
 
-    public void acceptAllert() {
+    public void acceptAlert() {
         Selenide.confirm();
     }
 

@@ -19,7 +19,7 @@ public class GroupHelper extends BaseHelper {
         type(byName("group_footer"), groupData.getFooter());
     }
 
-    public void clickGroupCreation() {
+    public void initGroupCreation() {
         click(byName("new"));
     }
 
