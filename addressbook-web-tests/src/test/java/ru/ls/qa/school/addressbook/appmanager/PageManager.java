@@ -1,27 +1,35 @@
 package ru.ls.qa.school.addressbook.appmanager;
-import ru.ls.qa.school.addressbook.pages.ContactPage;
-import ru.ls.qa.school.addressbook.pages.GroupPage;
+
+import ru.ls.qa.school.addressbook.pages.ContactCreationPage;
+import ru.ls.qa.school.addressbook.pages.ContactListPage;
+import ru.ls.qa.school.addressbook.pages.GroupCreationPage;
+import ru.ls.qa.school.addressbook.pages.GroupListPage;
 
 public class PageManager {
     public final ApplicationManager app;
-    public GroupPage groupPage;
-    public ContactPage contactPage;
+    public GroupListPage groupListPage;
+    public ContactListPage contactListPage;
+    public GroupCreationPage groupCreationPage;
+    public ContactCreationPage contactCreationPage;
+
 
     public PageManager(ApplicationManager app) {
         this.app = app;
     }
 
-    public GroupPage getGroupPage() {
-        if (groupPage == null) {
-            groupPage = new GroupPage(app);
-        }
-        return groupPage;
+    public GroupCreationPage getGroupCreationPage() {
+        return groupCreationPage;
     }
 
-    public ContactPage getContactPage() {
-        if (contactPage == null) {
-            contactPage = new ContactPage(app);
-        }
-        return contactPage;
+    public GroupListPage getGroupListPage() {
+        return groupListPage;
+    }
+
+    public ContactListPage getContactListPage() {
+        return contactListPage;
+    }
+
+    public ContactCreationPage getContactCreationPage() {
+        return contactCreationPage;
     }
 }
