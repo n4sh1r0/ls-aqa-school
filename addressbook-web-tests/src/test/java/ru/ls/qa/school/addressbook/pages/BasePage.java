@@ -6,12 +6,12 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.page;
 public class BasePage {
     public ContactListPage returnToMainPage() {
         app.getNavigationHelper()
-           .returnToMainPage();
+                .returnToMainPage();
         return page.getContactListPage();
     }
     public GroupListPage goToGroupPage() {
         app.getNavigationHelper()
-           .goToGroupPage();
+                .goToGroupPage();
         return page.getGroupListPage();
     }
 }
