@@ -22,4 +22,5 @@ public class PageManager extends TestBase {
     public ContactCreationPage getContactCreationPage() {
         return ContactCreationPage;
     }
+
 }
