@@ -10,12 +10,9 @@ public class GroupCreationTest extends TestBase {
     public void testNewGroup() {
         page.getContactListPage()
                 .goToGroupPage()
-                .clickGroupCreation()
+                .initGroupCreation()
                 .fillGroupForm(new GroupData("contacts", "phone", "number"))
-                .submitGroupCreation()
-                .checkMessageAfterGroupCreation()
-                .returnToMainPage()
-                .logout();
+                .submitGroupCreation();
     }
 
 }

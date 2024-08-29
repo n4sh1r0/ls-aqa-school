@@ -4,6 +4,7 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.app;
 import static ru.ls.qa.school.addressbook.tests.TestBase.page;
 
 public class BasePage {
+
     public ContactListPage returnToMainPage() {
         app.getNavigationHelper()
                 .returnToMainPage();
@@ -14,4 +15,7 @@ public class BasePage {
                 .goToGroupPage();
         return page.getGroupListPage();
     }
+
+
+
 }

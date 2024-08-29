@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
+
     public void submitCreationNewContact() {
         click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }

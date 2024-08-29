@@ -15,11 +15,11 @@ public class GroupCreationPage extends BasePage {
         return this;
     }
 
-    public GroupListPage initGroupCreation() {
+    public GroupListPage submitGroupCreation() {
         //TODO метод на запуск создания
         app.getGroupHelper()
            .checkMessageAfterGroupCreation();
-        app.getGroupHelper()
+        app.getNavigationHelper()
            .returnToMainPage();
         return page.getGroupListPage();
     }

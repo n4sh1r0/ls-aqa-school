@@ -13,4 +13,5 @@ public class ContactListPage extends BasePage {
         app.getNavigationHelper().goToNewContactPage();
         return page.getContactCreationPage();
     }
+    public
 }
