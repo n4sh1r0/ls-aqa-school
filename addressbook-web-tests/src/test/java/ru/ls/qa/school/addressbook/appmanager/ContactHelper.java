@@ -1,9 +1,14 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
@@ -21,8 +26,13 @@ public class ContactHelper extends BaseHelper {
         type(byName("email"), contactData.getEmail());
     }
 
-    public void clickUpdateFirstContact() {
+    public void clickUpdateContact() {
         click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void checkUpdatedContactData(String email, String lastName, String firstName) {
+        $x(format("//a[text()='%s']/../../td[2]", email)).shouldNotHave(text(lastName));
+        $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
     public void submitUpdateContact() {
@@ -30,11 +40,22 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void clickSelectFirstContact() {
-        click(byCssSelector("html > body > div > div:nth-of-type(4) > form:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"));
+        click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
     }
 
-    public void clickDeleteContact() {
+    public void clickSelectFirstContac(String name) {
+        ElementsCollection list = $$("tbody");
+        for (SelenideElement element  : list){
+            if (element.$(By.xpath("css-sel1")).text().equals(name) ){
+                click(By.id("1"));
+                break;
+            }
+        }
+    }
+
+    public ContactHelper clickDeleteContact() {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
+        return this;
     }
 
     public void acceptAlert() {
@@ -43,6 +64,7 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectAllContacts() {
         click(byCssSelector("#MassCB"));
+        $("#MassCB").click();
     }
 
     public void checkNumberOfContacts() {
