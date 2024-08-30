@@ -8,7 +8,7 @@ public class GroupUpdateTest extends TestBase {
 
     @Test
     public void testUpdateGroup() {
-        pageManager.getGroupPage()
+        page.getGroupPage()
                 .goToGroupPage()
                 .clickGroupCreation()
                 .fillGroupForm(new GroupData("contacts", "phone", "number"))
