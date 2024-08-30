@@ -9,14 +9,18 @@ import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
 
 public class ContactCreationPage extends BasePage {
 
-    public ContactListPage initContactCreation() {
+    public ContactListPage initContactCreation () {
+return initContactCreation(new ContactData(generateRandomString(getRandomLength()),
+        generateRandomString(getRandomLength()),
+        generateRandomString(getRandomLength()),
+        generateRandomString(getRandomLength()),
+        "Moscow",
+        generateRandomEmail()));
+    }
 
-        app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                "Moscow",
-                generateRandomEmail()));
+    public ContactListPage initContactCreation(ContactData contact) {
+
+        app.getContactHelper().fillNewContactForm(contact);
         app.getContactHelper().submitCreationNewContact();
         try {
             Thread.sleep(4000);
@@ -26,7 +30,7 @@ public class ContactCreationPage extends BasePage {
         return page.getContactListPage();
     }
 
-    public ContactCreationPage initContactUpdate() {
+    public ContactListPage initContactUpdate() {
         app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
                 generateRandomString(getRandomLength()),
                 generateRandomString(getRandomLength()),

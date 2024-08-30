@@ -1,6 +1,7 @@
 package ru.ls.qa.school.addressbook.tests;
 
 import org.junit.jupiter.api.Test;
+import ru.ls.qa.school.addressbook.model.ContactData;
 
 
 public class ContactCreationTest extends TestBase {
@@ -9,8 +10,7 @@ public class ContactCreationTest extends TestBase {
     public void testContactCreation() {
         page.getContactListPage()
                 .goToNewContactPage()
-                .initContactCreation()
-                .submitCreationNewContact();
+                .initContactCreation();
     }
 }
 
