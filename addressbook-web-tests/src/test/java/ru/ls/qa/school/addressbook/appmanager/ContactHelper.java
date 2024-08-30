@@ -1,12 +1,14 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
@@ -39,6 +41,16 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectFirstContact() {
         click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+    }
+
+    public void clickSelectFirstContac(String name) {
+        ElementsCollection list = $$("tbody");
+        for (SelenideElement element  : list){
+            if (element.$(By.xpath("css-sel1")).text().equals(name) ){
+                click(By.id("1"));
+                break;
+            }
+        }
     }
 
     public ContactHelper clickDeleteContact() {
