@@ -27,7 +27,7 @@ public class GroupDeleteTest extends TestBase {
 
     @Test
     public void testDeleteGroup() {
-        pageManager.getGroupPage()
+        page.getGroupPage()
                 .goToGroupPage()
                 .clickGroupCreation()
                 .fillGroupForm(new GroupData("contacts", "phone", "number"))

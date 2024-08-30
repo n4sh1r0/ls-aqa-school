@@ -37,12 +37,13 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("//*[@id=\"content\"]/form[1]/input[1]"));
     }
 
-    public void clickSelectContact() {
+    public void clickSelectFirstContact() {
         click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
     }
 
-    public void clickDeleteContact() {
+    public ContactHelper clickDeleteContact() {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
+        return this;
     }
 
     public void acceptAlert() {

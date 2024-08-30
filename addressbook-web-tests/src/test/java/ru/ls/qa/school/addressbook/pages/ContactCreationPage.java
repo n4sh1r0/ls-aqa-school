@@ -9,7 +9,7 @@ import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
 
 public class ContactCreationPage extends BasePage {
 
-    public ContactCreationPage initContactCreation() {
+    public ContactListPage initContactCreation() {
 
         app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
                 generateRandomString(getRandomLength()),
@@ -17,12 +17,29 @@ public class ContactCreationPage extends BasePage {
                 generateRandomString(getRandomLength()),
                 "Moscow",
                 generateRandomEmail()));
+        app.getContactHelper().submitCreationNewContact();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return this;
+        return page.getContactListPage();
+    }
+
+    public ContactCreationPage initContactUpdate() {
+        app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
+                generateRandomString(getRandomLength()),
+                generateRandomString(getRandomLength()),
+                generateRandomString(getRandomLength()),
+                "Moscow",
+                generateRandomEmail()));
+        app.getContactHelper().submitUpdateContact();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return page.getContactListPage();
     }
 
     public ContactListPage submitCreationNewContact() {
