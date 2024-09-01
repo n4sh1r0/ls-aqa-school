@@ -3,10 +3,7 @@ package ru.ls.qa.school.addressbook.appmanager;
 import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
@@ -24,13 +21,8 @@ public class ContactHelper extends BaseHelper {
         type(byName("email"), contactData.getEmail());
     }
 
-    public void clickUpdateContact() {
+    public void clickUpdateFirstContact() {
         click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
-    }
-
-    public void checkUpdatedContactData(String email, String lastName, String firstName) {
-        $x(format("//a[text()='%s']/../../td[2]", email)).shouldNotHave(text(lastName));
-        $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
     public void submitUpdateContact() {
@@ -38,12 +30,11 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void clickSelectFirstContact() {
-        click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+        click(byCssSelector("html > body > div > div:nth-of-type(4) > form:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"));
     }
 
-    public ContactHelper clickDeleteContact() {
+    public void clickDeleteContact() {
         click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
-        return this;
     }
 
     public void acceptAlert() {
@@ -52,7 +43,6 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectAllContacts() {
         click(byCssSelector("#MassCB"));
-        $("#MassCB").click();
     }
 
     public void checkNumberOfContacts() {

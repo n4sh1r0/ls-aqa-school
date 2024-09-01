@@ -21,13 +21,7 @@ return initContactCreation(new ContactData(generateRandomString(getRandomLength(
     public ContactListPage initContactCreation(ContactData contact) {
 
         app.getContactHelper().fillNewContactForm(contact);
-        app.getContactHelper().submitCreationNewContact();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return page.getContactListPage();
+        return submitCreationNewContact();
     }
 
     public ContactListPage initContactUpdate() {

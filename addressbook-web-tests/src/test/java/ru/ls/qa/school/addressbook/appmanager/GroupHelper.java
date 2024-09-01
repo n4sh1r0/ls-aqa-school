@@ -1,8 +1,12 @@
 package ru.ls.qa.school.addressbook.appmanager;
 
 import ru.ls.qa.school.addressbook.model.GroupData;
+import ru.ls.qa.school.addressbook.pages.GroupCreationPage;
+import ru.ls.qa.school.addressbook.pages.GroupListPage;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
@@ -24,7 +28,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void clickSelectGroup() {
-        click(byXpath("/html/body/div/div[4]/form/span[1]/input"));
+        click(byCssSelector(String.format("[title='Select (%s)']", GroupCreationPage.getGroupName())));
     }
 
     public void clickEditGroup() {
@@ -44,6 +48,14 @@ public class GroupHelper extends BaseHelper {
 
     public void checkMessageAfterGroupDeletion() {
         checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
+    }
+
+    public void findGroupInList() {
+        $("body").find("*").shouldHave(text(GroupCreationPage.getGroupName()));
+    }
+
+    public void checkDeletedGroup() {
+        $("body").find("*").shouldNotHave(text(GroupCreationPage.getGroupName()));
     }
 
 
