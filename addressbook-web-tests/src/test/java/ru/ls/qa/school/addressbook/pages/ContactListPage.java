@@ -11,22 +11,32 @@ public class ContactListPage extends BasePage {
         return page.getContactCreationPage();
     }
 
-    public ContactListPage selectAllContacst() {
+    public ContactListPage selectAllContacts() {
         app.getContactHelper()
                 .clickSelectAllContacts();
         return this;
     }
 
-    public ContactListPage initDeletionContact() {
+    public ContactListPage initDeletionFirstContact() {
         app.getContactHelper()
-                .clickDeleteContact()
-                .acceptAlert();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return this;
+                .clickSelectFirstContact();
+        app.getContactHelper()
+                .clickDeleteContact();
+        acceptAlert();
+        return checkNumberOfContacts();
+    }
+
+    public ContactListPage initDeletionAllContacts() {
+        selectAllContacts();
+        app.getContactHelper()
+                .clickDeleteContact();
+        acceptAlert();
+        return checkNumberOfContacts();
+    }
+    public ContactCreationPage clickUpdateFirstContact() {
+        app.getContactHelper()
+                .clickUpdateFirstContact();
+        return page.getContactCreationPage();
     }
 
     public ContactListPage checkNumberOfContacts() {
@@ -40,4 +50,16 @@ public class ContactListPage extends BasePage {
                 .clickSelectFirstContact();
         return this;
     }
+
+    private ContactListPage acceptAlert() {
+        app.getContactHelper()
+                .acceptAlert();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
 }

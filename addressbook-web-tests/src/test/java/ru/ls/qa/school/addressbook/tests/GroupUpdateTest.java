@@ -27,21 +27,16 @@ public class GroupUpdateTest extends TestBase {
 
     @Test
     public void testUpdateGroup() {
-        page.getGroupPage()
+        page.getGroupListPage()
                 .goToGroupPage()
-                .clickGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
-                .submitGroupCreation()
-                .checkMessageAfterGroupCreation()
+                .goToGroupCreationPage()
+                .initGroupCreation()
                 .goToGroupPage()
-                .clickSelectGroup()
-                .clickEditGroup()
-                .fillGroupForm(new GroupData("updatedContacts", "updatedPhone", "updatedNumber"))
-                .submitUpdateGroup()
+                .selectGroup()
+                .clickUpdateGroup()
+                .initGroupUpdate()
                 .goToGroupPage()
-                .checkUpdatedDataGroup() // спросить
-                .returnToMainPage()
-                .logout();
+                .findGroup();
     }
 
 }

@@ -26,12 +26,13 @@ public class GroupCreationTest extends TestBase {
     }
 
     @Test
-    public void testNewGroup() {
+    public void testGroupCreation() {
         page.getContactListPage()
                 .goToGroupPage()
+                .goToGroupCreationPage()
                 .initGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
-                .submitGroupCreation();
+                .goToGroupPage()
+                .findGroup();
     }
 
 }

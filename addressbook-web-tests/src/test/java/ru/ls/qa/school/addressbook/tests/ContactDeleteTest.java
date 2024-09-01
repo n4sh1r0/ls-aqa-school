@@ -8,15 +8,10 @@ public class ContactDeleteTest extends TestBase {
     @Test
     public void testContactDelete() {
         page.getContactListPage()
-                .selectAllContacst()
-                .initDeletionContact()
-                .checkNumberOfContacts()
+                .initDeletionAllContacts()
                 .goToNewContactPage()
                 .initContactCreation()
-                .submitCreationNewContact()
-                .selectFirstContact()
-                .initDeletionContact()
-                .returnToMainPage()
+                .initDeletionFirstContact()
                 .checkNumberOfContacts();
     }
 }

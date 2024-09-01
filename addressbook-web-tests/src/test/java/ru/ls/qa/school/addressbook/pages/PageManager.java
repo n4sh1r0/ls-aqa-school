@@ -1,12 +1,10 @@
 package ru.ls.qa.school.addressbook.pages;
-import ru.ls.qa.school.addressbook.tests.TestBase;
 
-public class PageManager extends TestBase {
-
-    private final ContactListPage contactListPage = new ContactListPage();
-    private final ContactCreationPage ContactCreationPage = new ContactCreationPage();
-    private final GroupCreationPage groupCreationPage = new GroupCreationPage();
-    private final GroupListPage groupListPage = new GroupListPage();
+public class PageManager  {
+    public GroupListPage groupListPage = new GroupListPage();
+    public ContactListPage contactListPage = new ContactListPage();
+    public GroupCreationPage groupCreationPage = new GroupCreationPage();
+    public ContactCreationPage contactCreationPage = new ContactCreationPage();
 
     public GroupCreationPage getGroupCreationPage() {
         return groupCreationPage;
@@ -16,12 +14,9 @@ public class PageManager extends TestBase {
         return groupListPage;
     }
 
-    public ContactListPage getContactListPage() {
-        return contactListPage;
-    }
+    public ContactListPage getContactListPage() { return contactListPage; }
 
     public ContactCreationPage getContactCreationPage() {
-        return ContactCreationPage;
+        return contactCreationPage;
     }
-
 }

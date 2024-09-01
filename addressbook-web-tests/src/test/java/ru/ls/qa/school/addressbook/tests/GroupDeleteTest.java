@@ -2,7 +2,6 @@ package ru.ls.qa.school.addressbook.tests;
 
 
 import org.junit.jupiter.api.Test;
-import ru.ls.qa.school.addressbook.model.GroupData;
 
 import java.util.Random;
 
@@ -27,16 +26,14 @@ public class GroupDeleteTest extends TestBase {
 
     @Test
     public void testDeleteGroup() {
-        page.getGroupPage()
+        page.getGroupListPage()
                 .goToGroupPage()
-                .clickGroupCreation()
-                .fillGroupForm(new GroupData("contacts", "phone", "number"))
-                .submitGroupCreation()
-                .checkMessageAfterGroupCreation()
+                .goToGroupCreationPage()
+                .initGroupCreation()
                 .goToGroupPage()
-                .clickSelectGroup()
-                .clickDeleteGroup()
-                .checkMessageAfterGroupDeletion();
-
+                .selectGroup()
+                .initDeleteGroup()
+                .goToGroupPage()
+                .checkDeletedGroup();
     }
 }
