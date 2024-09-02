@@ -3,7 +3,10 @@ package ru.ls.qa.school.addressbook.appmanager;
 import com.codeborne.selenide.Selenide;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
@@ -23,6 +26,11 @@ public class ContactHelper extends BaseHelper {
 
     public void clickUpdateFirstContact() {
         click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void checkUpdatedContactData(String email, String lastName, String firstName) {
+        $x(format("//a[text()='%s']/../../td[2]", email)).shouldNotHave(text(lastName));
+        $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
     public void submitUpdateContact() {
