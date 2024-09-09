@@ -9,7 +9,8 @@ public class ContactCreationTest extends TestBase {
     public void testContactCreation() {
         page.getContactListPage()
                 .goToNewContactPage()
-                .initContactCreation();
+                .fillContactForm()
+                .submitCreation();
     }
 }
 

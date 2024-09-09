@@ -7,11 +7,13 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDelete() {
-        page.getContactListPage()
-                .initDeletionAllContacts()
+        int before = app.contactHelper.getNumberOfContacts(); // 0, 1, 80
+
+        var p = page.getContactListPage()
                 .goToNewContactPage()
-                .initContactCreation()
-                .initDeletionFirstContact()
-                .checkNumberOfContacts();
+                .fillContactForm()
+                .submitCreation()
+                .deleteFirstContact();
+        int result = app.contactHelper.getNumberOfContacts(); // before - 1
     }
 }

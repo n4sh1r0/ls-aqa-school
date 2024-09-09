@@ -4,12 +4,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import ru.ls.qa.school.addressbook.appmanager.ApplicationManager;
 import ru.ls.qa.school.addressbook.pages.PageManager;
+import ru.ls.qa.school.addressbook.utils.UtilsManager;
 
 
 public class TestBase  {
 
     public static ApplicationManager app = new ApplicationManager();
     public static PageManager page = new PageManager();
+    public static UtilsManager utils = new UtilsManager();
 
 
 

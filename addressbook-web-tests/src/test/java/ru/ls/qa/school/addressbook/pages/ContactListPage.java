@@ -17,13 +17,13 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
-    public ContactListPage initDeletionFirstContact() {
+    public ContactListPage deleteFirstContact() {
         app.getContactHelper()
                 .clickSelectFirstContact();
         app.getContactHelper()
                 .clickDeleteContact();
         acceptAlert();
-        return checkNumberOfContacts();
+        return this;
     }
 
     public ContactListPage initDeletionAllContacts() {
@@ -31,18 +31,12 @@ public class ContactListPage extends BasePage {
         app.getContactHelper()
                 .clickDeleteContact();
         acceptAlert();
-        return checkNumberOfContacts();
+        return this;
     }
     public ContactCreationPage clickUpdateFirstContact() {
         app.getContactHelper()
                 .clickUpdateFirstContact();
         return page.getContactCreationPage();
-    }
-
-    public ContactListPage checkNumberOfContacts() {
-        app.getContactHelper()
-                .checkNumberOfContacts();
-        return this;
     }
 
     public ContactListPage selectFirstContact() {
@@ -61,5 +55,7 @@ public class ContactListPage extends BasePage {
         }
         return this;
     }
+
+    //TODO реализовать clickUpdateFirstContact()
 
 }

@@ -1,27 +1,19 @@
 package ru.ls.qa.school.addressbook.pages;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
-import ru.ls.qa.school.addressbook.tests.ContactCreationTest;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.app;
-import static ru.ls.qa.school.addressbook.tests.TestBase.page;
 import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
+import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 public class ContactCreationPage extends BasePage {
 
-    public ContactListPage initContactCreation () {
-return initContactCreation(new ContactData(generateRandomString(getRandomLength()),
-        generateRandomString(getRandomLength()),
-        generateRandomString(getRandomLength()),
-        generateRandomString(getRandomLength()),
-        "Moscow",
-        generateRandomEmail()));
+    public ContactCreationPage fillContactForm() {
+        return fillContactForm(utils.generate().contact());
     }
 
-    public ContactListPage initContactCreation(ContactData contact) {
-
+    public ContactCreationPage fillContactForm(ContactData contact) {
         app.getContactHelper().fillNewContactForm(contact);
-        return submitCreationNewContact();
+        return this;
     }
 
     public ContactListPage initContactUpdate() {
@@ -40,7 +32,7 @@ return initContactCreation(new ContactData(generateRandomString(getRandomLength(
         return page.getContactListPage();
     }
 
-    public ContactListPage submitCreationNewContact() {
+    public ContactListPage submitCreation() {
         app.getContactHelper().submitCreationNewContact();
         try {
             Thread.sleep(4000);

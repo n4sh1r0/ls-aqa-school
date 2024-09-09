@@ -45,7 +45,8 @@ public class ContactHelper extends BaseHelper {
         click(byCssSelector("#MassCB"));
     }
 
-    public void checkNumberOfContacts() {
+    //TODO пусть метод возвращает количество строк контактов. например можно преобразовать смеседж в струк и удалить в ней "Number of results: " а потом преобразовать в Int
+    public int getNumberOfContacts() {
         checkMessage(byCssSelector("#content > label"), "Number of results: 0");
     }
 
