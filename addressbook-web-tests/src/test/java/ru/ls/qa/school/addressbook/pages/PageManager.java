@@ -5,6 +5,7 @@ public class PageManager  {
     public ContactListPage contactListPage = new ContactListPage();
     public GroupCreationPage groupCreationPage = new GroupCreationPage();
     public ContactCreationPage contactCreationPage = new ContactCreationPage();
+    public ContactPage contactPage = new ContactPage();
 
     public GroupCreationPage getGroupCreationPage() {
         return groupCreationPage;
@@ -19,4 +20,6 @@ public class PageManager  {
     public ContactCreationPage getContactCreationPage() {
         return contactCreationPage;
     }
+
+    public ContactPage getContactPage() {return contactPage;}
 }

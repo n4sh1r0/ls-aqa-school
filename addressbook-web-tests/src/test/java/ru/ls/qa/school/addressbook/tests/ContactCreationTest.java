@@ -13,4 +13,3 @@ public class ContactCreationTest extends TestBase {
                 .submitCreation();
     }
 }
-

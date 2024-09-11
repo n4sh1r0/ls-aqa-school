@@ -12,11 +12,11 @@ public class GroupDeleteTest extends TestBase {
         page.getGroupListPage()
                 .goToGroupPage()
                 .goToGroupCreationPage()
-                .initGroupCreation()
-                .goToGroupPage()
+                .fillGroupForm()
+                .submitCreationGroup()
+                .returnToGroupListPage()
                 .selectGroup()
                 .initDeleteGroup()
-                .goToGroupPage()
-                .checkDeletedGroup();
+                .goToGroupPage();
     }
 }

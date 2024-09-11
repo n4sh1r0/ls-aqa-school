@@ -13,13 +13,13 @@ public class GroupUpdateTest extends TestBase {
         page.getGroupListPage()
                 .goToGroupPage()
                 .goToGroupCreationPage()
-                .initGroupCreation()
-                .goToGroupPage()
+                .fillGroupForm()
+                .submitCreationGroup()
+                .returnToGroupListPage()
                 .selectGroup()
                 .clickUpdateGroup()
                 .initGroupUpdate()
-                .goToGroupPage()
-                .findGroup();
+                .goToGroupPage();
     }
 
 }

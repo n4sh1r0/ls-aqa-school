@@ -2,7 +2,6 @@ package ru.ls.qa.school.addressbook.appmanager;
 
 import ru.ls.qa.school.addressbook.model.GroupData;
 import ru.ls.qa.school.addressbook.pages.GroupCreationPage;
-import ru.ls.qa.school.addressbook.pages.GroupListPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
@@ -28,7 +27,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void clickSelectGroup() {
-        click(byCssSelector(String.format("[title='Select (%s)']", GroupCreationPage.getGroupName())));
+        click(byCssSelector("input[value='30']"));
     }
 
     public void clickEditGroup() {
@@ -61,7 +60,8 @@ public class GroupHelper extends BaseHelper {
 
 
 
-    public void returnToMainPage() {
+    public void returnToGroupListPage() {
         //TODO Добавить нажатие на переход к списку групп после содания новой группы
+        click(byCssSelector("i a"));
     }
 }

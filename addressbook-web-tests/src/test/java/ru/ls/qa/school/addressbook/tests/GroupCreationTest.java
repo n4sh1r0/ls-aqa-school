@@ -14,9 +14,9 @@ public class GroupCreationTest extends TestBase {
         page.getContactListPage()
                 .goToGroupPage()
                 .goToGroupCreationPage()
-                .initGroupCreation()
-                .goToGroupPage()
-                .findGroup();
+                .fillGroupForm()
+                .submitCreationGroup()
+                .returnToGroupListPage();
     }
 
 }

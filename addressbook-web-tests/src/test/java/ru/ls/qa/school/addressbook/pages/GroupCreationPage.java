@@ -1,11 +1,11 @@
 package ru.ls.qa.school.addressbook.pages;
 
+import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.generateRandomString;
 import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.getRandomLength;
-import static ru.ls.qa.school.addressbook.tests.TestBase.app;
-import static ru.ls.qa.school.addressbook.tests.TestBase.page;
+import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 
 public class GroupCreationPage extends BasePage {
@@ -13,11 +13,15 @@ public class GroupCreationPage extends BasePage {
     public static String groupName = generateRandomString(getRandomLength());
 
 
-    public GroupCreationPage fillGroupForm(GroupData groupData) {
-        app.getGroupHelper()
-           .fillGroupForm(groupData);
+    public GroupCreationPage fillGroupForm() {
+        return fillGroupForm(utils.generate().group());
+    }
+
+    public GroupCreationPage fillGroupForm(GroupData group) {
+        app.getGroupHelper().fillGroupForm(group);
         return this;
     }
+
 
     public GroupListPage initGroupCreation() {
         app.getGroupHelper()
@@ -25,6 +29,18 @@ public class GroupCreationPage extends BasePage {
         app.getGroupHelper()
                 .submitGroupCreation();
         return page.getGroupListPage();
+    }
+
+    public GroupListPage returnToGroupListPage() {
+        app.getGroupHelper().
+                returnToGroupListPage();
+        return page.getGroupListPage();
+    }
+
+    public GroupCreationPage submitCreationGroup() {
+        app.getGroupHelper().
+                submitGroupCreation();
+        return this;
     }
 
     public GroupListPage initGroupUpdate() {

@@ -33,11 +33,6 @@ public class ContactListPage extends BasePage {
         acceptAlert();
         return this;
     }
-    public ContactCreationPage clickUpdateFirstContact() {
-        app.getContactHelper()
-                .clickUpdateFirstContact();
-        return page.getContactCreationPage();
-    }
 
     public ContactListPage selectFirstContact() {
         app.getContactHelper()
@@ -54,6 +49,12 @@ public class ContactListPage extends BasePage {
             throw new RuntimeException(e);
         }
         return this;
+    }
+
+    public ContactPage clickUpdateFirstContact() {
+        app.getContactHelper()
+                .clickUpdateContact();
+        return page.contactPage;
     }
 
     //TODO реализовать clickUpdateFirstContact()

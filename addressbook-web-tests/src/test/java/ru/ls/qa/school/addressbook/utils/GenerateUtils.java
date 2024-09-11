@@ -6,6 +6,7 @@ import ru.ls.qa.school.addressbook.model.GroupData;
 import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
 
 public class GenerateUtils {
+
     public ContactData contact() {
         return new ContactData(generateRandomString(getRandomLength()),
                 generateRandomString(getRandomLength()),
@@ -16,7 +17,9 @@ public class GenerateUtils {
     }
 
     //TODO вынести генератор сюда
-    public GroupData group(){
-        return null;
+    public GroupData group() {
+        return new GroupData(generateRandomString(getRandomLength()),
+        generateRandomString(getRandomLength()),
+        generateRandomString(getRandomLength()));
     }
 }

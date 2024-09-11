@@ -9,8 +9,8 @@ public class ContactUpdateTest extends TestBase {
         page.getContactListPage()
                 .goToNewContactPage()
                 .fillContactForm()
+                .submitCreation()
                 .clickUpdateFirstContact()
                 .initContactUpdate();
-        $$.
     }
 }

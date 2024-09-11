@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
@@ -43,7 +44,7 @@ public class ContactHelper extends BaseHelper {
         click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
     }
 
-    public void clickSelectFirstContac(String name) {
+    public void clickSelectFirstContact(String name) {
         ElementsCollection list = $$("tbody");
         for (SelenideElement element  : list){
             if (element.$(By.xpath("css-sel1")).text().equals(name) ){
@@ -69,7 +70,9 @@ public class ContactHelper extends BaseHelper {
 
     //TODO пусть метод возвращает количество строк контактов. например можно преобразовать смеседж в струк и удалить в ней "Number of results: " а потом преобразовать в Int
     public int getNumberOfContacts() {
-        checkMessage(byCssSelector("#content > label"), "Number of results: 0");
+        String message = $("#content > label").shouldBe(visible).getText();
+        String NumberStr = message.replaceAll("\\D", "");
+        return Integer.parseInt(NumberStr);
     }
 
 }
