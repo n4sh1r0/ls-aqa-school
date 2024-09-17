@@ -3,7 +3,7 @@ package ru.ls.qa.school.addressbook.utils;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
-import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
+import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 
 public class GenerateUtils {
 
@@ -16,10 +16,9 @@ public class GenerateUtils {
                 generateRandomEmail());
     }
 
-    //TODO вынести генератор сюда
     public GroupData group() {
         return new GroupData(generateRandomString(getRandomLength()),
-        generateRandomString(getRandomLength()),
-        generateRandomString(getRandomLength()));
+                generateRandomString(getRandomLength()),
+                generateRandomString(getRandomLength()));
     }
 }

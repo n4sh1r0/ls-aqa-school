@@ -1,6 +1,10 @@
-package ru.ls.qa.school.addressbook.pages;
+package ru.ls.qa.school.addressbook.pages.contact;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.*;
+import ru.ls.qa.school.addressbook.pages.BasePage;
+import ru.ls.qa.school.addressbook.pages.PageManager;
+
+import static ru.ls.qa.school.addressbook.tests.TestBase.app;
+import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
 
 
 public class ContactListPage extends BasePage {
@@ -8,7 +12,7 @@ public class ContactListPage extends BasePage {
 
     public ContactCreationPage goToNewContactPage() {
         app.getNavigationHelper().goToNewContactPage();
-        return page.getContactCreationPage();
+        return pages.getContactCreationPage();
     }
 
     public ContactListPage selectAllContacts() {
@@ -54,9 +58,7 @@ public class ContactListPage extends BasePage {
     public ContactPage clickUpdateFirstContact() {
         app.getContactHelper()
                 .clickUpdateContact();
-        return page.contactPage;
+        return pages.getContactPage();
     }
-
-    //TODO реализовать clickUpdateFirstContact()
 
 }

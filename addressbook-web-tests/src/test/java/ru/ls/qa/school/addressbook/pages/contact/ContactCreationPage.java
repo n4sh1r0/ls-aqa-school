@@ -1,8 +1,9 @@
-package ru.ls.qa.school.addressbook.pages;
+package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.appmanager.RandomHelper.*;
+import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 public class ContactCreationPage extends BasePage {
@@ -29,7 +30,7 @@ public class ContactCreationPage extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return page.getContactListPage();
+        return pages.getContactListPage();
     }
 
     public ContactListPage submitCreation() {
@@ -39,6 +40,6 @@ public class ContactCreationPage extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return page.getContactListPage();
+        return pages.getContactListPage();
     }
 }

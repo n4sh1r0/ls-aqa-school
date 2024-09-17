@@ -1,4 +1,4 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.app;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -46,8 +46,8 @@ public class ContactHelper extends BaseHelper {
 
     public void clickSelectFirstContact(String name) {
         ElementsCollection list = $$("tbody");
-        for (SelenideElement element  : list){
-            if (element.$(By.xpath("css-sel1")).text().equals(name) ){
+        for (SelenideElement element : list) {
+            if (element.$(By.xpath("css-sel1")).text().equals(name)) {
                 click(By.id("1"));
                 break;
             }
@@ -74,5 +74,4 @@ public class ContactHelper extends BaseHelper {
         String NumberStr = message.replaceAll("\\D", "");
         return Integer.parseInt(NumberStr);
     }
-
 }

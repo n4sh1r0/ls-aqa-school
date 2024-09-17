@@ -1,11 +1,8 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.app;
 
 import ru.ls.qa.school.addressbook.model.GroupData;
-import ru.ls.qa.school.addressbook.pages.GroupCreationPage;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
@@ -26,8 +23,8 @@ public class GroupHelper extends BaseHelper {
         click(byName("new"));
     }
 
-    public void clickSelectGroup() {
-        click(byCssSelector("input[value='30']"));
+    public void clickFirstSelectGroup() {
+        click(byName("update"));
     }
 
     public void clickEditGroup() {
@@ -38,10 +35,7 @@ public class GroupHelper extends BaseHelper {
         click(byCssSelector("#content > form > input[type=submit]:nth-child(12)"));
     }
 
-    public void checkUpdatedDataGroup() {
-        checkMessage(byCssSelector("#content > form > span:nth-child(5)"), "updatedContacts");
-    }
-    public void clickDeleteGroup() {
+    public void clickRemoveGroup() {
         click(byCssSelector("#content > form > input[type=submit]:nth-child(2)"));
     }
 
@@ -49,19 +43,7 @@ public class GroupHelper extends BaseHelper {
         checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
     }
 
-    public void findGroupInList() {
-        $("body").find("*").shouldHave(text(GroupCreationPage.getGroupName()));
-    }
-
-    public void checkDeletedGroup() {
-        $("body").find("*").shouldNotHave(text(GroupCreationPage.getGroupName()));
-    }
-
-
-
-
     public void returnToGroupListPage() {
-        //TODO Добавить нажатие на переход к списку групп после содания новой группы
-        click(byCssSelector("i a"));
+        click(byLinkText("group page"));
     }
 }

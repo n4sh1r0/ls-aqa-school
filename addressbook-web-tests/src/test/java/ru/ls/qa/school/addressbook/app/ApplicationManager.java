@@ -1,16 +1,15 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.app;
 
 import com.codeborne.selenide.Configuration;
-import ru.ls.qa.school.addressbook.tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ApplicationManager {
-    public GroupHelper groupHelper = new GroupHelper();
-    public NavigationHelper navigationHelper = new NavigationHelper();
-    public ContactHelper contactHelper = new ContactHelper();
-    public SessionHelper sessionHelper = new SessionHelper();
+    private GroupHelper groupHelper = new GroupHelper();
+    private NavigationHelper navigationHelper = new NavigationHelper();
+    private ContactHelper contactHelper = new ContactHelper();
+    private SessionHelper sessionHelper = new SessionHelper();
 
 
     public void init() {

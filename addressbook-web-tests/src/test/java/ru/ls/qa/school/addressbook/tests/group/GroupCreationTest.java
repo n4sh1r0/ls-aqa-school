@@ -1,22 +1,21 @@
-package ru.ls.qa.school.addressbook.tests;
+package ru.ls.qa.school.addressbook.tests.group;
 
 
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.GroupData;
-
-import java.util.Random;
+import ru.ls.qa.school.addressbook.tests.TestBase;
 
 public class GroupCreationTest extends TestBase {
 
 
     @Test
     public void testGroupCreation() {
-        page.getContactListPage()
+        GroupData group = utils.generate().group();
+        pages.getMainPage()
                 .goToGroupPage()
                 .goToGroupCreationPage()
-                .fillGroupForm()
-                .submitCreationGroup()
+                .fillForm(utils.generate().group())
+                .submitCreation()
                 .returnToGroupListPage();
     }
-
 }

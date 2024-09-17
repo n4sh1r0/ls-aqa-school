@@ -1,8 +1,8 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.utils.primitive;
 
 import java.util.Random;
 
-public class RandomHelper {
+public class RandomUtils {
     public static String generateRandomString(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
