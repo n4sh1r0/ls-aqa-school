@@ -1,4 +1,4 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.app;
 
 import com.codeborne.selenide.Configuration;
 
@@ -6,14 +6,15 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ApplicationManager {
-    private final GroupHelper groupHelper = new GroupHelper();
-    private final NavigationHelper navigationHelper = new NavigationHelper();
-    private final ContactHelper contactHelper = new ContactHelper();
-    private final SessionHelper sessionHelper = new SessionHelper();
+    private GroupHelper groupHelper = new GroupHelper();
+    private NavigationHelper navigationHelper = new NavigationHelper();
+    private ContactHelper contactHelper = new ContactHelper();
+    private SessionHelper sessionHelper = new SessionHelper();
 
 
     public void init() {
-        Configuration.browser = "chrome";
+        Configuration.browser = System.getProperty("selenide.browser", "chrome");
+        // "chrome", "firefox", "legacy_firefox", "ie", "htmlunit", "opera", "safari", "edge"
         open("http://localhost/addressbook");
         SessionHelper.login("admin", "secret");
     }

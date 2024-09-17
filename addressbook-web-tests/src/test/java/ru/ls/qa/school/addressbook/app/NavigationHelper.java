@@ -1,4 +1,4 @@
-package ru.ls.qa.school.addressbook.appmanager;
+package ru.ls.qa.school.addressbook.app;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
 
