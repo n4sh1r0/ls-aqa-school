@@ -27,6 +27,7 @@ public class ContactHelper extends BaseHelper {
         type(byName("email"), contactData.getEmail());
     }
 
+
     public void clickUpdateContact() {
         click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
     }

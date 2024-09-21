@@ -27,7 +27,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void clickSelectGroup() {
-        click(byCssSelector("input[value='30']"));
+        click(byCssSelector("html > body > div > div:nth-of-type(4) > form > span:nth-of-type(1) > input"));
     }
 
     public void clickEditGroup() {
