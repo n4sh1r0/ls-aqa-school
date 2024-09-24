@@ -3,8 +3,8 @@ package ru.ls.qa.school.addressbook.pages.contact;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
+import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 
 public class ContactCreationPage extends BasePage {
 

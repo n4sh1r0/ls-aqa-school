@@ -1,7 +1,6 @@
 package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.pages.BasePage;
-import ru.ls.qa.school.addressbook.pages.PageManager;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.app;
 import static ru.ls.qa.school.addressbook.tests.TestBase.pages;

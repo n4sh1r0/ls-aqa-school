@@ -3,6 +3,7 @@ package ru.ls.qa.school.addressbook.app;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
@@ -24,19 +25,19 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void clickFirstSelectGroup() {
-        click(byName("update"));
+        click(byCssSelector("span.group > input[type=\"checkbox\"]"));
     }
 
     public void clickEditGroup() {
-        click(byXpath("/html/body/div/div[4]/form/input[3]"));
+        click(byName("edit"));
     }
 
     public void submitUpdateGroup() {
-        click(byCssSelector("#content > form > input[type=submit]:nth-child(12)"));
+        click(byName("update"));
     }
 
     public void clickRemoveGroup() {
-        click(byCssSelector("#content > form > input[type=submit]:nth-child(2)"));
+        click(byName("delete"));
     }
 
     public void checkMessageAfterGroupDeletion() {
@@ -45,5 +46,9 @@ public class GroupHelper extends BaseHelper {
 
     public void returnToGroupListPage() {
         click(byLinkText("group page"));
+    }
+
+    public boolean listIsEmpty() {
+        return !$(".group").exists();
     }
 }
