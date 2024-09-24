@@ -3,7 +3,6 @@ package ru.ls.qa.school.addressbook.app;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import static com.codeborne.selenide.Condition.text;
@@ -28,7 +27,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void clickUpdateContact() {
-        click(byXpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+        click(byCssSelector("img[title=\"Edit\"]"));
     }
 
     public void checkUpdatedContactData(String email, String lastName, String firstName) {
@@ -37,25 +36,27 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void submitUpdateContact() {
-        click(byXpath("//*[@id=\"content\"]/form[1]/input[1]"));
+        click(byName("update"));
     }
 
     public void clickSelectFirstContact() {
-        click(byXpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+        click(byCssSelector("tr[name=\"entry\"] > td.center:nth-child(1) > input"));
     }
 
-    public void clickSelectFirstContact(String name) {
-        ElementsCollection list = $$("tbody");
-        for (SelenideElement element : list) {
-            if (element.$(By.xpath("css-sel1")).text().equals(name)) {
-                click(By.id("1"));
+    public void selectContact(ContactData contact) {
+        ElementsCollection list = $$("tr[name=\"entry\"]");
+        for (SelenideElement row : list) {
+            if (row.$("td:nth-child(3)").text().equals(contact.getFirstName())
+                    && row.$("td:nth-child(2)").text().equals(contact.getLastName())
+            ) {
+                click(byCssSelector("td.center:nth-child(1) > input"));
                 break;
             }
         }
     }
 
     public ContactHelper clickDeleteContact() {
-        click(byXpath("/html/body/div/div[4]/form[2]/div[2]/input"));
+        click(byName("update"));
         return this;
     }
 
@@ -73,5 +74,9 @@ public class ContactHelper extends BaseHelper {
         String message = $("#content > label").shouldBe(visible).getText();
         String NumberStr = message.replaceAll("\\D", "");
         return Integer.parseInt(NumberStr);
+    }
+
+    public boolean listIsEmpty() {
+        return !$("tr[name=\"entry\"]").exists();
     }
 }
