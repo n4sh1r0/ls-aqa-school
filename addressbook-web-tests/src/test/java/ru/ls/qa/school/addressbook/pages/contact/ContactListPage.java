@@ -60,4 +60,16 @@ public class ContactListPage extends BasePage {
         return pages.getContactPage();
     }
 
+    public ContactListPage getListOfFirstContact() {
+        app.getContactHelper()
+                .getRow(0);
+        return this;
+    }
+
+    public ContactListPage clickSortByLastName() {
+        app.getContactHelper()
+                .clickSortByLastName();
+        return this;
+    }
+
 }

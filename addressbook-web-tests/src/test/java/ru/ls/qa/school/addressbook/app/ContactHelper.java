@@ -3,7 +3,10 @@ package ru.ls.qa.school.addressbook.app;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.ContactData;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -60,6 +63,10 @@ public class ContactHelper extends BaseHelper {
         return this;
     }
 
+    public void clickSortByLastName() {
+        click(byCssSelector("a.fdTableSortTrigger"));
+    }
+
     public void acceptAlert() {
         Selenide.confirm();
     }
@@ -78,5 +85,17 @@ public class ContactHelper extends BaseHelper {
 
     public boolean listIsEmpty() {
         return !$("tr[name=\"entry\"]").exists();
+    }
+
+    public int getContactCount() {
+        ElementsCollection contacts = $$(By.name("selected[]"));
+        return contacts.size();
+    }
+
+    public List<String> getRow(int rowNumber) {
+            ElementsCollection rows = $$("table tbody tr[name='entry']");
+        return rows.get(rowNumber)
+                .$$("td")
+                .texts();
     }
 }

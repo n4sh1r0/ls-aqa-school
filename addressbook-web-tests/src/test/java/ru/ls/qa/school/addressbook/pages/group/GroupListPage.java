@@ -32,4 +32,10 @@ public class GroupListPage extends BasePage {
                 .clickRemoveGroup();
         return pages.getGroupActionResultPage();
     }
+
+    public GroupListPage getGroupCount() {
+        app.getGroupHelper()
+                .getGroupCount();
+        return this;
+    }
 }

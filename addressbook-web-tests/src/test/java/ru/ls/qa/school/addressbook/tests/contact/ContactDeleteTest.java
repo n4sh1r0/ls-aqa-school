@@ -22,7 +22,6 @@ public class ContactDeleteTest extends TestBase {
     public void testContactDelete() {
         int before = app.getContactHelper().getNumberOfContacts();
         pages.getMainPage().deleteFirstContact();
-        int result = app.getContactHelper().getNumberOfContacts(); // before - 1
-        assertEquals(before - 1, result);
+        assertEquals(before - 1, app.getContactHelper().getNumberOfContacts());
     }
 }
