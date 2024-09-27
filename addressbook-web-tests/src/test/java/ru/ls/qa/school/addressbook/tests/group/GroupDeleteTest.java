@@ -30,9 +30,9 @@ public class GroupDeleteTest extends TestBase {
         GroupListPage groupPage = pages.getMainPage()
                 .goToGroupPage();
         beforeDeletion = app.getGroupHelper().getGroupCount();
-                groupPage.selectFirstGroup()
+        groupPage.selectFirstGroup()
                 .initRemoveGroup()
                 .returnToGroupListPage();
-                assertEquals(app.getGroupHelper().getGroupCount(), beforeDeletion - 1);
+        assertEquals(app.getGroupHelper().getGroupCount(), beforeDeletion - 1);
     }
 }

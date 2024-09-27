@@ -91,12 +91,29 @@ public class ContactHelper extends BaseHelper {
         return contacts.size();
     }
 
-    //TODO метод должен возвращать объект ContactData
-    //TODO из строки, помимо видимых атрибутов, можно также вытащить и id из поля с чекбоксом. его важно проверять, чтобы убедиться что изменен объект с нужным тебе id.
-    public List<String> getContact(int rowNumber) {
-            ElementsCollection rows = $$("table tbody tr[name='entry']");
-        return rows.get(rowNumber)
+    public ContactData getByRow(int rowNumber) {
+        ElementsCollection rows = $$("table tbody tr[name='entry']");
+        List<String> protoData = rows.get(rowNumber)
                 .$$("td")
                 .texts();
+        ContactData contact = protoToModel(protoData);
+        contact.setId(Integer.valueOf(rows.get(rowNumber).$(byCssSelector("input")).getAttribute("id")));
+        contact.setEmail(rows.get(rowNumber).$(byCssSelector("a")).text());
+        return contact;
+    }
+
+    public ContactData getById(int contactId) {
+        SelenideElement row = $(byXpath(String.format("//td/input[@id=%d]/../..", contactId)));
+        List<String> protoData = row.$$("td").texts();
+        ContactData contact = protoToModel(protoData);
+        contact.setId(contactId);
+        contact.setEmail(row.$(byCssSelector("a")).text());
+        return contact;
+    }
+
+    private ContactData protoToModel(List<String> protoData) {
+        return new ContactData(protoData.get(2), null,
+                protoData.get(1), null, protoData.get(3)
+                , protoData.get(5));
     }
 }

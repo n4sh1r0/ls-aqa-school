@@ -1,18 +1,13 @@
 package ru.ls.qa.school.addressbook.tests.contact;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ContactUpdateTest extends TestBase {
-    List<String> firstContact = new ArrayList<String>();
 
     @BeforeEach
     public void checkForContact() {
@@ -22,7 +17,6 @@ public class ContactUpdateTest extends TestBase {
                     .fillContactForm()
                     .submitCreation()
                     .clickSortByLastName();
-            firstContact = app.getContactHelper().getContact(0);
         }
     }
 
@@ -31,12 +25,14 @@ public class ContactUpdateTest extends TestBase {
         int beforeIndicator = app.getContactHelper().getContactCountIndicator();
         int beforeCount = app.getContactHelper().getContactCount();
 
-        //TODO Сортировать ничего не нужно. список по-умолчанию сортируется по id
-        pages.getContactListPage().clickSortByLastName();
-        firstContact = app.getContactHelper().getContact(0);
+        int contactId = app.getContactHelper().getByRow(0).getId();
+
+        ContactData expected = utils.generate().contact();
+        expected.setId(contactId);
+
         pages.getMainPage()
                 .clickUpdateFirstContact()
-                .fillForm()
+                .fillForm(expected)
                 .submitUpdate()
                 .clickSortByLastName();
 
@@ -46,8 +42,16 @@ public class ContactUpdateTest extends TestBase {
         assertEquals(beforeIndicator, resultIndicator);
         assertEquals(beforeCount, resultCount);
 
-        //TODO это плохая проверка: она лишь проверяет что первая строка не такая как в прошлый раз.
-        // нужно проверять соответствие того что теперь есть с тем что сохранялось
-        assertNotEquals(firstContact, app.getContactHelper().getContact(0));
+        ContactData result = app.getContactHelper().getById(contactId);
+
+        assertContacts(expected, result);
+    }
+
+    private void assertContacts(ContactData expected, ContactData result) {
+        assertEquals(expected.getId(), result.getId());
+        assertEquals(expected.getLastName(), result.getLastName());
+        assertEquals(expected.getFirstName(), result.getFirstName());
+        assertEquals(expected.getAddress(), result.getAddress());
+        assertEquals(expected.getEmail(), result.getEmail());
     }
 }

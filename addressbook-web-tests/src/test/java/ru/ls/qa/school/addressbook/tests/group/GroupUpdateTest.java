@@ -31,12 +31,12 @@ public class GroupUpdateTest extends TestBase {
         pages.getMainPage()
                 .goToGroupPage();
         groups = app.getGroupHelper().getRow();
-                pages.getGroupListPage()
-                        .selectFirstGroup()
-                        .clickUpdateGroup()
+        pages.getGroupListPage()
+                .selectFirstGroup()
+                .clickUpdateGroup()
                 .refillForm(utils.generate().group())
                 .submitUpdate()
                 .returnToGroupListPage();
-                assertNotEquals(groups, app.getGroupHelper().getRow());
+        assertNotEquals(groups, app.getGroupHelper().getRow());
     }
 }
