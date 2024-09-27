@@ -1,12 +1,13 @@
 package ru.ls.qa.school.addressbook.model;
 
 public class ContactData {
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
-    private final String nickname;
-    private final String address;
-    private final String email;
+    private Integer id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String nickname;
+    private String address;
+    private String email;
 
     public ContactData(String firstName,
                        String middleName,
@@ -44,5 +45,38 @@ public class ContactData {
 
     public String getEmail() {
         return email;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
