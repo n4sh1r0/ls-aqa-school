@@ -62,7 +62,7 @@ public class ContactListPage extends BasePage {
 
     public ContactListPage getListOfFirstContact() {
         app.getContactHelper()
-                .getRow(0);
+                .getContact(0);
         return this;
     }
 

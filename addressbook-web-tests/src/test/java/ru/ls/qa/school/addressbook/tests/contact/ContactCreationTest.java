@@ -10,11 +10,18 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation() {
-        int beforeCreation = app.getContactHelper().getContactCount();
+        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
+        int beforeCount = app.getContactHelper().getContactCount();
+
         pages.getMainPage()
                 .goToNewContactPage()
                 .fillContactForm()
                 .submitCreation();
-        assertEquals(app.getContactHelper().getContactCount(), beforeCreation + 1);
+
+        int resultIndicator = app.getContactHelper().getContactCountIndicator();
+        int resultCount = app.getContactHelper().getContactCount();
+
+        assertEquals(beforeIndicator + 1, resultIndicator);
+        assertEquals(beforeCount + 1, resultCount);
     }
 }

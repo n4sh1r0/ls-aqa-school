@@ -59,7 +59,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public ContactHelper clickDeleteContact() {
-        click(byName("update"));
+        click(byCssSelector("input[value=Delete]"));
         return this;
     }
 
@@ -76,8 +76,7 @@ public class ContactHelper extends BaseHelper {
         $("#MassCB").click();
     }
 
-    //TODO пусть метод возвращает количество строк контактов. например можно преобразовать смеседж в струк и удалить в ней "Number of results: " а потом преобразовать в Int
-    public int getNumberOfContacts() {
+    public int getContactCountIndicator() {
         String message = $("#content > label").shouldBe(visible).getText();
         String NumberStr = message.replaceAll("\\D", "");
         return Integer.parseInt(NumberStr);
@@ -92,7 +91,9 @@ public class ContactHelper extends BaseHelper {
         return contacts.size();
     }
 
-    public List<String> getRow(int rowNumber) {
+    //TODO метод должен возвращать объект ContactData
+    //TODO из строки, помимо видимых атрибутов, можно также вытащить и id из поля с чекбоксом. его важно проверять, чтобы убедиться что изменен объект с нужным тебе id.
+    public List<String> getContact(int rowNumber) {
             ElementsCollection rows = $$("table tbody tr[name='entry']");
         return rows.get(rowNumber)
                 .$$("td")
