@@ -112,8 +112,11 @@ public class ContactHelper extends BaseHelper {
     }
 
     private ContactData protoToModel(List<String> protoData) {
-        return new ContactData(protoData.get(2), null,
-                protoData.get(1), null, protoData.get(3)
-                , protoData.get(5));
+        return ContactData.builder()
+                .firstName(protoData.get(2))
+                .lastName(protoData.get(1))
+                .address(protoData.get(3))
+                .email(protoData.get(5))
+                .build();
     }
 }

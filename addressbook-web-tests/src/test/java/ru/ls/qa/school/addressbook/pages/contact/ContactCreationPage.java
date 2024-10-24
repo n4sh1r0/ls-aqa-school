@@ -2,6 +2,7 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
+import ru.ls.qa.school.addressbook.utils.GenerateUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
@@ -13,17 +14,12 @@ public class ContactCreationPage extends BasePage {
     }
 
     public ContactCreationPage fillContactForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(contact);
+        app.getContactHelper().fillNewContactForm(new GenerateUtils().contact());
         return this;
     }
 
     public ContactListPage initContactUpdate() {
-        app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                "Moscow",
-                generateRandomEmail()));
+        app.getContactHelper().fillNewContactForm(new GenerateUtils().contact());
         app.getContactHelper().submitUpdateContact();
         try {
             Thread.sleep(4000);

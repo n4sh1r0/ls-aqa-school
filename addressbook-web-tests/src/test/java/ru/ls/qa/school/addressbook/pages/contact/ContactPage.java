@@ -2,6 +2,7 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
+import ru.ls.qa.school.addressbook.utils.GenerateUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.app;
 import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
@@ -9,7 +10,7 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
 public class ContactPage extends BasePage {
 
     public ContactPage fillForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(contact);
+        app.getContactHelper().fillNewContactForm(new GenerateUtils().contact());
         return this;
     }
 

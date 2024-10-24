@@ -8,17 +8,19 @@ import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 public class GenerateUtils {
 
     public ContactData contact() {
-        return new ContactData(generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                "Moscow",
-                generateRandomEmail());
+        return ContactData.builder()
+                .firstName(generateRandomString(getRandomLength()))
+                .lastName(generateRandomString(getRandomLength()))
+                .middleName(generateRandomString(getRandomLength()))
+                .email(generateRandomEmail())
+                .nickname(generateRandomString(getRandomLength()))
+                .address("Moscow").build();
     }
 
     public GroupData group() {
-        return new GroupData(generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()));
+        return GroupData.builder()
+                .name(generateRandomString(getRandomLength()))
+                .header(generateRandomString(getRandomLength()))
+                .footer(generateRandomString(getRandomLength())).build();
     }
 }
