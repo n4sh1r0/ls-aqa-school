@@ -1,6 +1,5 @@
 package ru.ls.qa.school.addressbook.tests.contact;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
@@ -44,5 +43,11 @@ public class ContactUpdateTest extends TestBase {
 
         ContactData result = app.getContactHelper().getById(contactId);
         assertEquals(expected, result);
+        /**
+         Assertions.assertThat(before)
+         .usingRecursiveComparison()
+         .ignoringFields("middleName", "nickname")
+         .isEqualTo(after);
+         **/
     }
 }

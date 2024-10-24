@@ -7,7 +7,9 @@ import lombok.*;
 @RequiredArgsConstructor
 @Builder
 @With
-        //TODO добавить во все тесты сравнение объекта целиком используя в молях EqualsAndHashCode/ после этого написать Паше на темцу сравнения списков
+//TODO добавить во все тесты сравнение объекта целиком используя в молях EqualsAndHashCode.
+// после этого добавить получение списков моделей из ui и их сравнение.
+// пример сравнения есть в классе ContactUpdateTest
 public class GroupData {
     private Integer id;
     private String name;
