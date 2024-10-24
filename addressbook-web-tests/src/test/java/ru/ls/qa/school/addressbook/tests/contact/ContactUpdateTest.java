@@ -1,5 +1,6 @@
 package ru.ls.qa.school.addressbook.tests.contact;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
@@ -33,8 +34,7 @@ public class ContactUpdateTest extends TestBase {
         pages.getMainPage()
                 .clickUpdateFirstContact()
                 .fillForm(expected)
-                .submitUpdate()
-                .clickSortByLastName();
+                .submitUpdate();
 
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
@@ -43,15 +43,6 @@ public class ContactUpdateTest extends TestBase {
         assertEquals(beforeCount, resultCount);
 
         ContactData result = app.getContactHelper().getById(contactId);
-
-        assertContacts(expected, result);
-    }
-
-    private void assertContacts(ContactData expected, ContactData result) {
-        assertEquals(expected.getId(), result.getId());
-        assertEquals(expected.getLastName(), result.getLastName());
-        assertEquals(expected.getFirstName(), result.getFirstName());
-        assertEquals(expected.getAddress(), result.getAddress());
-        assertEquals(expected.getEmail(), result.getEmail());
+        assertEquals(expected, result);
     }
 }

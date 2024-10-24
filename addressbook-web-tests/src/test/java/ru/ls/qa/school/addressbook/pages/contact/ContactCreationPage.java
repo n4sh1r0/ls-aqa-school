@@ -5,7 +5,6 @@ import ru.ls.qa.school.addressbook.pages.BasePage;
 import ru.ls.qa.school.addressbook.utils.GenerateUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
-import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 
 public class ContactCreationPage extends BasePage {
 
