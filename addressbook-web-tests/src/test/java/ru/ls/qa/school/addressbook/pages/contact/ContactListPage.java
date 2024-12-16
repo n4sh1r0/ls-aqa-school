@@ -10,7 +10,7 @@ public class ContactListPage extends BasePage {
 
 
     public ContactCreationPage goToNewContactPage() {
-        app.getNavigationHelper().goToNewContactPage();
+        app.goTo().newContactPage();
         return pages.getContactCreationPage();
     }
 

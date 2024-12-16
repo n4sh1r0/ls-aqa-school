@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import ru.ls.qa.school.addressbook.mappers.ContactDataMapper;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
 import java.util.List;
@@ -96,7 +97,7 @@ public class ContactHelper extends BaseHelper {
         List<String> protoData = rows.get(rowNumber)
                 .$$("td")
                 .texts();
-        ContactData contact = protoToModel(protoData);
+        ContactData contact = ContactDataMapper.map(protoData);
         contact.setId(Integer.valueOf(rows.get(rowNumber).$(byCssSelector("input")).getAttribute("id")));
         contact.setEmail(rows.get(rowNumber).$(byCssSelector("a")).text());
         return contact;
@@ -105,18 +106,9 @@ public class ContactHelper extends BaseHelper {
     public ContactData getById(int contactId) {
         SelenideElement row = $(byXpath(String.format("//td/input[@id=%d]/../..", contactId)));
         List<String> protoData = row.$$("td").texts();
-        ContactData contact = protoToModel(protoData);
+        ContactData contact = ContactDataMapper.map(protoData);
         contact.setId(contactId);
         contact.setEmail(row.$(byCssSelector("a")).text());
         return contact;
-    }
-
-    private ContactData protoToModel(List<String> protoData) {
-        return ContactData.builder()
-                .firstName(protoData.get(2))
-                .lastName(protoData.get(1))
-                .address(protoData.get(3))
-                .email(protoData.get(5))
-                .build();
     }
 }

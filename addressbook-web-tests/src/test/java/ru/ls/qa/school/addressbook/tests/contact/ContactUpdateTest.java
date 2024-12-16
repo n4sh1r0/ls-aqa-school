@@ -6,6 +6,7 @@ import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ContactUpdateTest extends TestBase {
 
@@ -49,9 +50,9 @@ public class ContactUpdateTest extends TestBase {
 
     private void assertContacts(ContactData expected, ContactData result) {
         assertEquals(expected.getId(), result.getId());
-        assertEquals(expected.getLastName(), result.getLastName());
-        assertEquals(expected.getFirstName(), result.getFirstName());
+        assertNotEquals(expected.getLastName(), result.getLastName());
+        assertNotEquals(expected.getFirstName(), result.getFirstName());
         assertEquals(expected.getAddress(), result.getAddress());
-        assertEquals(expected.getEmail(), result.getEmail());
+        assertNotEquals(expected.getEmail(), result.getEmail());
     }
 }

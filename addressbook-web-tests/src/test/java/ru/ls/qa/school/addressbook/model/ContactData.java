@@ -3,7 +3,7 @@ package ru.ls.qa.school.addressbook.model;
 import lombok.*;
 
 @Data
-@AllArgsConstructor  // Конструктор для всех полей
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
 @With
