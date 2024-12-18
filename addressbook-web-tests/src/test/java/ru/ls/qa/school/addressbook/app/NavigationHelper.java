@@ -7,11 +7,11 @@ public class NavigationHelper extends BaseHelper {
         click(byLinkText("add new"));
     }
 
-    public void goToGroupPage() {
+    public void groupPage() {
         click(byLinkText("groups"));
     }
 
-    public void returnToMainPage() {
+    public void mainPage() {
         click(byLinkText("home"));
     }
 }

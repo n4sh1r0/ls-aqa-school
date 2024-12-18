@@ -19,7 +19,7 @@ public class GroupHelper extends BaseHelper {
         click(byName("submit"));
     }
 
-    public void fillGroupForm(GroupData groupData) {
+    public void fillNewForm(GroupData groupData) {
         type(byName("group_name"), groupData.getName());
         type(byName("group_header"), groupData.getHeader());
         type(byName("group_footer"), groupData.getFooter());

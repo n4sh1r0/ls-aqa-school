@@ -10,19 +10,19 @@ public abstract class BasePage {
 
     public ContactListPage returnToMainPage() {
         app.goTo()
-                .returnToMainPage();
+                .mainPage();
         return pages.getMainPage();
     }
 
     public ContactListPage goToContactListPage() {
         app.goTo()
-                .returnToMainPage();
+                .mainPage();
         return pages.getContactListPage();
     }
 
     public GroupListPage goToGroupPage() {
         app.goTo()
-                .goToGroupPage();
+                .groupPage();
         return pages.getGroupListPage();
     }
 }
