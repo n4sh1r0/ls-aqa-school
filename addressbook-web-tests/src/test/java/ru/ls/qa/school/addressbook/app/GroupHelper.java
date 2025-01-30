@@ -1,9 +1,14 @@
 package ru.ls.qa.school.addressbook.app;
 
+import com.codeborne.selenide.ElementsCollection;
+import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.GroupData;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class GroupHelper extends BaseHelper {
     public void checkMessageAfterGroupCreation() {
@@ -50,5 +55,15 @@ public class GroupHelper extends BaseHelper {
 
     public boolean listIsEmpty() {
         return !$(".group").exists();
+    }
+
+    public int getGroupCount() {
+        ElementsCollection groups = $$(By.name("selected[]"));
+        return groups.size();
+    }
+
+    public List<String> getRow() {
+        ElementsCollection groups = $$("span.group");
+        return groups.texts();
     }
 }

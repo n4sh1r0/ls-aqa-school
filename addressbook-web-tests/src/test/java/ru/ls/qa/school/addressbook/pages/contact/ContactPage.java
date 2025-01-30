@@ -1,13 +1,15 @@
 package ru.ls.qa.school.addressbook.pages.contact;
 
+import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.*;
+import static ru.ls.qa.school.addressbook.tests.TestBase.app;
+import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
 
 public class ContactPage extends BasePage {
 
-    public ContactPage fillForm() {
-        app.getContactHelper().fillNewContactForm(utils.generate().contact());
+    public ContactPage fillForm(ContactData contact) {
+        app.getContactHelper().fillNewContactForm(contact);
         return this;
     }
 

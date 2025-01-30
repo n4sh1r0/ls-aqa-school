@@ -20,9 +20,15 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDelete() {
-        int before = app.getContactHelper().getNumberOfContacts();
+        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
+        int beforeCount = app.getContactHelper().getContactCount();
+
         pages.getMainPage().deleteFirstContact();
-        int result = app.getContactHelper().getNumberOfContacts(); // before - 1
-        assertEquals(before - 1, result);
+
+        int resultIndicator = app.getContactHelper().getContactCountIndicator();
+        int resultCount = app.getContactHelper().getContactCount();
+
+        assertEquals(beforeIndicator - 1, resultIndicator);
+        assertEquals(beforeCount - 1, resultCount);
     }
 }
