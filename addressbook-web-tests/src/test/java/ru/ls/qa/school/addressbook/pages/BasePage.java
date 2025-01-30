@@ -9,20 +9,20 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
 public abstract class BasePage {
 
     public ContactListPage returnToMainPage() {
-        app.getNavigationHelper()
-                .returnToMainPage();
+        app.goTo()
+                .mainPage();
         return pages.getMainPage();
     }
 
     public ContactListPage goToContactListPage() {
-        app.getNavigationHelper()
-                .returnToMainPage();
+        app.goTo()
+                .mainPage();
         return pages.getContactListPage();
     }
 
     public GroupListPage goToGroupPage() {
-        app.getNavigationHelper()
-                .goToGroupPage();
+        app.goTo()
+                .groupPage();
         return pages.getGroupListPage();
     }
 }
