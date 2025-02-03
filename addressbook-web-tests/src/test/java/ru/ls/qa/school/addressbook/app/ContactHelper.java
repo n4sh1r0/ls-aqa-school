@@ -3,6 +3,7 @@ package ru.ls.qa.school.addressbook.app;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.mappers.ContactDataMapper;
 import ru.ls.qa.school.addressbook.model.ContactData;
@@ -77,6 +78,7 @@ public class ContactHelper extends BaseHelper {
         $("#MassCB").click();
     }
 
+    @Step("Получить значение счетчика количества контактов" )
     public int getContactCountIndicator() {
         String message = $("#content > label").shouldBe(visible).getText();
         String NumberStr = message.replaceAll("\\D", "");
@@ -103,6 +105,8 @@ public class ContactHelper extends BaseHelper {
         return contact;
     }
 
+    //TODO добавить везде описание шагов, по аналогии
+    @Step("Получить Контакт по id")
     public ContactData getById(int contactId) {
         SelenideElement row = $(byXpath(String.format("//td/input[@id=%d]/../..", contactId)));
         List<String> protoData = row.$$("td").texts();
