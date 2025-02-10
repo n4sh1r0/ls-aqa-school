@@ -18,10 +18,12 @@ import static java.lang.String.format;
 
 public class ContactHelper extends BaseHelper {
 
+    @Step("Подтвердить создание нового контакта")
     public void submitCreationNewContact() {
         click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
     }
 
+    @Step("Заполнить поля нового контакта")
     public void fillNewContactForm(ContactData contactData) {
         type(byName("firstname"), contactData.getFirstName());
         type(byName("middlename"), contactData.getMiddleName());
@@ -31,6 +33,7 @@ public class ContactHelper extends BaseHelper {
         type(byName("email"), contactData.getEmail());
     }
 
+    @Step("Кликнуть обновить контакт")
     public void clickUpdateContact() {
         click(byCssSelector("img[title=\"Edit\"]"));
     }
@@ -60,19 +63,23 @@ public class ContactHelper extends BaseHelper {
         }
     }
 
+    @Step("Кликнуть удалить контакт")
     public ContactHelper clickDeleteContact() {
         click(byCssSelector("input[value=Delete]"));
         return this;
     }
 
+    @Step("Кликнуть отсортировать по Имени")
     public void clickSortByLastName() {
         click(byCssSelector("a.fdTableSortTrigger"));
     }
 
+    @Step("Принять алерт")
     public void acceptAlert() {
         Selenide.confirm();
     }
 
+    @Step("Кликнуть выбор всех контактов")
     public void clickSelectAllContacts() {
         click(byCssSelector("#MassCB"));
         $("#MassCB").click();
@@ -85,15 +92,19 @@ public class ContactHelper extends BaseHelper {
         return Integer.parseInt(NumberStr);
     }
 
+    @Step("Список контактов пуст")
     public boolean listIsEmpty() {
         return !$("tr[name=\"entry\"]").exists();
     }
 
+
+    @Step ("Получить количество всех контактов")
     public int getContactCount() {
         ElementsCollection contacts = $$(By.name("selected[]"));
         return contacts.size();
     }
 
+    @Step ("Получить контакт по строке")
     public ContactData getByRow(int rowNumber) {
         ElementsCollection rows = $$("table tbody tr[name='entry']");
         List<String> protoData = rows.get(rowNumber)
