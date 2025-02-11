@@ -27,16 +27,17 @@ public class ContactUpdateTest extends TestBase {
         int beforeIndicator = app.getContactHelper().getContactCountIndicator();
         int beforeCount = app.getContactHelper().getContactCount();
 
-        int contactId = app.getContactHelper().getByRow(0).getId();
 
-        ContactData expected = utils.generate().contact();
-        expected.setId(contactId);
+
+        int contactId = app.getContactHelper().getFirstContactId();
+        ContactData contactBeforeUpdate = app.getContactHelper().getContactById(contactId);
 
         pages.getMainPage()
-                .clickUpdateFirstContact()//TODO ты не можешь брать первый контакт, так как у тебя сортировка происходит не по id, и при смене данных расположение апдейтнутого пользователя поменяется. Нужно подбирать юзера по id
-                .fillForm(expected)
-                .submitUpdate()
-                .clickSortByLastName();
+            .clickUpdateContactById(contactId)//TODO ты не можешь брать первый контакт, так как у тебя сортировка происходит не по id, и при смене данных расположение апдейтнутого пользователя поменяется. Нужно подбирать юзера по id
+            .fillForm()
+            .submitUpdate();
+
+        ContactData contactAfterUpdate = app.getContactHelper().getContactById(contactId);
 
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
@@ -49,18 +50,11 @@ public class ContactUpdateTest extends TestBase {
                 .as("Проверка: TODO")
                 .isEqualTo(resultCount);
 
-        ContactData result = app.getContactHelper().getById(contactId);
-
-        //TODO Проверить  объекты нужно через AssertJ - как именно см. урок. ВАЖНО - нужно проверять только часть
-        assertContacts(expected, result);
-    }
-
-    //TODO gпри проверке через AsserJ - нам этот метод будет не нужен
-    private void assertContacts(ContactData expected, ContactData result) {
-        assertEquals(expected.getId(), result.getId());
-        assertNotEquals(expected.getLastName(), result.getLastName());
-        assertNotEquals(expected.getFirstName(), result.getFirstName());
-        assertEquals(expected.getAddress(), result.getAddress());
-        assertNotEquals(expected.getEmail(), result.getEmail());
+        assertThat(contactAfterUpdate)
+                .as("Проверка обновления контакта")
+                .isNotEqualTo(contactBeforeUpdate)
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isNotEqualTo(contactBeforeUpdate);
     }
 }

@@ -4,7 +4,8 @@ package ru.ls.qa.school.addressbook.tests.group;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 public class GroupCreationTest extends TestBase {
 
@@ -21,6 +22,7 @@ public class GroupCreationTest extends TestBase {
 
         int afterCount = app.getGroupHelper().getGroupCount();
 
-        assertEquals(afterCount, beforeCount + 1);
+        assertThat(afterCount)
+                .isEqualTo(beforeCount + 1);
     }
 }

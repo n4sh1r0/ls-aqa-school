@@ -62,9 +62,15 @@ public class ContactListPage extends BasePage {
     }
 
     //TODO заменить на getContactById()
-    public ContactPage clickUpdateFirstContact() {
+    public ContactListPage getContactID() {
         app.getContactHelper()
-                .clickUpdateContact();
+                .getFirstContactId();
+        return this;
+    }
+
+    public ContactPage clickUpdateContactById(int contactId) {
+        app.getContactHelper()
+                .clickUpdateContactById(contactId);
         return pages.getContactPage();
     }
 
@@ -82,6 +88,9 @@ public class ContactListPage extends BasePage {
 
     //TODO реализовать
     public ContactData getContact(int contactId) {
+        app.getContactHelper()
+                .getFirstContactId();
         return null;
     }
+
 }

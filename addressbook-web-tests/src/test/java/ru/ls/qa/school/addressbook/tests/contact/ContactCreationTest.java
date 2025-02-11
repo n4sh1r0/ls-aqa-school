@@ -3,7 +3,7 @@ package ru.ls.qa.school.addressbook.tests.contact;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 public class ContactCreationTest extends TestBase {
@@ -21,7 +21,9 @@ public class ContactCreationTest extends TestBase {
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
 
-        assertEquals(beforeIndicator + 1, resultIndicator);
-        assertEquals(beforeCount + 1, resultCount);
+        assertThat(resultIndicator)
+                .isEqualTo(beforeIndicator + 1);
+        assertThat(resultCount)
+                .isEqualTo(beforeCount + 1);
     }
 }

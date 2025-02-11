@@ -11,8 +11,6 @@ public class FactoryUtils {
         return (generateRandomString(getRandomLength()));
     }
 
-    //TODO вынести  generateRandomString(getRandomLength) в отдельный метод
-
     public ContactData contact() {
         return ContactData.builder()
                 .firstName(generateString())
