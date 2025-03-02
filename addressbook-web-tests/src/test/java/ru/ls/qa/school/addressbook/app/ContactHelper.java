@@ -8,7 +8,9 @@ import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.mappers.ContactDataMapper;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
-import java.util.List;
+    import java.util.HashSet;
+    import java.util.List;
+    import java.util.Set;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -48,8 +50,9 @@ public class ContactHelper extends BaseHelper {
         click(byName("update"));
     }
 
-    public void clickSelectFirstContact() {
-        click(byCssSelector("tr[name=\"entry\"] > td.center:nth-child(1) > input"));
+    public void clickSelectContactById(int contactId) {
+        SelenideElement checkbox = $("td.center input[type='checkbox'][id='" + contactId + "']");
+        checkbox.click();
     }
 
     public void selectContact(ContactData contact) {
@@ -141,4 +144,29 @@ public class ContactHelper extends BaseHelper {
         SelenideElement checkbox = $("td.center input[type='checkbox']");
         return parseInt(checkbox.getAttribute("id"));
         }
+
+    public Set<ContactData> getListOfContacts() {
+        Set<ContactData> listOfContacts = new HashSet<>();
+
+        for (SelenideElement row : $$("tr[name='entry']")) {
+            ElementsCollection cells = row.findAll("td");
+
+            Integer id = Integer.valueOf(cells.get(0).$("input").getAttribute("value"));
+
+            String lastName = cells.get(1).getText();
+            String firstName = cells.get(2).getText();
+            String address = cells.get(3).getText();
+            String email = cells.get(4).getText();
+
+            ContactData contact = new ContactData();
+            contact.setId(id);
+            contact.setFirstName(firstName);
+            contact.setLastName(lastName);
+            contact.setAddress(address);
+            contact.setEmail(email);
+
+            listOfContacts.add(contact);
+        }
+        return listOfContacts;
+    }
 }

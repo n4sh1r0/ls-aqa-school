@@ -13,7 +13,7 @@ public class ContactPage extends BasePage {
     }
 
     public ContactPage fillForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(generate.contact());
+        app.getContactHelper().fillNewContactForm(contact);
         return this;
     }
 

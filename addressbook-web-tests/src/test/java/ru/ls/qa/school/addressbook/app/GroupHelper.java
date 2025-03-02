@@ -1,11 +1,14 @@
 package ru.ls.qa.school.addressbook.app;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -66,6 +69,30 @@ public class GroupHelper extends BaseHelper {
     @Step("Список групп пуст")
     public boolean listIsEmpty() {
         return !$(".group").exists();
+    }
+
+    @Step("Получение id первой группы")
+    public int getFirstGroupId() {
+        SelenideElement firstGroupCheckbox = $(".group input[type='checkbox']");
+        return Integer.parseInt(firstGroupCheckbox.getAttribute("value"));
+    }
+    public Set<GroupData> getListOfGroups() {
+        Set<GroupData> groups = new HashSet<>();
+        ElementsCollection groupSpans = $$("span.group");
+
+        for (SelenideElement groupElement : groupSpans) {
+            int id = Integer.parseInt(groupElement.find("input").getAttribute("value"));
+            String name = groupElement.getText().trim();
+
+            GroupData groupData = GroupData.builder()
+                                           .id(id)
+                                           .name(name)
+                                           .build();
+
+            groups.add(groupData);
+        }
+
+        return groups;
     }
 
     @Step("Получить количество контактов")

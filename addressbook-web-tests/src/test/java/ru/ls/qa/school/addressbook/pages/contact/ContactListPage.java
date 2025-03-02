@@ -22,9 +22,9 @@ public class ContactListPage extends BasePage {
     }
 
     //TODO удалить и переиспользовать вместо него dropContactById() или dropContactByRow()
-    public ContactListPage deleteFirstContact() {
+    public ContactListPage dropContactById(int contactId) {
         app.getContactHelper()
-                .clickSelectFirstContact();
+                .clickSelectContactById(contactId);
         app.getContactHelper()
                 .clickDeleteContact();
         acceptAlert();
@@ -44,11 +44,11 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
-    public ContactListPage selectFirstContact() {
-        app.getContactHelper()
-                .clickSelectFirstContact();
-        return this;
-    }
+//    public ContactListPage selectFirstContact() {
+//        app.getContactHelper()
+//                .clickSelectFirstContact();
+//        return this;
+//    }
 
     private ContactListPage acceptAlert() {
         app.getContactHelper()
@@ -79,6 +79,10 @@ public class ContactListPage extends BasePage {
                 .getByRow(0);
         return this;
     }
+
+    //public ContactListPage clickDeleteContactById(int contactId) {
+       // app.getContactHelper();
+   // }
 
     public ContactListPage clickSortByLastName() {
         app.getContactHelper()

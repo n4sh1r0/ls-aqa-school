@@ -1,7 +1,5 @@
 package ru.ls.qa.school.addressbook.tests.contact;
 
-import org.assertj.core.api.AssertJProxySetup;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
@@ -31,10 +29,11 @@ public class ContactUpdateTest extends TestBase {
 
         int contactId = app.getContactHelper().getFirstContactId();
         ContactData contactBeforeUpdate = app.getContactHelper().getContactById(contactId);
+        ContactData expectedContact = utils.generate().contact();
 
         pages.getMainPage()
-            .clickUpdateContactById(contactId)//TODO ты не можешь брать первый контакт, так как у тебя сортировка происходит не по id, и при смене данных расположение апдейтнутого пользователя поменяется. Нужно подбирать юзера по id
-            .fillForm()
+            .clickUpdateContactById(contactId)
+            .fillForm(expectedContact)
             .submitUpdate();
 
         ContactData contactAfterUpdate = app.getContactHelper().getContactById(contactId);
@@ -42,19 +41,23 @@ public class ContactUpdateTest extends TestBase {
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
 
-        //TODO поменять проверки на AssertJ в остальных классах, по аналогии
         assertThat(beforeIndicator)
-                .as("Проверка: TODO")
+                .as("Проверка счеткика количества контактов")
                 .isEqualTo(resultIndicator);
         assertThat(beforeCount)
-                .as("Проверка: TODO")
+                .as("Проверка общего количества контактов")
                 .isEqualTo(resultCount);
 
         assertThat(contactAfterUpdate)
                 .as("Проверка обновления контакта")
-                .isNotEqualTo(contactBeforeUpdate)
                 .usingRecursiveComparison()
                 .ignoringFields("id")
                 .isNotEqualTo(contactBeforeUpdate);
+
+        assertThat(contactAfterUpdate)
+                .as("Проверка ожидаемого контакта")
+                .usingRecursiveComparison()
+                .ignoringFields("middleName", "nickname")
+                .isEqualTo(expectedContact);
     }
 }

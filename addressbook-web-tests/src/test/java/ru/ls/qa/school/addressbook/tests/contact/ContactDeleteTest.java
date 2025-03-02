@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
+import java.util.List;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactDeleteTest extends TestBase {
@@ -23,22 +27,30 @@ public class ContactDeleteTest extends TestBase {
     public void testContactDelete() {
         int beforeIndicator = app.getContactHelper().getContactCountIndicator();
         int beforeCount = app.getContactHelper().getContactCount();
+        int contactId = app.getContactHelper().getFirstContactId();
 
-        //TODO вытащить List всех контактов Set<ContactData> contactsBefore
+        Set<ContactData> contactsBefore = app.getContactHelper().getListOfContacts();
+        System.out.println(contactsBefore);
 
-        ContactData contact = pages.getContactListPage().getContact(1); //TODO достать любой контакт из списка? вместо получения по id
 
-        pages.getMainPage().dropContact(contact.getId()); //TODO передать контакт, который нужно удалить
+        pages.getContactListPage().dropContactById(contactId);
 
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
 
-        //TODO вытащить List всех контактов после удаления Set<ContactData> contactsAfter
+        Set<ContactData> contactsAfter = app.getContactHelper().getListOfContacts();
+        System.out.println(contactsAfter);
 
-        assertEquals(beforeIndicator - 1, resultIndicator);
-        assertEquals(beforeCount - 1, resultCount);
+        assertThat(resultIndicator)
+                .as("Проверка счеткика количества контактов")
+                .isEqualTo(beforeIndicator - 1);
+        assertThat(resultCount)
+                .as("Проверка общего количества контактов")
+                .isEqualTo(beforeCount - 1);
 
-        //TODO сравнить между собой списки contactsAfter и contactsBefore, УДАЛИВ из него contact
-        //TODO нужно разобраться что такое Set и почему мы используем его а не ArrayList
+        contactsBefore.removeIf(contact -> contact.getId() == contactId);
+        assertThat(contactsAfter)
+                .as("Проверка списка контактов после удаления")
+                .containsExactlyInAnyOrderElementsOf(contactsBefore);
     }
 }

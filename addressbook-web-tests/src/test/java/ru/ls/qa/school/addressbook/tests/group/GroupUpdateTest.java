@@ -30,6 +30,7 @@ public class GroupUpdateTest extends TestBase {
     public void testUpdateGroup() {
         pages.getMainPage()
                 .goToGroupPage();
+        int groupId = app.getGroupHelper().getFirstGroupId();
         groups = app.getGroupHelper().getRow();
         pages.getGroupListPage()
                 .selectFirstGroup()
