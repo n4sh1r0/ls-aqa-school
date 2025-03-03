@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -76,6 +77,17 @@ public class GroupHelper extends BaseHelper {
         SelenideElement firstGroupCheckbox = $(".group input[type='checkbox']");
         return Integer.parseInt(firstGroupCheckbox.getAttribute("value"));
     }
+
+    @Step("Получить название группы по id")
+    public String getGroupById(int groupId) {
+        // Ищем чекбокс с нужным значением ID
+        SelenideElement checkbox = $("input[type='checkbox'][name='selected[]'][value='" + groupId + "']")
+                .shouldBe(exist);
+
+        return checkbox.parent().text();
+    }
+
+    @Step("Получить список всех групп")
     public Set<GroupData> getListOfGroups() {
         Set<GroupData> groups = new HashSet<>();
         ElementsCollection groupSpans = $$("span.group");

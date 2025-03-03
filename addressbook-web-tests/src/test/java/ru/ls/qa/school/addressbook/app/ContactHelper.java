@@ -120,7 +120,6 @@ public class ContactHelper extends BaseHelper {
         return contact;
     }
 
-    //TODO добавить везде описание шагов, по аналогии
     @Step("Получить Контакт по id")
     public ContactData getContactById(int contactId) {
         SelenideElement checkbox = $("td.center input[type='checkbox'][id='" + contactId + "']").should(exist);

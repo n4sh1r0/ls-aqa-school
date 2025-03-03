@@ -3,11 +3,14 @@ package ru.ls.qa.school.addressbook.tests.group;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.model.GroupData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GroupUpdateTest extends TestBase {
@@ -30,14 +33,26 @@ public class GroupUpdateTest extends TestBase {
     public void testUpdateGroup() {
         pages.getMainPage()
                 .goToGroupPage();
+
         int groupId = app.getGroupHelper().getFirstGroupId();
-        groups = app.getGroupHelper().getRow();
+        String groupNameBeforeUpdate = app.getGroupHelper().getGroupById(groupId);
+        GroupData expectedGroup = utils.generate().group();
+
         pages.getGroupListPage()
                 .selectFirstGroup()
                 .clickUpdateGroup()
-                .refillForm(utils.generate().group())
+                .refillForm(expectedGroup)
                 .submitUpdate()
                 .returnToGroupListPage();
-        assertNotEquals(groups, app.getGroupHelper().getRow());
+
+        String groupNameAfterUpdate = app.getGroupHelper().getGroupById(groupId);
+
+        assertThat(groupNameAfterUpdate)
+                .as("Проверка обновления группы")
+                .isNotEqualTo(groupNameBeforeUpdate);
+
+        assertThat(groupNameAfterUpdate)
+                .as("Проверка ожидаемой группы")
+                .isEqualTo(expectedGroup.getName());
     }
 }

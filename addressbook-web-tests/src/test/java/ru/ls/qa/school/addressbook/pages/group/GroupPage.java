@@ -11,7 +11,7 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
 public class GroupPage extends BasePage {
 
     public GroupPage refillForm(GroupData group) {
-        app.getGroupHelper().fillNewForm(new FactoryUtils().group());
+        app.getGroupHelper().fillNewForm(group);
         return this;
     }
 
