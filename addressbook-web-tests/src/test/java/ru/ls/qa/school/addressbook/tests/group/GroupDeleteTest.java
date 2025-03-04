@@ -32,21 +32,17 @@ public class GroupDeleteTest extends TestBase {
 
     @Test
     public void testDeleteGroup() {
-        //Переходим на страницу с группами
         GroupListPage groupPage = pages.getMainPage()
                 .goToGroupPage();
 
-        //Присваиваем переменные
         int groupId = app.getGroupHelper().getFirstGroupId();
         Set<GroupData> groupsBefore = app.getGroupHelper().getListOfGroups();
         beforeDeletion = app.getGroupHelper().getGroupCount();
 
-        //Удаляем группу
         groupPage.selectFirstGroup()
                 .initRemoveGroup()
                 .returnToGroupListPage();
 
-        //Забираем сет групп после удаления
         Set<GroupData> groupsAfter = app.getGroupHelper().getListOfGroups();
 
         assertThat(app.getGroupHelper().getGroupCount())

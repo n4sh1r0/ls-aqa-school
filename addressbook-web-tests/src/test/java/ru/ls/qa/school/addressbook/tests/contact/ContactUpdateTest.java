@@ -11,7 +11,7 @@ public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().listIsEmpty()) {
+        if (app.getContactHelper().contactListIsEmpty()) {
             pages.getMainPage()
                     .goToNewContactPage()
                     .fillContactForm()
@@ -24,9 +24,6 @@ public class ContactUpdateTest extends TestBase {
     public void testContactUpdate() {
         int beforeIndicator = app.getContactHelper().getContactCountIndicator();
         int beforeCount = app.getContactHelper().getContactCount();
-
-
-
         int contactId = app.getContactHelper().getFirstContactId();
         ContactData contactBeforeUpdate = app.getContactHelper().getContactById(contactId);
         ContactData expectedContact = utils.generate().contact();

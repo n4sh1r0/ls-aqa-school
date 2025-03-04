@@ -17,7 +17,6 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
-
 public class ContactHelper extends BaseHelper {
 
     @Step("Подтвердить создание нового контакта")
@@ -37,7 +36,7 @@ public class ContactHelper extends BaseHelper {
 
     @Step("Кликнуть обновить контакт")
     public void clickUpdateContactById(int contactId) {
-        SelenideElement row = $("td.center input[type='checkbox'][id='" + contactId + "']").closest("tr");
+        SelenideElement row = $(String.format("td.center input[type='checkbox'][id='%s']", contactId)).closest("tr");
         row.$("img[title='Edit']").click();
     }
 
@@ -50,6 +49,7 @@ public class ContactHelper extends BaseHelper {
         click(byName("update"));
     }
 
+    @Step("Кликнуть чекбокс контакта по id")
     public void clickSelectContactById(int contactId) {
         SelenideElement checkbox = $("td.center input[type='checkbox'][id='" + contactId + "']");
         checkbox.click();
@@ -92,12 +92,12 @@ public class ContactHelper extends BaseHelper {
     @Step("Получить значение счетчика количества контактов" )
     public int getContactCountIndicator() {
         String message = $("#content > label").shouldBe(visible).getText();
-        String NumberStr = message.replaceAll("\\D", "");
-        return parseInt(NumberStr);
+        String numberStr = message.replaceAll("\\D", "");
+        return parseInt(numberStr);
     }
 
     @Step("Список контактов пуст")
-    public boolean listIsEmpty() {
+    public boolean contactListIsEmpty() {
         return !$("tr[name=\"entry\"]").exists();
     }
 
@@ -112,10 +112,10 @@ public class ContactHelper extends BaseHelper {
     public ContactData getByRow(int rowNumber) {
         ElementsCollection rows = $$("table tbody tr[name='entry']");
         List<String> protoData = rows.get(rowNumber)
-                .$$("td")
+                .findAll("td")
                 .texts();
         ContactData contact = ContactDataMapper.map(protoData);
-        contact.setId(Integer.valueOf(rows.get(rowNumber).$(byCssSelector("input")).getAttribute("id")));
+        contact.setId(Integer.valueOf(rows.get(rowNumber).$(("input")).getAttribute("id")));
         contact.setEmail(rows.get(rowNumber).$(byCssSelector("a")).text());
         return contact;
     }
@@ -126,9 +126,7 @@ public class ContactHelper extends BaseHelper {
 
         SelenideElement row = checkbox.closest("tr").should(exist);
 
-        System.out.println("HTML строки: " + row.innerHtml());
-
-        String lastName = row.$("td:nth-of-type(2)").getText();
+        String lastName = row.find("td:nth-of-type(2)").getText();
         String firstName = row.$("td:nth-of-type(3)").getText();
         String address = row.$("td:nth-of-type(4)").getText();
         String email = row.$("td:nth-of-type(5) a").should(exist).getText();
@@ -139,11 +137,12 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Получаем id первого контакта")
-        public int getFirstContactId() {
+    public int getFirstContactId() {
         SelenideElement checkbox = $("td.center input[type='checkbox']");
         return parseInt(checkbox.getAttribute("id"));
         }
 
+        @Step("Получить список контактов ")
     public Set<ContactData> getListOfContacts() {
         Set<ContactData> listOfContacts = new HashSet<>();
 

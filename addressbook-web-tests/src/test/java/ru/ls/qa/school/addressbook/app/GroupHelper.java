@@ -80,7 +80,6 @@ public class GroupHelper extends BaseHelper {
 
     @Step("Получить название группы по id")
     public String getGroupById(int groupId) {
-        // Ищем чекбокс с нужным значением ID
         SelenideElement checkbox = $("input[type='checkbox'][name='selected[]'][value='" + groupId + "']")
                 .shouldBe(exist);
 
@@ -111,11 +110,5 @@ public class GroupHelper extends BaseHelper {
     public int getGroupCount() {
         ElementsCollection groups = $$(By.name("selected[]"));
         return groups.size();
-    }
-
-    @Step("Получить строку")
-    public List<String> getRow() {
-        ElementsCollection groups = $$("span.group");
-        return groups.texts();
     }
 }
