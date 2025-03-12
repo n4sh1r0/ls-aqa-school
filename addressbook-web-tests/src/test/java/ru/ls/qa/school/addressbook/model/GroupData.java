@@ -3,8 +3,6 @@ package ru.ls.qa.school.addressbook.model;
 import lombok.*;
 
 @Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 @With
 public class GroupData {
