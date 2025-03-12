@@ -39,7 +39,7 @@ public class GroupHelper extends BaseHelper {
 
     @Step("Выбрать первую группу из списка")
     public void clickFirstSelectGroup() {
-        click(byCssSelector("span.group > input[type=\"checkbox\"]"));
+        click(byCssSelector("span.group > input[type='checkbox']"));
     }
 
     @Step("Кликнуть изменить группу")

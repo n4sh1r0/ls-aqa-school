@@ -9,7 +9,7 @@ public class SessionHelper extends BaseHelper {
         open("http://localhost/addressbook");
         type(byName("user"), username);
         type(byName("pass"), password);
-        click(byXpath("//*[@id=\"LoginForm\"]/input[3]"));
+        click(byXpath("//*[@id='LoginForm']/input[3]"));
     }
 
     public void logout() {

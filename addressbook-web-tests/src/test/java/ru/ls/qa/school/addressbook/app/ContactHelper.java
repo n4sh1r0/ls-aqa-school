@@ -21,7 +21,7 @@ public class ContactHelper extends BaseHelper {
 
     @Step("Подтвердить создание нового контакта")
     public void submitCreationNewContact() {
-        click(byXpath("//*[@id=\"content\"]/form/input[@name=\"submit\"][1]"));
+        click(byXpath("//*[@id=`content']/form/input[@name='submit'][1]"));
     }
 
     @Step("Заполнить поля нового контакта")
@@ -56,7 +56,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void selectContact(ContactData contact) {
-        ElementsCollection list = $$("tr[name=\"entry\"]");
+        ElementsCollection list = $$("tr[name='entry']");
         for (SelenideElement row : list) {
             if (row.$("td:nth-child(3)").text().equals(contact.getFirstName())
                     && row.$("td:nth-child(2)").text().equals(contact.getLastName())
@@ -98,7 +98,7 @@ public class ContactHelper extends BaseHelper {
 
     @Step("Список контактов пуст")
     public boolean contactListIsEmpty() {
-        return !$("tr[name=\"entry\"]").exists();
+        return !$("tr[name='entry']").exists();
     }
 
 
