@@ -3,3 +3,4 @@
 
 /ls-java-core/build/*
 /addressbook-web-tests/build/*
+/.idea
