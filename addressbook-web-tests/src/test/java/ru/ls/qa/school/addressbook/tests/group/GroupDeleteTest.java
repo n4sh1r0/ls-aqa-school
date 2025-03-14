@@ -3,7 +3,6 @@ package ru.ls.qa.school.addressbook.tests.group;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.model.GroupData;
 import ru.ls.qa.school.addressbook.pages.group.GroupListPage;
 import ru.ls.qa.school.addressbook.tests.TestBase;
@@ -18,8 +17,8 @@ public class GroupDeleteTest extends TestBase {
 
     @BeforeEach
     public void checkForGroup() {
-        var page = pages.getMainPage()
-                .goToGroupPage();
+        var page = openPage.mainPage()
+                           .goToGroupPage();
         if (app.getGroupHelper().listIsEmpty()) {
             page
                     .goToGroupCreationPage()
@@ -32,8 +31,8 @@ public class GroupDeleteTest extends TestBase {
 
     @Test
     public void testDeleteGroup() {
-        GroupListPage groupPage = pages.getMainPage()
-                .goToGroupPage();
+        GroupListPage groupPage = openPage.mainPage()
+                                          .goToGroupPage();
 
         int groupId = app.getGroupHelper().getFirstGroupId();
         Set<GroupData> groupsBefore = app.getGroupHelper().getListOfGroups();

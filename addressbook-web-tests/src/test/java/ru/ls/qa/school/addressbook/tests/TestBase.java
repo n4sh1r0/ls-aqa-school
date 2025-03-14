@@ -12,7 +12,7 @@ public class TestBase {
 
     public static FactoryUtils generate = new FactoryUtils();
     public static ApplicationManager app = new ApplicationManager();
-    public static PageManager pages = new PageManager();
+    public static PageManager openPage = new PageManager();
     public static UtilsManager utils = new UtilsManager();
 
 

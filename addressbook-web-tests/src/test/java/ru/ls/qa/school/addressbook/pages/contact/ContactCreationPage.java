@@ -8,24 +8,24 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 public class ContactCreationPage extends BasePage {
 
-    public ContactCreationPage fillContactForm() {
-        return fillContactForm(utils.generate().contact());
+    public ContactCreationPage fillForm() {
+        return fillForm(utils.generate().contact());
     }
 
-    public ContactCreationPage fillContactForm(ContactData contact) {
+    public ContactCreationPage fillForm(ContactData contact) {
         app.getContactHelper().fillNewContactForm(generate.contact());
         return this;
     }
 
     public ContactListPage initContactUpdate() {
         app.getContactHelper().fillNewContactForm(new FactoryUtils().contact());
-        app.getContactHelper().submitUpdateContact();
+        app.getContactHelper().submitUpdate();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return pages.getContactListPage();
+        return openPage.contacs();
     }
 
     public ContactListPage submitCreation() {
@@ -35,6 +35,6 @@ public class ContactCreationPage extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return pages.getContactListPage();
+        return openPage.contacs();
     }
 }

@@ -12,8 +12,8 @@ public class GroupCreationTest extends TestBase {
 
     @Test
     public void testGroupCreation() {
-        var page = pages.getMainPage()
-                .goToGroupPage();
+        var page = openPage.mainPage()
+                           .goToGroupPage();
         int beforeCount = app.getGroupHelper().getGroupCount();
         page.goToGroupCreationPage()
                 .fillForm(utils.generate().group())

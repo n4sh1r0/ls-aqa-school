@@ -3,7 +3,7 @@ package ru.ls.qa.school.addressbook.pages.group;
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.app;
-import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
+import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 
 
 public class GroupListPage extends BasePage {
@@ -12,7 +12,7 @@ public class GroupListPage extends BasePage {
     public GroupCreationPage goToGroupCreationPage() {
         app.getGroupHelper()
                 .initGroupCreation();
-        return pages.getGroupCreationPage();
+        return openPage.getGroupCreationPage();
     }
 
     public GroupListPage selectFirstGroup() {
@@ -24,13 +24,13 @@ public class GroupListPage extends BasePage {
     public GroupPage clickUpdateGroup() {
         app.getGroupHelper()
                 .clickEditGroup();
-        return pages.getGroupPage();
+        return openPage.getGroupPage();
     }
 
     public GroupActionResultPage initRemoveGroup() {
         app.getGroupHelper()
                 .clickRemoveGroup();
-        return pages.getGroupActionResultPage();
+        return openPage.getGroupActionResultPage();
     }
 
     public GroupListPage getGroupCount() {

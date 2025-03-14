@@ -11,10 +11,10 @@ public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().contactListIsEmpty()) {
-            pages.getMainPage()
+        if (app.getContactHelper().checkContactListIsEmpty()) {
+            openPage.mainPage()
                     .goToNewContactPage()
-                    .fillContactForm()
+                    .fillForm()
                     .submitCreation()
                     .clickSortByLastName();
         }
@@ -28,10 +28,10 @@ public class ContactUpdateTest extends TestBase {
         ContactData contactBeforeUpdate = app.getContactHelper().getContactById(contactId);
         ContactData expectedContact = utils.generate().contact();
 
-        pages.getMainPage()
-            .clickUpdateContactById(contactId)
-            .fillForm(expectedContact)
-            .submitUpdate();
+        openPage.mainPage()
+                .clickUpdateContactById(contactId)
+                .fillForm(expectedContact)
+                .submitUpdate();
 
         ContactData contactAfterUpdate = app.getContactHelper().getContactById(contactId);
 
@@ -40,6 +40,7 @@ public class ContactUpdateTest extends TestBase {
 
         assertThat(beforeIndicator)
                 .as("Проверка счеткика количества контактов")
+                .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s",resultIndicator, resultIndicator -1))
                 .isEqualTo(resultIndicator);
         assertThat(beforeCount)
                 .as("Проверка общего количества контактов")

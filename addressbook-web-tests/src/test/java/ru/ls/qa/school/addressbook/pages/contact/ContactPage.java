@@ -2,7 +2,6 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
-import ru.ls.qa.school.addressbook.utils.FactoryUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
@@ -18,12 +17,12 @@ public class ContactPage extends BasePage {
     }
 
     public ContactListPage submitUpdate() {
-        app.getContactHelper().submitUpdateContact();
+        app.getContactHelper().submitUpdate();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return pages.getContactListPage();
+        return openPage.contacs();
     }
 }

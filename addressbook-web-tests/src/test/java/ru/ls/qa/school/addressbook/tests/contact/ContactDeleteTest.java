@@ -14,10 +14,10 @@ public class ContactDeleteTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().contactListIsEmpty()) {
-            pages.getMainPage()
+        if (app.getContactHelper().checkContactListIsEmpty()) {
+            openPage.mainPage()
                     .goToNewContactPage()
-                    .fillContactForm()
+                    .fillForm()
                     .submitCreation();
         }
     }
@@ -29,7 +29,7 @@ public class ContactDeleteTest extends TestBase {
         int contactId = app.getContactHelper().getFirstContactId();
         Set<ContactData> contactsBefore = app.getContactHelper().getListOfContacts();
 
-        pages.getContactListPage().dropContactById(contactId);
+        openPage.contacs().dropContactById(contactId);
 
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();

@@ -3,7 +3,6 @@ package ru.ls.qa.school.addressbook.tests.group;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.model.GroupData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
@@ -18,8 +17,8 @@ public class GroupUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForGroup() {
-        var page = pages.getMainPage()
-                .goToGroupPage();
+        var page = openPage.mainPage()
+                           .goToGroupPage();
         if (app.getGroupHelper().listIsEmpty()) {
             page
                     .goToGroupCreationPage()
@@ -31,14 +30,14 @@ public class GroupUpdateTest extends TestBase {
 
     @Test
     public void testUpdateGroup() {
-        pages.getMainPage()
+        openPage.mainPage()
                 .goToGroupPage();
 
         int groupId = app.getGroupHelper().getFirstGroupId();
         String groupNameBeforeUpdate = app.getGroupHelper().getGroupById(groupId);
         GroupData expectedGroup = utils.generate().group();
 
-        pages.getGroupListPage()
+        openPage.getGroupListPage()
                 .selectFirstGroup()
                 .clickUpdateGroup()
                 .refillForm(expectedGroup)

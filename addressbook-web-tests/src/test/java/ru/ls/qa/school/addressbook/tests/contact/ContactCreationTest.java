@@ -13,17 +13,20 @@ public class ContactCreationTest extends TestBase {
         int beforeIndicator = app.getContactHelper().getContactCountIndicator();
         int beforeCount = app.getContactHelper().getContactCount();
 
-        pages.getMainPage()
+        openPage.mainPage()
                 .goToNewContactPage()
-                .fillContactForm()
+                .fillForm()
                 .submitCreation();
 
         int resultIndicator = app.getContactHelper().getContactCountIndicator();
         int resultCount = app.getContactHelper().getContactCount();
 
         assertThat(resultIndicator)
+                .as("Проверка счеткика количества контактов")
+                .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s",resultIndicator, resultIndicator -1))
                 .isEqualTo(beforeIndicator + 1);
         assertThat(resultCount)
+                .as("Проверка общего количества контактов")
                 .isEqualTo(beforeCount + 1);
     }
 }

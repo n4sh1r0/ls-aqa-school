@@ -35,7 +35,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Кликнуть обновить контакт")
-    public void clickUpdateContactById(int contactId) {
+    public void clickUpdateById(int contactId) {
         SelenideElement row = $(String.format("td.center input[type='checkbox'][id='%s']", contactId)).closest("tr");
         row.$("img[title='Edit']").click();
     }
@@ -45,7 +45,7 @@ public class ContactHelper extends BaseHelper {
         $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
-    public void submitUpdateContact() {
+    public void submitUpdate() {
         click(byName("update"));
     }
 
@@ -97,7 +97,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Список контактов пуст")
-    public boolean contactListIsEmpty() {
+    public boolean checkContactListIsEmpty() {
         return !$("tr[name='entry']").exists();
     }
 
