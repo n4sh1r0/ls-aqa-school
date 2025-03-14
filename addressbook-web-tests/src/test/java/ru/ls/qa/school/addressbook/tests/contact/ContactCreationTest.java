@@ -10,16 +10,16 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation() {
-        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
-        int beforeCount = app.getContactHelper().getContactCount();
+        int beforeIndicator = app.contact().getCountIndicator();
+        int beforeCount = app.contact().getListCount();
 
         openPage.mainPage()
                 .goToNewContactPage()
                 .fillForm()
                 .submitCreation();
 
-        int resultIndicator = app.getContactHelper().getContactCountIndicator();
-        int resultCount = app.getContactHelper().getContactCount();
+        int resultIndicator = app.contact().getCountIndicator();
+        int resultCount = app.contact().getListCount();
 
         assertThat(resultIndicator)
                 .as("Проверка счеткика количества контактов")

@@ -7,8 +7,9 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 
 
 public class GroupActionResultPage extends BasePage {
+    //TODO Убрать метод и объединить returnToGroupListPage в submitCreation
     public GroupListPage returnToGroupListPage() {
-        app.getGroupHelper().returnToGroupListPage();
+        app.group().returnToGroupListPage();
         return openPage.getGroupListPage();
     }
 }

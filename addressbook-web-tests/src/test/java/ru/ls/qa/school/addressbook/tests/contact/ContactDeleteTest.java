@@ -14,7 +14,7 @@ public class ContactDeleteTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().checkContactListIsEmpty()) {
+        if (app.contact().checkListIsEmpty()) {
             openPage.mainPage()
                     .goToNewContactPage()
                     .fillForm()
@@ -24,17 +24,17 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDelete() {
-        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
-        int beforeCount = app.getContactHelper().getContactCount();
-        int contactId = app.getContactHelper().getFirstContactId();
-        Set<ContactData> contactsBefore = app.getContactHelper().getListOfContacts();
+        int beforeIndicator = app.contact().getCountIndicator();
+        int beforeCount = app.contact().getListCount();
+        int contactId = app.contact().getFirstContactId();
+        Set<ContactData> contactsBefore = app.contact().getList();
 
         openPage.contacs().dropContactById(contactId);
 
-        int resultIndicator = app.getContactHelper().getContactCountIndicator();
-        int resultCount = app.getContactHelper().getContactCount();
+        int resultIndicator = app.contact().getCountIndicator();
+        int resultCount = app.contact().getListCount();
 
-        Set<ContactData> contactsAfter = app.getContactHelper().getListOfContacts();
+        Set<ContactData> contactsAfter = app.contact().getList();
 
         assertThat(resultIndicator)
                 .as("Проверка счеткика количества контактов")

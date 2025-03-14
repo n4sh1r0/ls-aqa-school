@@ -15,16 +15,16 @@ public class ContactListPage extends BasePage {
     }
 
     public ContactListPage selectAllContacts() {
-        app.getContactHelper()
+        app.contact()
                 .clickSelectAllContacts();
         return this;
     }
 
     //TODO удалить и переиспользовать вместо него dropContactById() или dropContactByRow()
     public ContactListPage dropContactById(int contactId) {
-        app.getContactHelper()
+        app.contact()
                 .clickSelectContactById(contactId);
-        app.getContactHelper()
+        app.contact()
                 .clickDeleteContact();
         acceptAlert();
         return this;
@@ -32,14 +32,14 @@ public class ContactListPage extends BasePage {
 
     public ContactListPage initDeletionAllContacts() {
         selectAllContacts();
-        app.getContactHelper()
+        app.contact()
                 .clickDeleteContact();
         acceptAlert();
         return this;
     }
 
     private ContactListPage acceptAlert() {
-        app.getContactHelper()
+        app.contact()
                 .acceptAlert();
         try {
             Thread.sleep(4000);
@@ -51,20 +51,20 @@ public class ContactListPage extends BasePage {
 
     //TODO заменить на getContactById()
     public ContactListPage getContactID() {
-        app.getContactHelper()
+        app.contact()
                 .getFirstContactId();
         return this;
     }
 
     public ContactPage clickUpdateContactById(int contactId) {
-        app.getContactHelper()
+        app.contact()
                 .clickUpdateById(contactId);
         return openPage.getContactPage();
     }
 
 
     public ContactListPage clickSortByLastName() {
-        app.getContactHelper()
+        app.contact()
                 .clickSortByLastName();
         return this;
     }

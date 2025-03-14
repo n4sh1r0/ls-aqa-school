@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.GroupData;
 
-import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -107,7 +106,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     @Step("Получить количество контактов")
-    public int getGroupCount() {
+    public int getListCount() {
         ElementsCollection groups = $$(By.name("selected[]"));
         return groups.size();
     }

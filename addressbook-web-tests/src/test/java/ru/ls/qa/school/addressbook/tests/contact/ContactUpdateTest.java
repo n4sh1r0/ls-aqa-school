@@ -11,21 +11,20 @@ public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().checkContactListIsEmpty()) {
+        if (app.contact().checkListIsEmpty()) {
             openPage.mainPage()
                     .goToNewContactPage()
                     .fillForm()
-                    .submitCreation()
-                    .clickSortByLastName();
+                    .submitCreation();
         }
     }
 
     @Test
     public void testContactUpdate() {
-        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
-        int beforeCount = app.getContactHelper().getContactCount();
-        int contactId = app.getContactHelper().getFirstContactId();
-        ContactData contactBeforeUpdate = app.getContactHelper().getContactById(contactId);
+        int beforeIndicator = app.contact().getCountIndicator();
+        int beforeCount = app.contact().getListCount();
+        int contactId = app.contact().getFirstContactId();
+        ContactData contactBeforeUpdate = app.contact().getContactById(contactId);
         ContactData expectedContact = utils.generate().contact();
 
         openPage.mainPage()
@@ -33,10 +32,10 @@ public class ContactUpdateTest extends TestBase {
                 .fillForm(expectedContact)
                 .submitUpdate();
 
-        ContactData contactAfterUpdate = app.getContactHelper().getContactById(contactId);
+        ContactData contactAfterUpdate = app.contact().getContactById(contactId);
 
-        int resultIndicator = app.getContactHelper().getContactCountIndicator();
-        int resultCount = app.getContactHelper().getContactCount();
+        int resultIndicator = app.contact().getCountIndicator();
+        int resultCount = app.contact().getListCount();
 
         assertThat(beforeIndicator)
                 .as("Проверка счеткика количества контактов")

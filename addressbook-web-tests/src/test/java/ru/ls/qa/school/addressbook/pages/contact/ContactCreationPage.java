@@ -13,13 +13,13 @@ public class ContactCreationPage extends BasePage {
     }
 
     public ContactCreationPage fillForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(generate.contact());
+        app.contact().fillNewContactForm(generate.contact());
         return this;
     }
 
     public ContactListPage initContactUpdate() {
-        app.getContactHelper().fillNewContactForm(new FactoryUtils().contact());
-        app.getContactHelper().submitUpdate();
+        app.contact().fillNewContactForm(new FactoryUtils().contact());
+        app.contact().submitUpdate();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -29,7 +29,7 @@ public class ContactCreationPage extends BasePage {
     }
 
     public ContactListPage submitCreation() {
-        app.getContactHelper().submitCreationNewContact();
+        app.contact().submitCreationNewContact();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {

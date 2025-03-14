@@ -90,20 +90,20 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Получить значение счетчика количества контактов" )
-    public int getContactCountIndicator() {
+    public int getCountIndicator() {
         String message = $("#content > label").shouldBe(visible).getText();
         String numberStr = message.replaceAll("\\D", "");
         return parseInt(numberStr);
     }
 
     @Step("Список контактов пуст")
-    public boolean checkContactListIsEmpty() {
+    public boolean checkListIsEmpty() {
         return !$("tr[name='entry']").exists();
     }
 
 
     @Step ("Получить количество всех контактов")
-    public int getContactCount() {
+    public int getListCount() {
         ElementsCollection contacts = $$(By.name("selected[]"));
         return contacts.size();
     }
@@ -143,7 +143,7 @@ public class ContactHelper extends BaseHelper {
         }
 
         @Step("Получить список контактов ")
-    public Set<ContactData> getListOfContacts() {
+    public Set<ContactData> getList() {
         Set<ContactData> listOfContacts = new HashSet<>();
 
         for (SelenideElement row : $$("tr[name='entry']")) {

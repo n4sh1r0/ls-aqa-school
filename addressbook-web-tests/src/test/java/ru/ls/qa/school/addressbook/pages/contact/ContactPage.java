@@ -12,12 +12,12 @@ public class ContactPage extends BasePage {
     }
 
     public ContactPage fillForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(contact);
+        app.contact().fillNewContactForm(contact);
         return this;
     }
 
     public ContactListPage submitUpdate() {
-        app.getContactHelper().submitUpdate();
+        app.contact().submitUpdate();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {

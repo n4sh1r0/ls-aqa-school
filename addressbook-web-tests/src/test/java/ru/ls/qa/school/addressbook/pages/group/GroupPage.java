@@ -10,12 +10,12 @@ import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 public class GroupPage extends BasePage {
 
     public GroupPage refillForm(GroupData group) {
-        app.getGroupHelper().fillNewForm(group);
+        app.group().fillNewForm(group);
         return this;
     }
 
     public GroupActionResultPage submitUpdate() {
-        app.getGroupHelper().submitUpdateGroup();
+        app.group().submitUpdateGroup();
         return openPage.getGroupActionResultPage();
     }
 }

@@ -10,32 +10,32 @@ public class GroupListPage extends BasePage {
 
 
     public GroupCreationPage goToGroupCreationPage() {
-        app.getGroupHelper()
+        app.group()
                 .initGroupCreation();
         return openPage.getGroupCreationPage();
     }
 
     public GroupListPage selectFirstGroup() {
-        app.getGroupHelper()
+        app.group()
                 .clickFirstSelectGroup();
         return this;
     }
 
     public GroupPage clickUpdateGroup() {
-        app.getGroupHelper()
+        app.group()
                 .clickEditGroup();
         return openPage.getGroupPage();
     }
 
     public GroupActionResultPage initRemoveGroup() {
-        app.getGroupHelper()
+        app.group()
                 .clickRemoveGroup();
         return openPage.getGroupActionResultPage();
     }
 
     public GroupListPage getGroupCount() {
-        app.getGroupHelper()
-                .getGroupCount();
+        app.group()
+                .getListCount();
         return this;
     }
 }
