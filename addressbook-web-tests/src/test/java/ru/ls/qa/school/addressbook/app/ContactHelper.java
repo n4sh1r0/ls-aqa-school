@@ -21,7 +21,7 @@ public class ContactHelper extends BaseHelper {
 
     @Step("Подтвердить создание нового контакта")
     public void submitCreationNewContact() {
-        click(byXpath("//*[@id=`content']/form/input[@name='submit'][1]"));
+        click(byXpath("//*[@id='content']/form/input[@name='submit'][1]"));
     }
 
     @Step("Заполнить поля нового контакта")
@@ -156,7 +156,7 @@ public class ContactHelper extends BaseHelper {
             String address = cells.get(3).getText();
             String email = cells.get(4).getText();
 
-            ContactData contact = new ContactData();
+            ContactData contact = ContactData.builder().build();
             contact.setId(id);
             contact.setFirstName(firstName);
             contact.setLastName(lastName);
