@@ -19,7 +19,7 @@ public class GroupDeleteTest extends TestBase {
     public void checkForGroup() {
         var page = openPage.mainPage()
                            .goToGroupPage();
-        if (app.group().listIsEmpty()) {
+        if (ui.group().checkListIsEmpty()) {
             page
                     .goToGroupCreationPage()
                     .fillForm(utils.generate().group())
@@ -33,17 +33,17 @@ public class GroupDeleteTest extends TestBase {
         GroupListPage groupPage = openPage.mainPage()
                                           .goToGroupPage();
 
-        int groupId = app.group().getFirstGroupId();
-        Set<GroupData> groupsBefore = app.group().getListOfGroups();
-        beforeDeletion = app.group().getListCount();
+        int groupId = ui.group().getFirstGroupId();
+        Set<GroupData> groupsBefore = ui.group().getList();
+        beforeDeletion = ui.group().getListCount();
 
         groupPage.selectFirstGroup()
                 .initRemoveGroup()
                 .returnToGroupListPage();
 
-        Set<GroupData> groupsAfter = app.group().getListOfGroups();
+        Set<GroupData> groupsAfter = ui.group().getList();
 
-        assertThat(app.group().getListCount())
+        assertThat(ui.group().getListCount())
                 .as("Проверка общего количества групп")
                 .isEqualTo(beforeDeletion - 1);
 

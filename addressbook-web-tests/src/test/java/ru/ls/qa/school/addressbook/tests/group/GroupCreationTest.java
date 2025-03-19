@@ -14,12 +14,12 @@ public class GroupCreationTest extends TestBase {
     public void testGroupCreation() {
         var page = openPage.mainPage()
                            .goToGroupPage();
-        int beforeCount = app.group().getListCount();
+        int beforeCount = ui.group().getListCount();
         page.goToGroupCreationPage()
                 .fillForm(utils.generate().group())
                 .completeCreation();
 
-        int afterCount = app.group().getListCount();
+        int afterCount = ui.group().getListCount();
 
         assertThat(afterCount)
                 .isEqualTo(beforeCount + 1);

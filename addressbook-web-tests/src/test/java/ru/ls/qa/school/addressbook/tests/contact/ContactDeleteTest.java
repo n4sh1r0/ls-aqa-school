@@ -3,42 +3,52 @@ package ru.ls.qa.school.addressbook.tests.contact;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.pages.contact.ContactListPage;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactDeleteTest extends TestBase {
 
+    static ContactListPage page;
+
     @BeforeEach
     public void checkForContact() {
-        if (app.contact().checkListIsEmpty()) {
-            openPage.mainPage()
-                    .goToNewContactPage()
-                    .fillForm()
-                    .submitCreation();
+        page = openPage.mainPage();
+        if (ui.contact()
+              .checkListIsEmpty()) {
+            page = page.goToNewContactPage()
+                       .fillForm()
+                       .submitCreation();
         }
     }
 
     @Test
     public void testContactDelete() {
-        int beforeIndicator = app.contact().getCountIndicator();
-        int beforeCount = app.contact().getListCount();
-        int contactId = app.contact().getFirstContactId();
-        Set<ContactData> contactsBefore = app.contact().getList();
+        int beforeIndicator = ui.contact()
+                                .getCountIndicator();
+        int beforeCount = ui.contact()
+                            .getListCount();
+        int contactId = ui.contact()
+                          .getFirstContactId();
+        ArrayList<ContactData> contactsBefore = ui.contact()
+                                            .getList();
 
-        openPage.contacs().dropContactById(contactId);
+        page.dropContactById(contactId);
 
-        int resultIndicator = app.contact().getCountIndicator();
-        int resultCount = app.contact().getListCount();
+        int resultIndicator = ui.contact()
+                                .getCountIndicator();
+        int resultCount = ui.contact()
+                            .getListCount();
 
-        Set<ContactData> contactsAfter = app.contact().getList();
+        ArrayList<ContactData> contactsAfter = ui.contact().getList();
 
         assertThat(resultIndicator)
                 .as("Проверка счеткика количества контактов")
-                .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s",resultIndicator, resultIndicator -1))
+                .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s", resultIndicator, resultIndicator - 1))
                 .isEqualTo(beforeIndicator - 1);
         assertThat(resultCount)
                 .as("Проверка общего количества контактов")
@@ -47,6 +57,9 @@ public class ContactDeleteTest extends TestBase {
         contactsBefore.removeIf(contact -> contact.getId() == contactId);
         assertThat(contactsAfter)
                 .as("Проверка списка контактов после удаления")
-                .containsExactlyInAnyOrderElementsOf(contactsBefore);
+                .usingRecursiveComparison()
+                .ignoringCollectionOrder()
+                .isEqualTo(contactsBefore);
+                //.containsExactlyInAnyOrderElementsOf(contactsBefore);
     }
 }

@@ -5,7 +5,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class SessionHelper extends BaseHelper {
-    public static void login(String username, String password) {
+
+    public void login(String username, String password) {
         open("http://localhost/addressbook");
         type(byName("user"), username);
         type(byName("pass"), password);

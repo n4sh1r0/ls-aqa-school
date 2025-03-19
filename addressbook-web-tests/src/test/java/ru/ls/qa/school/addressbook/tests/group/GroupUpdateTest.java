@@ -19,7 +19,7 @@ public class GroupUpdateTest extends TestBase {
     public void checkForGroup() {
         var page = openPage.mainPage()
                            .goToGroupPage();
-        if (app.group().listIsEmpty()) {
+        if (ui.group().checkListIsEmpty()) {
             page
                     .goToGroupCreationPage()
                     .fillForm(utils.generate().group())
@@ -32,8 +32,8 @@ public class GroupUpdateTest extends TestBase {
         openPage.mainPage()
                 .goToGroupPage();
 
-        int groupId = app.group().getFirstGroupId();
-        String groupNameBeforeUpdate = app.group().getGroupById(groupId);
+        int groupId = ui.group().getFirstGroupId();
+        String groupNameBeforeUpdate = ui.group().get(groupId);
         GroupData expectedGroup = utils.generate().group();
 
         openPage.getGroupListPage()
@@ -43,7 +43,7 @@ public class GroupUpdateTest extends TestBase {
                 .submitUpdate()
                 .returnToGroupListPage();
 
-        String groupNameAfterUpdate = app.group().getGroupById(groupId);
+        String groupNameAfterUpdate = ui.group().get(groupId);
 
         assertThat(groupNameAfterUpdate)
                 .as("Проверка обновления группы")

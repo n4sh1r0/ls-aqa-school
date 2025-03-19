@@ -2,7 +2,7 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.app;
+import static ru.ls.qa.school.addressbook.tests.TestBase.ui;
 import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 
 
@@ -10,37 +10,37 @@ public class ContactListPage extends BasePage {
 
 
     public ContactCreationPage goToNewContactPage() {
-        app.goTo().newContactPage();
+        ui.goTo().newContactPage();
         return openPage.contact();
     }
 
     public ContactListPage selectAllContacts() {
-        app.contact()
-                .clickSelectAllContacts();
+        ui.contact()
+          .selectAllList();
         return this;
     }
 
     //TODO удалить и переиспользовать вместо него dropContactById() или dropContactByRow()
     public ContactListPage dropContactById(int contactId) {
-        app.contact()
-                .clickSelectContactById(contactId);
-        app.contact()
-                .clickDeleteContact();
+        ui.contact()
+          .selectInList(contactId);
+        ui.contact()
+          .delete();
         acceptAlert();
         return this;
     }
 
     public ContactListPage initDeletionAllContacts() {
         selectAllContacts();
-        app.contact()
-                .clickDeleteContact();
+        ui.contact()
+          .delete();
         acceptAlert();
         return this;
     }
 
     private ContactListPage acceptAlert() {
-        app.contact()
-                .acceptAlert();
+        ui.contact()
+          .acceptAlert();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -51,21 +51,21 @@ public class ContactListPage extends BasePage {
 
     //TODO заменить на getContactById()
     public ContactListPage getContactID() {
-        app.contact()
-                .getFirstContactId();
+        ui.contact()
+          .getFirstContactId();
         return this;
     }
 
-    public ContactPage clickUpdateContactById(int contactId) {
-        app.contact()
-                .clickUpdateById(contactId);
+    public ContactPage updateContact(int contactId) {
+        ui.contact()
+          .clickUpdate(contactId);
         return openPage.getContactPage();
     }
 
 
     public ContactListPage clickSortByLastName() {
-        app.contact()
-                .clickSortByLastName();
+        ui.contact()
+          .sortByLastName();
         return this;
     }
 

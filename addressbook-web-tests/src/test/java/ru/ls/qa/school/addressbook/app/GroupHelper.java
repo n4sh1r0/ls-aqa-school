@@ -20,54 +20,49 @@ public class GroupHelper extends BaseHelper {
     }
 
     @Step("Подтвердить создание группы")
-    public void submitGroupCreation() {
+    public void submitCreation() {
         click(byName("submit"));
     }
 
     @Step("Заполнить форму группы")
-    public void fillNewForm(GroupData groupData) {
+    public void fillForm(GroupData groupData) {
         type(byName("group_name"), groupData.getName());
         type(byName("group_header"), groupData.getHeader());
         type(byName("group_footer"), groupData.getFooter());
     }
 
     @Step("Кликнуть создать группу")
-    public void initGroupCreation() {
+    public void initCreation() {
         click(byName("new"));
     }
 
     @Step("Выбрать первую группу из списка")
-    public void clickFirstSelectGroup() {
+    public void selectFirstInList() {
         click(byCssSelector("span.group > input[type='checkbox']"));
     }
 
     @Step("Кликнуть изменить группу")
-    public void clickEditGroup() {
+    public void edit() {
         click(byName("edit"));
     }
 
     @Step("Подтвердить обновление группы")
-    public void submitUpdateGroup() {
+    public void submitUpdate() {
         click(byName("update"));
     }
 
     @Step("Кликнуть удалить группу")
-    public void clickRemoveGroup() {
+    public void remove() {
         click(byName("delete"));
     }
 
-    @Step("Проверить сообщение после удаления группы")
-    public void checkMessageAfterGroupDeletion() {
-        checkMessage(byCssSelector("#content > div"), "Group has been removed.\n return to the group page");
-    }
-
     @Step("Вернуться на страницу со списком групп")
-    public void returnToGroupListPage() {
+    public void returnToListPage() {
         click(byLinkText("group page"));
     }
 
     @Step("Список групп пуст")
-    public boolean listIsEmpty() {
+    public boolean checkListIsEmpty() {
         return !$(".group").exists();
     }
 
@@ -78,7 +73,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     @Step("Получить название группы по id")
-    public String getGroupById(int groupId) {
+    public String get(int groupId) {
         SelenideElement checkbox = $("input[type='checkbox'][name='selected[]'][value='" + groupId + "']")
                 .shouldBe(exist);
 
@@ -86,7 +81,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     @Step("Получить список всех групп")
-    public Set<GroupData> getListOfGroups() {
+    public Set<GroupData> getList() {
         Set<GroupData> groups = new HashSet<>();
         ElementsCollection groupSpans = $$("span.group");
 

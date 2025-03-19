@@ -8,15 +8,15 @@ import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.mappers.ContactDataMapper;
 import ru.ls.qa.school.addressbook.model.ContactData;
 
-    import java.util.HashSet;
-    import java.util.List;
-    import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
+
 public class ContactHelper extends BaseHelper {
 
     @Step("Подтвердить создание нового контакта")
@@ -25,7 +25,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Заполнить поля нового контакта")
-    public void fillNewContactForm(ContactData contactData) {
+    public void fillForm(ContactData contactData) {
         type(byName("firstname"), contactData.getFirstName());
         type(byName("middlename"), contactData.getMiddleName());
         type(byName("lastname"), contactData.getLastName());
@@ -35,9 +35,10 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Кликнуть обновить контакт")
-    public void clickUpdateById(int contactId) {
+    public void clickUpdate(int contactId) {
         SelenideElement row = $(String.format("td.center input[type='checkbox'][id='%s']", contactId)).closest("tr");
-        row.$("img[title='Edit']").click();
+        row.$("img[title='Edit']")
+           .click();
     }
 
     public void checkUpdatedContactData(String email, String lastName, String firstName) {
@@ -45,21 +46,25 @@ public class ContactHelper extends BaseHelper {
         $x(format("//a[text()='%s']/../../td[3]", email)).shouldNotHave(text(firstName));
     }
 
-    public void submitUpdate() {
+    public void submitUpdateForm() {
         click(byName("update"));
     }
 
     @Step("Кликнуть чекбокс контакта по id")
-    public void clickSelectContactById(int contactId) {
+    public void selectInList(int contactId) {
         SelenideElement checkbox = $("td.center input[type='checkbox'][id='" + contactId + "']");
         checkbox.click();
     }
 
-    public void selectContact(ContactData contact) {
+    public void selectInList(ContactData contact) {
         ElementsCollection list = $$("tr[name='entry']");
         for (SelenideElement row : list) {
-            if (row.$("td:nth-child(3)").text().equals(contact.getFirstName())
-                    && row.$("td:nth-child(2)").text().equals(contact.getLastName())
+            if (row.$("td:nth-child(3)")
+                   .text()
+                   .equals(contact.getFirstName())
+                    && row.$("td:nth-child(2)")
+                          .text()
+                          .equals(contact.getLastName())
             ) {
                 click(byCssSelector("td.center:nth-child(1) > input"));
                 break;
@@ -68,13 +73,13 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Кликнуть удалить контакт")
-    public ContactHelper clickDeleteContact() {
+    public ContactHelper delete() {
         click(byCssSelector("input[value=Delete]"));
         return this;
     }
 
     @Step("Кликнуть отсортировать по Имени")
-    public void clickSortByLastName() {
+    public void sortByLastName() {
         click(byCssSelector("a.fdTableSortTrigger"));
     }
 
@@ -84,14 +89,15 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Кликнуть выбор всех контактов")
-    public void clickSelectAllContacts() {
+    public void selectAllList() {
         click(byCssSelector("#MassCB"));
         $("#MassCB").click();
     }
 
-    @Step("Получить значение счетчика количества контактов" )
+    @Step("Получить значение счетчика количества контактов")
     public int getCountIndicator() {
-        String message = $("#content > label").shouldBe(visible).getText();
+        String message = $("#content > label").shouldBe(visible)
+                                              .getText();
         String numberStr = message.replaceAll("\\D", "");
         return parseInt(numberStr);
     }
@@ -102,34 +108,28 @@ public class ContactHelper extends BaseHelper {
     }
 
 
-    @Step ("Получить количество всех контактов")
+    @Step("Получить количество всех контактов")
     public int getListCount() {
         ElementsCollection contacts = $$(By.name("selected[]"));
         return contacts.size();
     }
 
-    @Step ("Получить контакт по строке")
-    public ContactData getByRow(int rowNumber) {
-        ElementsCollection rows = $$("table tbody tr[name='entry']");
-        List<String> protoData = rows.get(rowNumber)
-                .findAll("td")
-                .texts();
-        ContactData contact = ContactDataMapper.map(protoData);
-        contact.setId(Integer.valueOf(rows.get(rowNumber).$(("input")).getAttribute("id")));
-        contact.setEmail(rows.get(rowNumber).$(byCssSelector("a")).text());
-        return contact;
-    }
-
     @Step("Получить Контакт по id")
-    public ContactData getContactById(int contactId) {
+    public ContactData getFromList(int contactId) {
         SelenideElement checkbox = $("td.center input[type='checkbox'][id='" + contactId + "']").should(exist);
 
-        SelenideElement row = checkbox.closest("tr").should(exist);
+        SelenideElement row = checkbox.closest("tr")
+                                      .should(exist);
 
-        String lastName = row.find("td:nth-of-type(2)").getText();
-        String firstName = row.$("td:nth-of-type(3)").getText();
-        String address = row.$("td:nth-of-type(4)").getText();
-        String email = row.$("td:nth-of-type(5) a").should(exist).getText();
+        String lastName = row.find("td:nth-of-type(2)")
+                             .getText();
+        String firstName = row.$("td:nth-of-type(3)")
+                              .getText();
+        String address = row.$("td:nth-of-type(4)")
+                            .getText();
+        String email = row.$("td:nth-of-type(5) a")
+                          .should(exist)
+                          .getText();
 
         List<String> protoData = List.of("", lastName, firstName, address, "", email);
 
@@ -140,11 +140,11 @@ public class ContactHelper extends BaseHelper {
     public int getFirstContactId() {
         SelenideElement checkbox = $("td.center input[type='checkbox']");
         return parseInt(checkbox.getAttribute("id"));
-        }
+    }
 
-        @Step("Получить список контактов ")
-    public Set<ContactData> getList() {
-        Set<ContactData> listOfContacts = new HashSet<>();
+    @Step("Получить список контактов ")
+    public ArrayList<ContactData> getList() {
+        ArrayList<ContactData> listOfContacts = new ArrayList<>();
 
         for (SelenideElement row : $$("tr[name='entry']")) {
             ElementsCollection cells = row.findAll("td");

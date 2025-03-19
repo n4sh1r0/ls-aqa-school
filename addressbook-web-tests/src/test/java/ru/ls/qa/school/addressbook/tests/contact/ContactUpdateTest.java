@@ -11,7 +11,7 @@ public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.contact().checkListIsEmpty()) {
+        if (ui.contact().checkListIsEmpty()) {
             openPage.mainPage()
                     .goToNewContactPage()
                     .fillForm()
@@ -21,21 +21,21 @@ public class ContactUpdateTest extends TestBase {
 
     @Test
     public void testContactUpdate() {
-        int beforeIndicator = app.contact().getCountIndicator();
-        int beforeCount = app.contact().getListCount();
-        int contactId = app.contact().getFirstContactId();
-        ContactData contactBeforeUpdate = app.contact().getContactById(contactId);
+        int beforeIndicator = ui.contact().getCountIndicator();
+        int beforeCount = ui.contact().getListCount();
+        int contactId = ui.contact().getFirstContactId();
+        ContactData contactBeforeUpdate = ui.contact().getFromList(contactId);
         ContactData expectedContact = utils.generate().contact();
 
         openPage.mainPage()
-                .clickUpdateContactById(contactId)
+                .updateContact(contactId)
                 .fillForm(expectedContact)
                 .submitUpdate();
 
-        ContactData contactAfterUpdate = app.contact().getContactById(contactId);
+        ContactData contactAfterUpdate = ui.contact().getFromList(contactId);
 
-        int resultIndicator = app.contact().getCountIndicator();
-        int resultCount = app.contact().getListCount();
+        int resultIndicator = ui.contact().getCountIndicator();
+        int resultCount = ui.contact().getListCount();
 
         assertThat(beforeIndicator)
                 .as("Проверка счеткика количества контактов")

@@ -16,7 +16,7 @@ public class ApplicationManager {
         Configuration.browser = System.getProperty("selenide.browser", "chrome");
         // "chrome", "firefox", "legacy_firefox", "ie", "htmlunit", "opera", "safari", "edge"
         open("http://localhost/addressbook");
-        SessionHelper.login("admin", "secret");
+        session().login("admin", "secret");
     }
 
     public void stop() {
@@ -35,7 +35,7 @@ public class ApplicationManager {
         return contactHelper;
     }
 
-    public SessionHelper getSessionHelper() {
+    public SessionHelper session() {
         return sessionHelper;
     }
 }
