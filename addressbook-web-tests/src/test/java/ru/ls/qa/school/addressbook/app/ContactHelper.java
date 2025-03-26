@@ -10,6 +10,7 @@ import ru.ls.qa.school.addressbook.model.ContactData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -149,19 +150,26 @@ public class ContactHelper extends BaseHelper {
         for (SelenideElement row : $$("tr[name='entry']")) {
             ElementsCollection cells = row.findAll("td");
 
-            Integer id = Integer.valueOf(cells.get(0).$("input").getAttribute("value"));
+            Integer id = Integer.valueOf(Objects.requireNonNull(cells.get(0)
+                                                                     .$("input")
+                                                                     .getAttribute("value")));
 
-            String lastName = cells.get(1).getText();
-            String firstName = cells.get(2).getText();
-            String address = cells.get(3).getText();
-            String email = cells.get(4).getText();
+            String lastName = cells.get(1)
+                                   .getText();
+            String firstName = cells.get(2)
+                                    .getText();
+            String address = cells.get(3)
+                                  .getText();
+            String email = cells.get(4)
+                                .getText();
 
-            ContactData contact = ContactData.builder().build();
-            contact.setId(id);
-            contact.setFirstName(firstName);
-            contact.setLastName(lastName);
-            contact.setAddress(address);
-            contact.setEmail(email);
+            ContactData contact = ContactData.builder()
+                                             .id(id)
+                                             .firstName(firstName)
+                                             .lastName(lastName)
+                                             .address(address)
+                                             .email(email)
+                                             .build();
 
             listOfContacts.add(contact);
         }
