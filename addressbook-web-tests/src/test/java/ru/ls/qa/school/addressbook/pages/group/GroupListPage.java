@@ -2,40 +2,40 @@ package ru.ls.qa.school.addressbook.pages.group;
 
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.app;
-import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
+import static ru.ls.qa.school.addressbook.tests.TestBase.ui;
+import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 
 
 public class GroupListPage extends BasePage {
 
 
     public GroupCreationPage goToGroupCreationPage() {
-        app.getGroupHelper()
-                .initGroupCreation();
-        return pages.getGroupCreationPage();
+        ui.group()
+          .initCreation();
+        return openPage.getGroupCreationPage();
     }
 
     public GroupListPage selectFirstGroup() {
-        app.getGroupHelper()
-                .clickFirstSelectGroup();
+        ui.group()
+          .selectFirstInList();
         return this;
     }
 
     public GroupPage clickUpdateGroup() {
-        app.getGroupHelper()
-                .clickEditGroup();
-        return pages.getGroupPage();
+        ui.group()
+          .edit();
+        return openPage.getGroupPage();
     }
 
     public GroupActionResultPage initRemoveGroup() {
-        app.getGroupHelper()
-                .clickRemoveGroup();
-        return pages.getGroupActionResultPage();
+        ui.group()
+          .remove();
+        return openPage.getGroupActionResultPage();
     }
 
     public GroupListPage getGroupCount() {
-        app.getGroupHelper()
-                .getGroupCount();
+        ui.group()
+          .getListCount();
         return this;
     }
 }

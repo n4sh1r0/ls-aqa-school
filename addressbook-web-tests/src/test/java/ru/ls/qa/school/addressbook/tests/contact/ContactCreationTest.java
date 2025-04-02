@@ -3,25 +3,30 @@ package ru.ls.qa.school.addressbook.tests.contact;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation() {
-        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
-        int beforeCount = app.getContactHelper().getContactCount();
+        int beforeIndicator = ui.contact().getCountIndicator();
+        int beforeCount = ui.contact().getListCount();
 
-        pages.getMainPage()
+        openPage.mainPage()
                 .goToNewContactPage()
-                .fillContactForm()
+                .fillForm()
                 .submitCreation();
 
-        int resultIndicator = app.getContactHelper().getContactCountIndicator();
-        int resultCount = app.getContactHelper().getContactCount();
+        int resultIndicator = ui.contact().getCountIndicator();
+        int resultCount = ui.contact().getListCount();
 
-        assertEquals(beforeIndicator + 1, resultIndicator);
-        assertEquals(beforeCount + 1, resultCount);
+        assertThat(resultIndicator)
+                .as("Проверка счетчика количества контактов")
+                .withFailMessage(String.format("Ожидаемое количество контактов: %s, фактическое %s",resultIndicator, resultIndicator -1))
+                .isEqualTo(beforeIndicator + 1);
+        assertThat(resultCount)
+                .as("Проверка общего количества контактов")
+                .isEqualTo(beforeCount + 1);
     }
 }

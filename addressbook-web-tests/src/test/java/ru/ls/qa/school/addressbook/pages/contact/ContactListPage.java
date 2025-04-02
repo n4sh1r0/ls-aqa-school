@@ -2,50 +2,45 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
-import static ru.ls.qa.school.addressbook.tests.TestBase.app;
-import static ru.ls.qa.school.addressbook.tests.TestBase.pages;
+import static ru.ls.qa.school.addressbook.tests.TestBase.ui;
+import static ru.ls.qa.school.addressbook.tests.TestBase.openPage;
 
 
 public class ContactListPage extends BasePage {
 
 
     public ContactCreationPage goToNewContactPage() {
-        app.getNavigationHelper().goToNewContactPage();
-        return pages.getContactCreationPage();
+        ui.goTo().newContactPage();
+        return openPage.contact();
     }
 
     public ContactListPage selectAllContacts() {
-        app.getContactHelper()
-                .clickSelectAllContacts();
+        ui.contact()
+          .selectAllList();
         return this;
     }
 
-    public ContactListPage deleteFirstContact() {
-        app.getContactHelper()
-                .clickSelectFirstContact();
-        app.getContactHelper()
-                .clickDeleteContact();
+    //TODO удалить и переиспользовать вместо него dropContactById() или dropContactByRow()
+    public ContactListPage dropContactById(int contactId) {
+        ui.contact()
+          .selectInList(contactId);
+        ui.contact()
+          .delete();
         acceptAlert();
         return this;
     }
 
     public ContactListPage initDeletionAllContacts() {
         selectAllContacts();
-        app.getContactHelper()
-                .clickDeleteContact();
+        ui.contact()
+          .delete();
         acceptAlert();
         return this;
     }
 
-    public ContactListPage selectFirstContact() {
-        app.getContactHelper()
-                .clickSelectFirstContact();
-        return this;
-    }
-
     private ContactListPage acceptAlert() {
-        app.getContactHelper()
-                .acceptAlert();
+        ui.contact()
+          .acceptAlert();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -54,21 +49,23 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
-    public ContactPage clickUpdateFirstContact() {
-        app.getContactHelper()
-                .clickUpdateContact();
-        return pages.getContactPage();
-    }
-
-    public ContactListPage getListOfFirstContact() {
-        app.getContactHelper()
-                .getByRow(0);
+    //TODO заменить на getContactById()
+    public ContactListPage getContactID() {
+        ui.contact()
+          .getFirstContactId();
         return this;
     }
 
+    public ContactPage updateContact(int contactId) {
+        ui.contact()
+          .clickUpdate(contactId);
+        return openPage.getContactPage();
+    }
+
+
     public ContactListPage clickSortByLastName() {
-        app.getContactHelper()
-                .clickSortByLastName();
+        ui.contact()
+          .sortByLastName();
         return this;
     }
 

@@ -2,44 +2,39 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
+import ru.ls.qa.school.addressbook.utils.FactoryUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
-import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 
 public class ContactCreationPage extends BasePage {
 
-    public ContactCreationPage fillContactForm() {
-        return fillContactForm(utils.generate().contact());
+    public ContactCreationPage fillForm() {
+        return fillForm(utils.generate().contact());
     }
 
-    public ContactCreationPage fillContactForm(ContactData contact) {
-        app.getContactHelper().fillNewContactForm(contact);
+    public ContactCreationPage fillForm(ContactData contact) {
+        ui.contact().fillForm(generate.contact());
         return this;
     }
 
     public ContactListPage initContactUpdate() {
-        app.getContactHelper().fillNewContactForm(new ContactData(generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                generateRandomString(getRandomLength()),
-                "Moscow",
-                generateRandomEmail()));
-        app.getContactHelper().submitUpdateContact();
+        ui.contact().fillForm(new FactoryUtils().contact());
+        ui.contact().submitUpdateForm();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return pages.getContactListPage();
+        return openPage.contacs();
     }
 
     public ContactListPage submitCreation() {
-        app.getContactHelper().submitCreationNewContact();
+        ui.contact().submitCreationNewContact();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return pages.getContactListPage();
+        return openPage.contacs();
     }
 }

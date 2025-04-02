@@ -5,53 +5,56 @@ import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
 
 public class ContactUpdateTest extends TestBase {
 
     @BeforeEach
     public void checkForContact() {
-        if (app.getContactHelper().listIsEmpty()) {
-            pages.getMainPage()
+        if (ui.contact().checkListIsEmpty()) {
+            openPage.mainPage()
                     .goToNewContactPage()
-                    .fillContactForm()
-                    .submitCreation()
-                    .clickSortByLastName();
+                    .fillForm()
+                    .submitCreation();
         }
     }
 
     @Test
     public void testContactUpdate() {
-        int beforeIndicator = app.getContactHelper().getContactCountIndicator();
-        int beforeCount = app.getContactHelper().getContactCount();
+        int beforeIndicator = ui.contact().getCountIndicator();
+        int beforeCount = ui.contact().getListCount();
+        int contactId = ui.contact().getFirstContactId();
+        ContactData contactBeforeUpdate = ui.contact().getFromList(contactId);
+        ContactData expectedContact = utils.generate().contact();
 
-        int contactId = app.getContactHelper().getByRow(0).getId();
+        openPage.mainPage()
+                .updateContact(contactId)
+                .fillForm(expectedContact)
+                .submitUpdate();
 
-        ContactData expected = utils.generate().contact();
-        expected.setId(contactId);
+        ContactData contactAfterUpdate = ui.contact().getFromList(contactId);
 
-        pages.getMainPage()
-                .clickUpdateFirstContact()
-                .fillForm(expected)
-                .submitUpdate()
-                .clickSortByLastName();
+        int resultIndicator = ui.contact().getCountIndicator();
+        int resultCount = ui.contact().getListCount();
 
-        int resultIndicator = app.getContactHelper().getContactCountIndicator();
-        int resultCount = app.getContactHelper().getContactCount();
+        assertThat(beforeIndicator)
+                .as("Проверка счеткика количества контактов")
+                .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s",resultIndicator, resultIndicator -1))
+                .isEqualTo(resultIndicator);
+        assertThat(beforeCount)
+                .as("Проверка общего количества контактов")
+                .isEqualTo(resultCount);
 
-        assertEquals(beforeIndicator, resultIndicator);
-        assertEquals(beforeCount, resultCount);
+        assertThat(contactAfterUpdate)
+                .as("Проверка обновления контакта")
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isNotEqualTo(contactBeforeUpdate);
 
-        ContactData result = app.getContactHelper().getById(contactId);
-
-        assertContacts(expected, result);
-    }
-
-    private void assertContacts(ContactData expected, ContactData result) {
-        assertEquals(expected.getId(), result.getId());
-        assertEquals(expected.getLastName(), result.getLastName());
-        assertEquals(expected.getFirstName(), result.getFirstName());
-        assertEquals(expected.getAddress(), result.getAddress());
-        assertEquals(expected.getEmail(), result.getEmail());
+        assertThat(contactAfterUpdate)
+                .as("Проверка ожидаемого контакта")
+                .usingRecursiveComparison()
+                .ignoringFields("middleName", "nickname")
+                .isEqualTo(expectedContact);
     }
 }

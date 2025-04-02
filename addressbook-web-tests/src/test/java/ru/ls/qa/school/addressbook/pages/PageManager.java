@@ -18,11 +18,11 @@ public class PageManager {
     private GroupActionResultPage groupActionResultPage = new GroupActionResultPage();
     private GroupPage groupPage = new GroupPage();
 
-    public ContactListPage getMainPage() {
+    public ContactListPage mainPage() {
         return contactListPage;
     }
 
-    public ContactListPage getContactListPage() {
+    public ContactListPage contacs() {
         return contactListPage;
     }
 
@@ -34,7 +34,7 @@ public class PageManager {
         return groupCreationPage;
     }
 
-    public ContactCreationPage getContactCreationPage() {
+    public ContactCreationPage contact() {
         return contactCreationPage;
     }
 

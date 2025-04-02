@@ -2,23 +2,26 @@ package ru.ls.qa.school.addressbook.tests.group;
 
 
 import org.junit.jupiter.api.Test;
-import ru.ls.qa.school.addressbook.pages.group.GroupListPage;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 public class GroupCreationTest extends TestBase {
 
 
     @Test
     public void testGroupCreation() {
-        GroupListPage groupPage = pages.getMainPage()
-                .goToGroupPage();
-        int beforeCreation = app.getGroupHelper().getGroupCount();
-        groupPage.goToGroupCreationPage()
+        var page = openPage.mainPage()
+                           .goToGroupPage();
+        int beforeCount = ui.group().getListCount();
+        page.goToGroupCreationPage()
                 .fillForm(utils.generate().group())
-                .submitCreation()
-                .returnToGroupListPage();
-        assertEquals(app.getGroupHelper().getGroupCount(), beforeCreation + 1);
+                .completeCreation();
+
+        int afterCount = ui.group().getListCount();
+
+        assertThat(afterCount)
+                .isEqualTo(beforeCount + 1);
     }
 }

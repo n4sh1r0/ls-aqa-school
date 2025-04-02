@@ -1,9 +1,9 @@
 package ru.ls.qa.school.addressbook.utils;
 
 public class UtilsManager {
-    private GenerateUtils generateUtils = new GenerateUtils();
+    private FactoryUtils generateUtils = new FactoryUtils();
 
-    public GenerateUtils generate() {
+    public FactoryUtils generate() {
         return generateUtils;
     }
 }

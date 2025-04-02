@@ -16,26 +16,26 @@ public class ApplicationManager {
         Configuration.browser = System.getProperty("selenide.browser", "chrome");
         // "chrome", "firefox", "legacy_firefox", "ie", "htmlunit", "opera", "safari", "edge"
         open("http://localhost/addressbook");
-        SessionHelper.login("admin", "secret");
+        session().login("admin", "secret");
     }
 
     public void stop() {
         closeWebDriver();
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
-    public SessionHelper getSessionHelper() {
+    public SessionHelper session() {
         return sessionHelper;
     }
 }
