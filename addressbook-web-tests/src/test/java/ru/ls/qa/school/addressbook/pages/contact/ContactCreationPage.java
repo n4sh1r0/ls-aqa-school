@@ -2,24 +2,29 @@ package ru.ls.qa.school.addressbook.pages.contact;
 
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
-import ru.ls.qa.school.addressbook.utils.FactoryUtils;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.*;
 
 public class ContactCreationPage extends BasePage {
 
     public ContactCreationPage fillForm() {
-        return fillForm(utils.generate().contact());
+        return fillForm(utils.generate()
+                             .contact());
     }
 
     public ContactCreationPage fillForm(ContactData contact) {
-        ui.contact().fillForm(generate.contact());
+        ui.contact()
+          .fillForm(utils.generate()
+                         .contact());
         return this;
     }
 
     public ContactListPage initContactUpdate() {
-        ui.contact().fillForm(new FactoryUtils().contact());
-        ui.contact().submitUpdateForm();
+        ui.contact()
+          .fillForm(utils.generate()
+                         .contact());
+        ui.contact()
+          .submitUpdateForm();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -29,7 +34,8 @@ public class ContactCreationPage extends BasePage {
     }
 
     public ContactListPage submitCreation() {
-        ui.contact().submitCreationNewContact();
+        ui.contact()
+          .submitCreationNewContact();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
