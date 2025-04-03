@@ -7,7 +7,7 @@ import static ru.ls.qa.school.addressbook.utils.primitive.RandomUtils.*;
 
 public class FactoryUtils {
 
-    private static String generateString() {
+    private String generateString() {
         return (generateRandomString(getRandomLength()));
     }
 
