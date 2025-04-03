@@ -10,7 +10,6 @@ import ru.ls.qa.school.addressbook.utils.UtilsManager;
 
 public class TestBase {
 
-    public static FactoryUtils generate = new FactoryUtils();
     public static ApplicationManager ui = new ApplicationManager();
     public static PageManager openPage = new PageManager();
     public static UtilsManager utils = new UtilsManager();
