@@ -8,12 +8,12 @@ import ru.ls.qa.school.addressbook.tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GroupUpdateTest extends TestBase {
-    List<String> groups = new ArrayList<>();
 
     @BeforeEach
     public void checkForGroup() {
@@ -34,11 +34,12 @@ public class GroupUpdateTest extends TestBase {
 
         int groupId = ui.group().getFirstGroupId();
         String groupNameBeforeUpdate = ui.group().get(groupId);
+        Set<GroupData> groupsBefore = ui.group().getList();
         GroupData expectedGroup = utils.generate().group();
+        GroupData modifiedGroup = groupsBefore.iterator().next();
 
         openPage.getGroupListPage()
-                .selectFirstGroup()
-                .clickUpdateGroup()
+                .clickUpdateGroup(modifiedGroup)
                 .refillForm(expectedGroup)
                 .submitUpdate()
                 .returnToGroupListPage();

@@ -1,5 +1,6 @@
 package ru.ls.qa.school.addressbook.pages.group;
 
+import ru.ls.qa.school.addressbook.model.GroupData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.ui;
@@ -21,10 +22,16 @@ public class GroupListPage extends BasePage {
         return this;
     }
 
-    public GroupPage clickUpdateGroup() {
-        ui.group()
-          .edit();
+    public GroupPage clickUpdateGroup(GroupData group) {
+        ui.group().selectGroupById(group.getId());
+        ui.group().edit();
         return openPage.getGroupPage();
+    }
+
+    public GroupActionResultPage deleteGroup(GroupData group) {
+        ui.group().selectGroupById(group.getId());
+        ui.group().remove();
+        return openPage.getGroupActionResultPage();
     }
 
     public GroupActionResultPage initRemoveGroup() {
