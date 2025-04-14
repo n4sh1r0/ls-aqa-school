@@ -41,6 +41,10 @@ public class GroupHelper extends BaseHelper {
         click(byCssSelector("span.group > input[type='checkbox']"));
     }
 
+    public void selectGroupById (int id) {
+        click(byCssSelector("input[value = '" + id + "']"));
+    }
+
     @Step("Кликнуть изменить группу")
     public void edit() {
         click(byName("edit"));

@@ -36,8 +36,9 @@ public class ContactDeleteTest extends TestBase {
                           .getFirstContactId();
         ArrayList<ContactData> contactsBefore = ui.contact()
                                             .getList();
+        ContactData deletedContact = contactsBefore.iterator().next();
 
-        page.dropContactById(contactId);
+        page.deleteContact(deletedContact);
 
         int resultIndicator = ui.contact()
                                 .getCountIndicator();
@@ -54,12 +55,11 @@ public class ContactDeleteTest extends TestBase {
                 .as("Проверка общего количества контактов")
                 .isEqualTo(beforeCount - 1);
 
-        contactsBefore.removeIf(contact -> contact.getId() == contactId);
+        contactsBefore.remove(deletedContact);
         assertThat(contactsAfter)
                 .as("Проверка списка контактов после удаления")
                 .usingRecursiveComparison()
                 .ignoringCollectionOrder()
                 .isEqualTo(contactsBefore);
-                //.containsExactlyInAnyOrderElementsOf(contactsBefore);
     }
 }

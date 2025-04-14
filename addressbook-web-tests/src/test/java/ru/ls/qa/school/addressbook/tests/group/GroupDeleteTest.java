@@ -33,12 +33,11 @@ public class GroupDeleteTest extends TestBase {
         GroupListPage groupPage = openPage.mainPage()
                                           .goToGroupPage();
 
-        int groupId = ui.group().getFirstGroupId();
         Set<GroupData> groupsBefore = ui.group().getList();
+        GroupData deletedGroup = groupsBefore.iterator().next();
         beforeDeletion = ui.group().getListCount();
 
-        groupPage.selectFirstGroup()
-                .initRemoveGroup()
+        groupPage.deleteGroup(deletedGroup)
                 .returnToGroupListPage();
 
         Set<GroupData> groupsAfter = ui.group().getList();
@@ -47,7 +46,7 @@ public class GroupDeleteTest extends TestBase {
                 .as("Проверка общего количества групп")
                 .isEqualTo(beforeDeletion - 1);
 
-        groupsBefore.removeIf(group -> group.getId() == groupId);
+        groupsBefore.remove(deletedGroup);
         assertThat(groupsAfter)
                 .as("Проверка списка групп после удаления")
                 .containsExactlyInAnyOrderElementsOf(groupsBefore);

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class ContactUpdateTest extends TestBase {
@@ -24,15 +26,21 @@ public class ContactUpdateTest extends TestBase {
         int beforeIndicator = ui.contact().getCountIndicator();
         int beforeCount = ui.contact().getListCount();
         int contactId = ui.contact().getFirstContactId();
+        ArrayList<ContactData> contactsBefore = ui.contact()
+                                                  .getList();
+        ContactData modifiedContact = contactsBefore.iterator().next();
         ContactData contactBeforeUpdate = ui.contact().getFromList(contactId);
         ContactData expectedContact = utils.generate().contact();
 
         openPage.mainPage()
-                .updateContact(contactId)
+                .updateContact(modifiedContact)
                 .fillForm(expectedContact)
                 .submitUpdate();
 
         ContactData contactAfterUpdate = ui.contact().getFromList(contactId);
+
+        ArrayList<ContactData> contactsAfter = ui.contact()
+                                                  .getList();
 
         int resultIndicator = ui.contact().getCountIndicator();
         int resultCount = ui.contact().getListCount();

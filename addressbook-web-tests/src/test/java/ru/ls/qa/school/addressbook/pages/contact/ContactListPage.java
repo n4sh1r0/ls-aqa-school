@@ -1,5 +1,6 @@
 package ru.ls.qa.school.addressbook.pages.contact;
 
+import ru.ls.qa.school.addressbook.model.ContactData;
 import ru.ls.qa.school.addressbook.pages.BasePage;
 
 import static ru.ls.qa.school.addressbook.tests.TestBase.ui;
@@ -20,10 +21,18 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
-    //TODO удалить и переиспользовать вместо него dropContactById() или dropContactByRow()
     public ContactListPage dropContactById(int contactId) {
         ui.contact()
           .selectInList(contactId);
+        ui.contact()
+          .delete();
+        acceptAlert();
+        return this;
+    }
+
+    public ContactListPage deleteContact(ContactData contact) {
+        ui.contact()
+          .selectInList(contact.getId());
         ui.contact()
           .delete();
         acceptAlert();
@@ -56,9 +65,9 @@ public class ContactListPage extends BasePage {
         return this;
     }
 
-    public ContactPage updateContact(int contactId) {
+    public ContactPage updateContact(ContactData contact) {
         ui.contact()
-          .clickUpdate(contactId);
+          .clickUpdate(contact);
         return openPage.getContactPage();
     }
 

@@ -36,8 +36,8 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Кликнуть обновить контакт")
-    public void clickUpdate(int contactId) {
-        SelenideElement row = $(String.format("td.center input[type='checkbox'][id='%s']", contactId)).closest("tr");
+    public void clickUpdate(ContactData contact) {
+        SelenideElement row = $(String.format("td.center input[type='checkbox'][id='%s']", contact.getId())).closest("tr");
         row.$("img[title='Edit']")
            .click();
     }
