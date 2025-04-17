@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.model.GroupData;
+import ru.ls.qa.school.addressbook.model.Groups;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +43,7 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void selectGroupById (int id) {
-        click(byCssSelector("input[value = '" + id + "']"));
+        click(byCssSelector(String.format("input[value = '%d']", id)));
     }
 
     @Step("Кликнуть изменить группу")
@@ -85,8 +86,8 @@ public class GroupHelper extends BaseHelper {
     }
 
     @Step("Получить список всех групп")
-    public Set<GroupData> getList() {
-        Set<GroupData> groups = new HashSet<>();
+    public Groups getList() {
+        Groups groups = new Groups();
         ElementsCollection groupSpans = $$("span.group");
 
         for (SelenideElement groupElement : groupSpans) {

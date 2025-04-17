@@ -4,6 +4,7 @@ package ru.ls.qa.school.addressbook.tests.group;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.GroupData;
+import ru.ls.qa.school.addressbook.model.Groups;
 import ru.ls.qa.school.addressbook.pages.group.GroupListPage;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
@@ -33,14 +34,14 @@ public class GroupDeleteTest extends TestBase {
         GroupListPage groupPage = openPage.mainPage()
                                           .goToGroupPage();
 
-        Set<GroupData> groupsBefore = ui.group().getList();
+        Groups groupsBefore = ui.group().getList();
         GroupData deletedGroup = groupsBefore.iterator().next();
         beforeDeletion = ui.group().getListCount();
 
         groupPage.deleteGroup(deletedGroup)
                 .returnToGroupListPage();
 
-        Set<GroupData> groupsAfter = ui.group().getList();
+        Groups groupsAfter = ui.group().getList();
 
         assertThat(ui.group().getListCount())
                 .as("Проверка общего количества групп")

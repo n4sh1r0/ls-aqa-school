@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.ls.qa.school.addressbook.mappers.ContactDataMapper;
 import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,8 +145,8 @@ public class ContactHelper extends BaseHelper {
     }
 
     @Step("Получить список контактов ")
-    public ArrayList<ContactData> getList() {
-        ArrayList<ContactData> listOfContacts = new ArrayList<>();
+    public Contacts getList() {
+        Contacts contacts = new Contacts();
 
         for (SelenideElement row : $$("tr[name='entry']")) {
             ElementsCollection cells = row.findAll("td");
@@ -171,8 +172,8 @@ public class ContactHelper extends BaseHelper {
                                              .email(email)
                                              .build();
 
-            listOfContacts.add(contact);
+            contacts.add(contact);
         }
-        return listOfContacts;
+        return contacts;
     }
 }

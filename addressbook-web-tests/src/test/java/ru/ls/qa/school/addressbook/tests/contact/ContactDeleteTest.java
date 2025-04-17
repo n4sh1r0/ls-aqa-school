@@ -3,6 +3,7 @@ package ru.ls.qa.school.addressbook.tests.contact;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.ls.qa.school.addressbook.model.ContactData;
+import ru.ls.qa.school.addressbook.model.Contacts;
 import ru.ls.qa.school.addressbook.pages.contact.ContactListPage;
 import ru.ls.qa.school.addressbook.tests.TestBase;
 
@@ -34,8 +35,8 @@ public class ContactDeleteTest extends TestBase {
                             .getListCount();
         int contactId = ui.contact()
                           .getFirstContactId();
-        ArrayList<ContactData> contactsBefore = ui.contact()
-                                            .getList();
+        Contacts contactsBefore = ui.contact()
+                                    .getList();
         ContactData deletedContact = contactsBefore.iterator().next();
 
         page.deleteContact(deletedContact);
@@ -45,7 +46,7 @@ public class ContactDeleteTest extends TestBase {
         int resultCount = ui.contact()
                             .getListCount();
 
-        ArrayList<ContactData> contactsAfter = ui.contact().getList();
+        Contacts contactsAfter = ui.contact().getList();
 
         assertThat(resultIndicator)
                 .as("Проверка счеткика количества контактов")
@@ -56,10 +57,11 @@ public class ContactDeleteTest extends TestBase {
                 .isEqualTo(beforeCount - 1);
 
         contactsBefore.remove(deletedContact);
-        assertThat(contactsAfter)
+        assertThat(contactsBefore.without(deletedContact))
                 .as("Проверка списка контактов после удаления")
+                .withFailMessage(String.format("Ожидаемые контакты %s, полученные контакты %s", contactsBefore.without(deletedContact), contactsAfter))
                 .usingRecursiveComparison()
-                .ignoringCollectionOrder()
-                .isEqualTo(contactsBefore);
+                .comparingOnlyFields("lastName", "firstName", "address", "email", "phoneNumber")
+                .isEqualTo(contactsAfter);
     }
 }
