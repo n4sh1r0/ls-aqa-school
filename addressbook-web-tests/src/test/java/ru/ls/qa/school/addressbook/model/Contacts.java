@@ -1,19 +1,16 @@
 package ru.ls.qa.school.addressbook.model;
 
 import com.google.common.collect.ForwardingList;
-import com.google.common.collect.ForwardingSet;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Contacts extends ForwardingList<ContactData> {
 
-    private List<ContactData> delegate;
+    private final List<ContactData> delegate;
 
     public Contacts(Contacts contacts) {
-        this.delegate = new ArrayList<>(contacts.delegate);
+        this.delegate = new ArrayList<>(contacts.delegate());
     }
 
     public Contacts() {
