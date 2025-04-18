@@ -33,8 +33,6 @@ public class ContactDeleteTest extends TestBase {
                                 .getCountIndicator();
         int beforeCount = ui.contact()
                             .getListCount();
-        int contactId = ui.contact()
-                          .getFirstContactId();
         Contacts contactsBefore = ui.contact()
                                     .getList();
         ContactData deletedContact = contactsBefore.iterator().next();
@@ -56,7 +54,7 @@ public class ContactDeleteTest extends TestBase {
                 .as("Проверка общего количества контактов")
                 .isEqualTo(beforeCount - 1);
 
-        contactsBefore.remove(deletedContact);
+
         assertThat(contactsAfter)
                 .as("Проверка списка контактов после удаления")
                 .withFailMessage(String.format("Ожидаемые контакты %s, полученные контакты %s", contactsBefore.without(deletedContact), contactsAfter))
