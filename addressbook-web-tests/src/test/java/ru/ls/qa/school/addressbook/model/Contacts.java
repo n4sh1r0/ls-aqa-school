@@ -23,14 +23,21 @@ public class Contacts extends ForwardingSet<ContactData> {
     }
 
     public Contacts withAdded(ContactData contact) {
-        Contacts groups = new Contacts(this);
-        groups.add(contact);
-        return groups;
+        Contacts contacts = new Contacts(this);
+        contacts.add(contact);
+        return contacts;
     }
 
     public Contacts without(ContactData contact) {
-        Contacts groups = new Contacts(this);
-        groups.remove(contact);
-        return groups;
+        Contacts contacts = new Contacts(this);
+        contacts.remove(contact);
+        return contacts;
+    }
+
+    public Contacts withChange(ContactData without, ContactData withAdd) {
+        Contacts contacts = new Contacts(this);
+        contacts.remove(without);
+        contacts.add(withAdd);
+        return contacts;
     }
 }

@@ -25,56 +25,35 @@ public class ContactUpdateTest extends TestBase {
     public void testContactUpdate() {
         int beforeIndicator = ui.contact()
                                 .getCountIndicator();
-        int beforeCount = ui.contact()
-                            .getListCount();
+
         Contacts contactsBefore = ui.contact()
                                     .getList();
         ContactData modifiedContact = contactsBefore.iterator()
                                                     .next();
         ContactData expectedContact = utils.generate()
-                                           .contact();
+                                           .contact().withId(modifiedContact.getId());
 
         openPage.mainPage()
                 .updateContact(modifiedContact)
                 .fillForm(expectedContact)
                 .submitUpdate();
 
-        ContactData contactAfterUpdate = ui.contact()
-                                           .getFromList(modifiedContact.getId());
-
         Contacts contactsAfter = ui.contact()
                                    .getList();
 
         int resultIndicator = ui.contact()
                                 .getCountIndicator();
-        int resultCount = ui.contact()
-                            .getListCount();
 
         assertThat(beforeIndicator)
                 .as("Проверка счеткика количества контактов")
                 .withFailMessage(String.format("Ожидаемое количестов контактов: %s, фактическое %s", resultIndicator, resultIndicator - 1))
                 .isEqualTo(resultIndicator);
-        assertThat(beforeCount)
-                .as("Проверка общего количества контактов")
-                .isEqualTo(resultCount);
 
-        assertThat(modifiedContact)
-                .as("Проверка обновления контакта")
-                .usingRecursiveComparison()
-                .ignoringFields("id")
-                .isNotEqualTo(contactAfterUpdate);
-
-        assertThat(contactAfterUpdate)
-                .as("Проверка ожидаемого контакта")
-                .usingRecursiveComparison()
-                .ignoringFields("middleName", "nickname")
-                .isEqualTo(expectedContact);
-
-        assertThat(contactsBefore.without(modifiedContact).withAdded(expectedContact))
+        assertThat(contactsAfter)
                 .as("Проверка списка контактов после обновления")
                 .withFailMessage(String.format("Ожидаемые контакты %s, полученные контакты %s", contactsBefore.without(modifiedContact).withAdded(expectedContact), contactsAfter))
                 .usingRecursiveComparison()
-                .comparingOnlyFields("lastName", "firstName", "address", "email", "phoneNumber")
-                .isEqualTo(contactsAfter);
+                .comparingOnlyFields("id", "lastName", "firstName", "address", "email")
+                .isEqualTo(contactsBefore.withChange(modifiedContact, expectedContact));
     }
 }

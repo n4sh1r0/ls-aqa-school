@@ -57,11 +57,11 @@ public class ContactDeleteTest extends TestBase {
                 .isEqualTo(beforeCount - 1);
 
         contactsBefore.remove(deletedContact);
-        assertThat(contactsBefore.without(deletedContact))
+        assertThat(contactsAfter)
                 .as("Проверка списка контактов после удаления")
                 .withFailMessage(String.format("Ожидаемые контакты %s, полученные контакты %s", contactsBefore.without(deletedContact), contactsAfter))
                 .usingRecursiveComparison()
                 .comparingOnlyFields("lastName", "firstName", "address", "email", "phoneNumber")
-                .isEqualTo(contactsAfter);
+                .isEqualTo(contactsBefore.without(deletedContact));
     }
 }
